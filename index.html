@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Olanike Omopariola Foundation — Home</title>
+  <meta name="description" content="Empowering women and young people through advocacy, education, and hope." />
+
+  <!-- Google Font for body/UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- NAV (134px), white, centered canvas 1440 with 80px side margins -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav-wrap">
+      <a class="logo" href="index.html" aria-label="Home">
+        <img src="assets/images/logo.png" alt="The Olanike Omopariola Foundation" />
+      </a>
+<button class="nav-toggle" aria-label="Open menu">
+  <!-- replace the src with your actual icon file -->
+  <img src="assets/icons/menu-mobile.png" alt="" width="40" height="40">
+</button>
+
+      <nav class="main-nav" aria-label="Primary">
+        <ul>
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="impact.html">Impact</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <!-- Donate 142×42, R=21, heart icon -->
+        <a class="btn btn-green donate-pill" href="donate.html" aria-label="Donate">
+          <svg class="heart" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 21s-6.7-4.4-9.2-6.9A5.5 5.5 0 0 1 10.5 6.5L12 8l1.5-1.5a5.5 5.5 0 0 1 7.7 7.7C18.7 16.6 12 21 12 21z"/>
+          </svg>
+          Donate
+        </a>
+
+    
+  <!-- Use your own icon (replace the src) -->
+  <button class="nav-toggle" aria-label="Open menu">
+    <img src="assets/icons/my-mobile-menu.png" alt="">
+  </button>
+</header>
+
+      </div>
+    </div>
+
+    <!-- MOBILE MENU OVERLAY (exact order, 62px vertical rhythm) -->
+    <div class="mobile-menu" aria-hidden="true">
+      <button class="menu-close" aria-label="Close menu">✕</button>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="impact.html">IMPACT</a></li>
+        <li><a href="get-involved.html">GET INVOLVED</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO 828px; left copy, right image; dark overlay; slideshow of 5 imgs -->
+    <section class="hero">
+      <div class="slides">
+        <div class="slide" style="background-image:url('assets/images/hero1.jpg')"></div>
+        <div class="slide" style="background-image:url('assets/images/hero2.jpg')"></div>
+        <div class="slide" style="background-image:url('assets/images/hero3.jpg')"></div>
+        <div class="slide" style="background-image:url('assets/images/hero4.jpg')"></div>
+        <div class="slide" style="background-image:url('assets/images/hero5.jpg')"></div>
+      </div>
+      <div class="hero-dim"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 class="display">
+            Together, We<br>Can Rebuild<br><span class="accent">Dreams</span>
+          </h1>
+          <p class="lead">
+            Empowering women and young people through advocacy,<br>
+            education, and hope.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-white btn-outline-green hero-btn" href="donate.html">Donate</a>
+            <a class="btn btn-green hero-btn" href="volunteer.html">Volunteer</a>
+          </div>
+        </div>
+        <div class="hero-right"><!-- empty for 65/35 split --></div>
+      </div>
+    </section>
+
+    <!-- ABOUT: title 56, body 26/39, Read More 27; founder card 413×512 r=32 with gradient tag -->
+    <section class="about">
+      <div class="container about-grid">
+        <figure class="founder-card">
+          <img src="assets/images/founder.jpg" alt="Oluwatoyin Omotayo" />
+          <figcaption class="founder-cap">
+            <span class="dot"></span>
+            <span class="name">Oluwatoyin Omotayo</span>
+            <span class="role">FOUNDER</span>
+          </figcaption>
+        </figure>
+
+        <div class="about-copy">
+          <h2 class="about-title">About the<br>Foundation</h2>
+          <p class="about-text">
+            The Olanike Omopariola Foundation is a nonprofit dedicated to empowering lives
+            through education, advocacy, and compassion. From grassroots outreach to national
+            campaigns, we’re bridging gaps and restoring hope.
+          </p>
+          <a class="about-read" href="about.html">Read More →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOCUS AREAS: bg #777777; 3×2 cards 413×391 r=32; 20px gaps; gradient on bottom 130px -->
+    <section class="focus">
+      <div class="container">
+        <h2 class="section-title">Our Mission &amp; Focus Areas</h2>
+        <p class="section-subtitle">
+          We’re on a mission to create safe, empowered, and educated communities—one life at a time.
+        </p>
+
+        <div class="focus-grid">
+          <a class="focus-tile" href="impact.html#gbv">
+            <img src="assets/images/area-gbv.jpg" alt="Gender-Based Violence" />
+            <div class="tile-overlay"></div>
+            <div class="tile-text">
+              <h3>Gender-Based Violence</h3>
+              <p>Creating safe spaces and support for survivors.</p>
+            </div>
+          </a>
+
+          <a class="focus-tile" href="impact.html#education">
+            <img src="assets/images/area-education.jpg" alt="Education Access" />
+            <div class="tile-overlay"></div>
+            <div class="tile-text">
+              <h3>Education Access</h3>
+              <p>Empowering children and youth through quality learning.</p>
+            </div>
+          </a>
+
+          <a class="focus-tile" href="impact.html#women-entrepreneurship">
+            <img src="assets/images/area-women.jpg" alt="Women Entrepreneurship" />
+            <div class="tile-overlay"></div>
+            <div class="tile-text">
+              <h3>Women Entrepreneurship</h3>
+              <p>Equipping women with skills, resources, and confidence.</p>
+            </div>
+          </a>
+
+          <a class="focus-tile" href="impact.html#health-nutrition">
+            <img src="assets/images/area-health.jpg" alt="Health & Nutrition" />
+            <div class="tile-overlay"></div>
+            <div class="tile-text">
+              <h3>Health &amp; Nutrition</h3>
+              <p>Promoting mental, physical, and emotional well-being.</p>
+            </div>
+          </a>
+
+          <a class="focus-tile" href="impact.html#youth-representation">
+            <img src="assets/images/area-youth.jpg" alt="Youth Representation" />
+            <div class="tile-overlay"></div>
+            <div class="tile-text">
+              <h3>Youth Representation</h3>
+              <p>Raising the next generation of ethical leaders.</p>
+            </div>
+          </a>
+
+          <a class="focus-tile" href="impact.html#community-development">
+            <img src="assets/images/area-community.jpg" alt="Community Development" />
+            <div class="tile-overlay"></div>
+            <div class="tile-text">
+              <h3>Community Development</h3>
+              <p>Driving sustainable impact at the grassroots.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS: 4 items; numbers Coolvetica 49 green; labels Poppins 17; count-up on scroll -->
+    <section class="stats">
+      <div class="container stats-row">
+        <div class="stat">
+          <span class="num" data-count="300">0</span>
+          <span class="lbl">Lives Impacted</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="43">0</span>
+          <span class="lbl">Projects Completed</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="60">0</span>
+          <span class="lbl">Active Volunteers</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="12">0</span>
+          <span class="lbl">New Programmes</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED STORIES: 600×622 r=32; image fills; 100px bottom gradient with title -->
+    <section class="featured">
+      <div class="container">
+        <h2 class="section-title center">Featured Stories</h2>
+
+        <div class="stories">
+          <article class="story">
+            <a class="story-card" href="blog.html#hope-in-her-hands" aria-label="Hope in Her Hands">
+              <div class="story-media">
+                <img src="assets/images/story1.jpg" alt="Hope in Her Hands" />
+                <div class="story-grad"></div>
+                <h3 class="story-title">Hope in Her Hands</h3>
+              </div>
+            </a>
+            <p class="story-excerpt">
+              Fatima’s world was limited to the four walls of her home.She had never held a textbook—until the Foundation’s outreach program introduced her to literacy at age 13. Now, she reads bedtime stories to her siblings and dreams of becoming a teacher.
+“They didn’t just show up. They stayed. They taught me hope.”
+            </p>
+            <a class="story-read" href="blog.html#hope-in-her-hands">Read Story →</a>
+          </article>
+        
+          <article class="story">
+            <a class="story-card" href="blog.html#volunteer-who-became-family" aria-label="The Volunteer Who Became Family">
+              <div class="story-media">
+                <img src="assets/images/story2.jpg" alt="The Volunteer Who Became Family" />
+                <div class="story-grad"></div>
+                <h3 class="story-title">The Volunteer Who<br> Became Family</h3>
+              </div>
+            </a>
+            <p class="story-excerpt">
+              David signed up to volunteer for one event—he never imagined it would change his life.Moved by the energy of the children and the purpose behind the mission, he has now helped lead 12 outreach programs and mentors 5 teenagers.
+“Serving here made me realize I was part of something bigger. I found purpose.”
+            </p>
+            <a class="story-read" href="blog.html#volunteer-who-became-family">Read Story →</a>
+          </article>
+        </div>
+        
+        
+    <!-- EVENTS: 3×2; 413×329 r=24; 20px gaps; alternating colors; month14/date28/title28; arrow bottom-right -->
+    <section class="events" id="events">
+      <div class="container">
+        <h2 class="section-title center">Upcoming Events</h2>
+
+        <div class="events-grid">
+          <article class="event card-green">
+            <div class="md"><span class="mth">AUG</span><span class="day">16</span></div>
+            <h3>Healing Through Community — Stories that Move Mountains</h3>
+            <p class="meta">5:00 PM WAT · Instagram Live</p>
+            <a
+  class="arr arr-link"
+  href="https://www.instagram.com/p/POST_ID_1/"
+  target="_blank" rel="noopener"
+  aria-label="Open Instagram post"
+>→</a>
+
+          </article>
+
+          <article class="event card-blue">
+            <div class="md"><span class="mth">SEP</span><span class="day">7</span></div>
+            <h3>Building Confidence and Career Readiness in Young Women</h3>
+            <p class="meta">10:00 AM – 2:00 PM · Lagos Mainland Resource Center</p>
+            <a
+  class="arr arr-link"
+  href="https://www.instagram.com/p/POST_ID_1/"
+  target="_blank" rel="noopener"
+  aria-label="Open Instagram post"
+>→</a>
+
+          </article>
+
+          <article class="event card-green">
+            <div class="md"><span class="mth">SEP</span><span class="day">21</span></div>
+            <h3>A 5km awareness walk with banners, conversations, and survivor testimonies</h3>
+            <p class="meta">8:30 AM · University of Ibadan to Bodija axis</p>
+            <a
+  class="arr arr-link"
+  href="https://www.instagram.com/p/POST_ID_1/"
+  target="_blank" rel="noopener"
+  aria-label="Open Instagram post"
+>→</a>
+
+          </article>
+
+          <article class="event card-blue">
+            <div class="md"><span class="mth">OCT</span><span class="day">4</span></div>
+            <h3>Olanike Omopariola and guest family therapist</h3>
+            <p class="meta">6:00 PM WAT · Instagram Live</p>
+            <a
+  class="arr arr-link"
+  href="https://www.instagram.com/p/POST_ID_1/"
+  target="_blank" rel="noopener"
+  aria-label="Open Instagram post"
+>→</a>
+
+          </article>
+
+          <article class="event card-green">
+            <div class="md"><span class="mth">OCT</span><span class="day">12</span></div>
+            <h3>Distribution of books, mentorship talks, and safe-space training</h3>
+            <p class="meta">9:00 AM · Ijebu-Ode Community School</p>
+            <a
+  class="arr arr-link"
+  href="https://www.instagram.com/p/POST_ID_1/"
+  target="_blank" rel="noopener"
+  aria-label="Open Instagram post"
+>→</a>
+
+          </article>
+
+          <article class="event card-blue">
+            <div class="md"><span class="mth">NOV</span><span class="day">30</span></div>
+            <h3>Hope in Motion</h3>
+            <p class="meta">5:00 PM WAT · Civic Centre, Victoria Island, Lagos</p>
+            <a
+  class="arr arr-link"
+  href="https://www.instagram.com/p/POST_ID_1/"
+  target="_blank" rel="noopener"
+  aria-label="Open Instagram post"
+>→</a>
+
+          </article>
+        </div>
+
+        <div class="center">
+          <button class="btn btn-green more-events" data-more-target="#moreEvents">More Events</button>
+        </div>
+
+        <!-- Inline reveal (adds one more row on same page) -->
+        <div id="moreEvents" class="events-grid hidden">
+          <article class="event card-green">
+            <div class="md"><span class="mth">DEC</span><span class="day">10</span></div>
+            <h3>Year-End Community Drive</h3>
+            <p class="meta">10:00 AM · Community Hall</p>
+            <a
+  class="arr arr-link"
+  href="https://www.instagram.com/p/POST_ID_1/"
+  target="_blank" rel="noopener"
+  aria-label="Open Instagram post"
+>→</a>
+
+          </article>
+          <article class="event card-blue">
+            <div class="md"><span class="mth">JAN</span><span class="day">15</span></div>
+            <h3>New Year Mentorship Kickoff</h3>
+            <p class="meta">1:00 PM · Online</p>
+            <a
+  class="arr arr-link"
+  href="https://www.instagram.com/p/POST_ID_1/"
+  target="_blank" rel="noopener"
+  aria-label="Open Instagram post"
+>→</a>
+
+          </article>
+          <article class="event card-green">
+            <div class="md"><span class="mth">FEB</span><span class="day">5</span></div>
+            <h3>Health &amp; Wellness Workshop</h3>
+            <p class="meta">11:00 AM · Local Clinic</p>
+            <a
+  class="arr arr-link"
+  href="https://www.instagram.com/p/POST_ID_1/"
+  target="_blank" rel="noopener"
+  aria-label="Open Instagram post"
+>→</a>
+
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY: big 845×816 at right; two small stacked left; then three small below (all r=32); button 387×109 -->
+    <section class="gallery">
+      <div class="container">
+        <h2 class="section-title center">Media Gallery Highlights</h2>
+
+        <div class="gallery-grid">
+          <!-- left column, two stacked -->
+          <img class="sm top-left" src="assets/images/gallery2.jpg" alt="Gallery item" />
+          <img class="sm mid-left" src="assets/images/gallery3.jpg" alt="Gallery item" />
+
+          <!-- big right column spanning two rows -->
+          <img class="big" src="assets/images/gallery1.jpg" alt="Gallery feature" />
+
+          <!-- bottom row: three across -->
+          <img class="sm bottom-a" src="assets/images/gallery4.jpg" alt="Gallery item" />
+          <img class="sm bottom-b" src="assets/images/gallery5.jpg" alt="Gallery item" />
+          <img class="sm bottom-c" src="assets/images/gallery6.jpg" alt="Gallery item" />
+        </div>
+
+        <div class="center">
+          <a class="btn btn-green gallery-btn" href="gallery.html">See Full Gallery</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA: gradient bg, image 627×539 (r=32); buttons 527×100; H=48, body=20 -->
+    <section class="cta">
+      <div class="container cta-grid">
+        <div class="cta-media">
+          <img src="assets/images/cta.jpg" alt="Hands together" />
+        </div>
+
+        <div class="cta-panel">
+          <h3>Your <span class="accent">support</span> goes a long way</h3>
+          <p>Join hands with us to make impact happen.</p>
+
+          <a class="cta-btn btn-grad-blue" href="donate.html">Donate <span>→</span></a>
+          <a class="cta-btn btn-grad-purple" href="volunteer.html">Volunteer <span>→</span></a>
+          <a class="cta-btn btn-grad-violet" href="#">Follow Us <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <!-- Left: logo, email, socials -->
+      <div class="foot-brand">
+        <img class="foot-logo" src="assets/images/logo.png" alt="The Olanike Omopariola Foundation">
+  
+        <p class="foot-email">
+          <a href="mailto:info@olanikeomopariolafoundation.org">info@olanikeomopariolafoundation.org</a>
+        </p>
+  
+        <ul class="socials">
+          <li><a class="soc" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+            <img class="soc-ico" src="assets/icons/instagram.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+            <img class="soc-ico" src="assets/icons/facebook.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://x.com/" target="_blank" rel="noopener" aria-label="X">
+            <img class="soc-ico" src="assets/icons/x.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://wa.me/2340000000000" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <img class="soc-ico" src="assets/icons/whatsapp.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">
+            <img class="soc-ico" src="assets/icons/youtube.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <img class="soc-ico" src="assets/icons/linkedin.png" alt="">
+          </a></li>
+        </ul>
+      </div>
+  
+      <!-- Right: two link columns -->
+      <nav class="foot-nav" aria-label="Footer">
+        <ul class="col">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+        <ul class="col">
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="blog.html">Impact Stories</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="mission.html">Our Mission</a></li>
+        </ul>
+      </nav>
+    </div>
+  
+    <div class="foot-bottom">
+      © 2025 The Olanike Omopariola Foundation. All rights reserved.
+    </div>
+  </footer>
+  
+  
+
+  <script src="js/main.js"></script>
+</body>
+</html>
