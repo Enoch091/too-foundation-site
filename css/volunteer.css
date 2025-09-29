@@ -202,3 +202,24 @@
   overflow: hidden;
 }
 
+/* Disabled state: look obviously inactive and kill hover effects */
+.cta-pill[disabled],
+.cta-pill:disabled{
+  background: #A7C89A;   /* softer green so it reads as disabled */
+  color: #fff;
+  opacity: .55;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  pointer-events: none;   /* stops hover/press effects */
+}
+
+/* Make sure hover doesn't lift when disabled */
+@media (hover:hover){
+  .cta-pill[disabled]:hover,
+  .cta-pill:disabled:hover{
+    background: #A7C89A;
+    box-shadow: none;
+    transform: none;
+  }
+}
