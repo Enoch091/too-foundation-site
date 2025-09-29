@@ -429,3 +429,24 @@ main { flex: 1 0 auto; }
 .blog-list .thumb{
   width:261px; height:200px; object-fit:cover; display:block; border-radius:12px;
 }
+
+/* --- Volunteer page scroll fix: kill nested scroller --- */
+html, body {
+  height: auto;
+  overflow-y: auto;
+}
+
+/* anything wrapping the form must NOT scroll */
+main,
+.vol-form,
+.form-card,
+.vol-form .container {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* keep the mentor bio animation working – only this can clip */
+.mentors .mdesc {
+  overflow: hidden; /* needed for the open/close transition */
+}
