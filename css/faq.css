@@ -1,0 +1,128 @@
+/* ===== TOKENS (align to your site) ===== */
+:root{
+  --green:#65AC42;
+  --navy:#2D308F;
+  --text:#000;
+  --muted:#505050;
+  --white:#fff;
+
+  --canvas:1440px;
+  --container:1280px;
+  --nav-h:134px;
+
+  --r-32:32px;
+  --r-24:24px;
+}
+
+/* Coolvetica face (same as your Impact page) */
+@font-face{
+  font-family:"Coolvetica";
+  src:url("../assets/fonts/Coolvetica.woff2") format("woff2"),
+      url("../assets/fonts/Coolvetica.woff") format("woff");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+/* Base container in case the global isn't present */
+.container{ width:var(--container); max-width:100%; margin:0 auto; }
+
+/* Active nav color */
+.main-nav a.active{ color:var(--green); }
+
+/* ===== HERO ===== */
+.faq-hero{ padding:90px 0 0; }
+.faq-hero .hero-card{
+  width:1276px; height:431px; margin:0 auto; position:relative; border-radius:var(--r-32); overflow:hidden;
+  background:#242424;
+}
+.faq-hero .hero-img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.23;
+}
+.faq-hero .hero-title{
+  position:absolute; inset:0; display:grid; place-items:center;
+  color:#fff; margin:0; font-family:"Coolvetica","Poppins",sans-serif; font-size:56px; line-height:96px; font-weight:400;
+}
+
+/* ===== INTRO LINE ===== */
+.faq-intro{ padding:80px 0 36px; }
+.intro-text{
+  max-width:1165px; margin:0 auto; text-align:center;
+  font:300 32px/42px "Poppins",sans-serif; color:#000; letter-spacing:.64px;
+}
+
+/* ===== FAQ BELT ===== */
+.faq-belt{ background:#F5F5F5; padding:90px 0 300px; }
+
+/* Stack of items centered within container */
+.faq-grid{
+  width:1276px; max-width:calc(100% - 48px); margin:0 auto;
+  display:flex; flex-direction:column; gap:32px;
+}
+
+/* Individual item */
+.faq-item{
+  background:transparent;
+  border-radius:var(--r-24);
+}
+
+/* Question row */
+.faq-q{ margin:0; }
+.acc-btn{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:24px;
+  background:#fff; color:#000; border:0; cursor:pointer; padding:30px 32px; /* content-driven */
+  border-radius:var(--r-0);
+  text-align:left;
+}
+
+/* Question text (desktop sizes) */
+.q-text{
+  font:300 22px/24px "Poppins",sans-serif;
+}
+
+/* Chevron (points right by default; rotates down on open) */
+.chev{
+  width:40px; height:40px; flex:0 0 auto; color:#313131;
+  transform:rotate(-90deg); transition:transform .18s ease;
+  overflow:visible;
+}
+.acc-btn[aria-expanded="true"] .chev{ transform:rotate(0deg); }
+
+/* Answer panel */
+.faq-a{
+  background:#fff; border-radius:var(--r-0);
+  margin-top:5px;
+  padding:22px 38px 41px 38px;
+}
+.faq-a p{
+  margin:0; max-width:1111px;
+  font:300 22px/56px "Poppins",sans-serif; color:#000;
+}
+
+/* Instagram link styling inside answer (italics, subtle underline on hover) */
+.faq-a .ig{ color:inherit; text-decoration:underline; text-underline-offset:3px; }
+.faq-a em{ font-style:italic; }
+
+/* ===== MOBILE ≤ 430 ===== */
+@media (max-width:430px){
+  .faq-hero{ padding:24px 0 0; }
+  .faq-hero .hero-card{ width:382px; height:129px; border-radius:0px; }
+  .faq-hero .hero-title{ font-size:32px; line-height:28.7px; }
+
+  .faq-intro{ padding:16px 0 24px; }
+  .intro-text{ font:300 16px/35px "Poppins",sans-serif; max-width:379px; }
+
+  .faq-belt{ padding:48px 0 80px; }
+  .faq-grid{ max-width:calc(100% - 32px); gap:22px; }
+
+  .acc-btn{ padding:18px 20px; border-radius:0px; }
+  .q-text{ font:300 14px/29.6px "Poppins",sans-serif; }
+  .chev{ width:28px; height:28px; }
+
+  .faq-a{ padding:20px 24px 28px; border-radius:0px; }
+  .faq-a p{ font:300 16px/29.6px "Poppins",sans-serif; max-width:unset; }
+}
+
+/* ===== ACCESSIBILITY FOCUS ===== */
+.acc-btn:focus-visible{
+  outline:3px solid rgba(101,172,66,.45);
+  outline-offset:3px;
+}

@@ -1,0 +1,226 @@
+/* ===== Tokens (match Impact) ===== */
+:root{
+  --green:#65AC42;
+  --navy:#2D308F;
+  --muted:#717171;
+  --text:#121212;
+  --white:#fff;
+  --container:1280px;
+  --r-32:32px;
+  --nav-h:134px;
+}
+
+/* Generic helpers used here */
+.meta-row{ display:flex; align-items:center; gap:10px; }
+.meta{ color:var(--muted); font:400 17px/20px "DM Sans","Poppins",sans-serif; letter-spacing:0.6px; }
+.dot{ width:5px; height:5px; border-radius:9999px; background:var(--muted); display:inline-block; }
+
+/* ---------- LISTING ---------- */
+.blog-featured{ padding:60px 0 20px; }
+.blog-featured .feat-card{
+  display:block; width:1280px; max-width:100%; margin:0 auto; border-radius:32px; overflow:hidden; position:relative;
+}
+.blog-featured .feat-img{
+  width:100%; height:680px; object-fit:cover; display:block;
+}
+.blog-featured .feat-meta{
+  position:relative; padding:22px 0 0; /* text lives beneath the image like comp */
+}
+.feat-title{
+  margin:12px 0 6px; color:#000; font:500 56px/42px "Poppins",sans-serif;
+}
+
+/* List */
+.blog-list{ padding:40px 0 96px; }
+.blog-list .list{ list-style:none; padding:0; margin:0 auto; width:1280px; max-width:100%; }
+.blog-list .row{ border-top:1px #B8B8B8 solid; padding:30px 0; }
+.post-card{ display:block; }
+.card-link{ display:grid; grid-template-columns:261px 1fr; gap:50px; align-items:center; text-decoration:none; color:inherit; }
+.thumb{ width:261px; height:200px; object-fit:cover; border-radius:12px; display:block; }
+.info{ display:flex; flex-direction:column; gap:5px; }
+.title{ margin:0; font:500 48px/64px "Poppins",sans-serif; color:var(--text); }
+
+/* Load more */
+.load-more-wrap{ display:flex; justify-content:center; }
+.load-more{
+  padding:16px 68px; border-radius:1111px; border:1px solid var(--green); background:#fff;
+  color:var(--green); font:700 18px/28px "DM Sans","Poppins",sans-serif; letter-spacing:.54px; cursor:pointer;
+}
+.load-more:hover{ background:#F4FAF0; }
+
+/* hide rows for progressive “Load More” */
+.is-hidden{ display:none; }
+
+/* ---------- POST (open) ---------- */
+
+.post-hero{ padding-top:48px; }
+.post-hero .hero-img{
+  width:881px; height:451px; object-fit:cover; border-radius:22px; display:block; margin:0 auto;
+}
+
+.post-head{ padding-top:32px; }
+.post-head-inner{ width:865px; max-width:100%; margin:0 auto; }
+.post-title{ margin:0 0 10px; color:var(--text); font:500 38px/28px "Poppins",sans-serif; line-height:20px;}
+.post-head .meta-row .meta{ font-size:17px; line-height:20px; letter-spacing:.51px; }
+
+/* Article body — requested readability */
+.post-body{ padding:24px 0 48px; }
+.post-inner{
+  width:881px; max-width:calc(100% - 48px);
+  margin:0 auto;
+}
+.post-inner p{
+  margin:0 0 18px;
+  font:300 20px/1.7 "Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:#000; letter-spacing:.2px;
+}
+.post-inner h3{
+  margin:1.6em 0 .6em;
+  font:600 24px/1.3 "Poppins",sans-serif; color:#000;
+}
+
+/* Prev/next nav (circles like comp) */
+.post-nav{
+  margin:32px auto 0; width:881px; max-width:calc(100% - 48px);
+  display:flex; justify-content:center; gap:333px;
+}
+.nav-btn{
+  width:52px; height:52px; border-radius:86px; background:#797979; opacity:.45; color:#fff;
+  display:grid; place-items:center; text-decoration:none; font-size:34px; line-height:1;
+}
+.nav-btn:hover{ opacity:.6; }
+
+/* ---------- Responsive (mobile 430 and below) ---------- */
+@media (max-width: 430px){
+  .blog-featured{ padding:24px 0 0; }
+  .blog-featured .feat-card{ border-radius:12px; }
+  .blog-featured .feat-img{ height:243px; border-radius:12px; }
+  .feat-title{ font:500 19.4px/31.6px "Poppins",sans-serif; }
+
+  .meta{ font-size:11.7px; line-height:17.6px; letter-spacing:.35px; }
+  .dot{ width:2.9px; height:2.9px; }
+
+  .blog-list{ padding:16px 0 64px; }
+  .blog-list .list{ width:auto; padding:0 24px; }
+  .blog-list .row{ padding:24px 0; }
+  .card-link{ grid-template-columns:1fr; gap:14px; }
+  .thumb{ width:100%; height:200px; border-radius:12px; }
+  .title{ font:500 19.4px/31.6px "Poppins",sans-serif; }
+
+  .load-more{ padding:19px 83px; font-size:21.86px; line-height:34px; border-radius:1350px; }
+
+  .post-hero{ padding-top:18px; }
+  .post-hero .hero-img{ width:287px; height:133px; border-radius:7px; }
+  .post-head{ padding-top:18px; }
+  .post-head-inner{ width:auto; padding:0 24px; }
+  .post-title{ font:500 23px/27px "Poppins",sans-serif; }
+
+  .post-inner{ width:auto; padding:0 24px; }
+  .post-inner p{ font-size:18px; line-height:1.75; } /* your request */
+  .post-inner h3{ font-size:20px; }
+
+  .post-nav{ width:auto; gap:42px; }
+  .nav-btn{ width:37px; height:37px; font-size:22px; }
+}
+
+
+/* LIST */
+.blog-list .blog-card{ border-top:1px solid #ECECEC; padding:30px 0; }
+.blog-list .card-row{ display:flex; align-items:center; gap:50px; }
+.blog-list .card-thumb{ width:261px; height:200px; object-fit:cover; border-radius:6px; }
+.blog-list .card-title{ font:500 32px/1.3 "Poppins",sans-serif; color:#121212; margin:0 0 8px; }
+.blog-list .card-sub{ color:#717171; font:400 20px/30px "DM Sans",sans-serif; letter-spacing:.6px; display:flex; gap:10px; align-items:center; }
+.blog-list .dot{ width:5px; height:5px; background:#717171; border-radius:50%; display:inline-block; }
+
+/* POST */
+.post-cover{ width:100%; max-width:881px; height:auto; border-radius:22px; display:block; margin:48px auto 0; }
+.post-title{ font:500 38px/1 "Poppins",sans-serif; color:#121212; margin:28px 0 8px; line-height:50px;}
+.post-sub{ color:#717171; font:400 17px/20px "DM Sans",sans-serif; letter-spacing:.5px; display:flex; gap:10px; align-items:center; margin-bottom:22px; }
+.post-content{ font:300 18px/1.7 "Poppins",sans-serif; color:#121212; max-width:865px; }
+.post-content h3{ font:600 20px/1.2 "Poppins",sans-serif; margin:24px 0 6px; }
+.post-content p{ margin:0 0 18px; }
+
+/* ===== BLOG LIST — MOBILE FIX (≤ 480px) ===== */
+@media (max-width: 480px){
+  /* stack image above text for every card */
+  .blog-list .card-row{
+    display:block;          /* stop the side-by-side layout */
+  }
+
+  /* full-width image card with consistent height like your comp */
+  .blog-list .card-thumb{
+    width:100%;
+    height:243px;           /* matches your mobile design */
+    object-fit:cover;
+    border-radius:11.45px;
+    display:block;
+    margin-bottom:12px;     /* space before the title */
+  }
+
+  /* comfortable mobile typography */
+  .blog-list .card-title{
+    font-size:19.5px;
+    line-height:31.6px;
+    margin:0 0 6px;
+  }
+  .blog-list .card-sub{
+    font-size:12px;
+    line-height:18px;
+    letter-spacing:.35px;
+    gap:6px;
+  }
+  .blog-list .blog-card{
+    padding:36px 0;         /* vertical rhythm like your reference */
+  }
+}
+
+/* === BLOG: make featured look identical to list on MOBILE === */
+@media (max-width:480px){
+
+  /* Featured container uses the same padding + divider as list rows */
+  .blog-featured{
+    padding: 24px 20px 18px;              /* same horizontal gutters as list */
+    border-bottom: 1px solid #B8B8B8;     /* same divider under the first card */
+  }
+
+  /* Featured image = same size & radius as list thumbnails */
+  .blog-featured .feat-img{
+    width: 100%;
+    height: 243px;                        /* matches list card height */
+    display: block;
+    object-fit: cover;
+    border-radius: 11.45px;
+    margin: 0 0 12px;                     /* gap above the title */
+  }
+
+  /* Featured title = same type scale as list title */
+  .blog-featured .feat-title{
+    font-size: 19.5px;
+    line-height: 31.6px;
+    margin: 0 0 6px;
+  }
+
+  /* Remove any leftover padding from meta area */
+  .blog-featured .feat-meta{
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+
+  /* Featured meta row = same style as list meta row */
+  .blog-featured .meta-row{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: .36px;
+    color: #717171;
+  }
+}
+/* === BLOG mobile: remove divider between featured and first card === */
+@media (max-width:480px){
+  .blog-featured{
+    border-bottom: 0 !important;      /* kill the line under the featured block */
+  }
+ 

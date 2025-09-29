@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en" class="about-page">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Us — Olanike Omopariola Foundation</title>
+
+  <!-- Poppins (UI/body). Keep your existing global import if already present -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Your global stylesheet from Home (tokens, header, footer, buttons, etc.) -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Page-specific styles for About -->
+  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="css/responsive-hotfix.css">
+
+</head>
+<body>
+
+  <!-- ===== Header (reuses your site header) ===== -->
+  <header class="site-header" id="site-header">
+    <div class="nav-wrap">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.png" alt="Olanike Omopariola Foundation" />
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="about.html">About Us</a></li>
+          <li><a href="impact.html">Impact</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right CTA (desktop only; hidden on mobile per your pattern) -->
+      <div class="nav-cta" >
+        <a class="btn btn-green donate-pill" href="donate.html">
+          <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.3-4.35-9.4-8.56C1 9.77 2.8 6 6.6 6c2.06 0 3.4 1.22 4.4 2.55C12 7.22 13.34 6 15.4 6c3.8 0 5.6 3.77 3.99 6.44C19.3 16.65 12 21 12 21z"/></svg>
+          Donate
+        </a>
+      </div>
+
+      <!-- Mobile menu toggle (use your custom PNG/SVG icon) -->
+ <button class="nav-toggle" aria-label="Open menu">
+  <!-- replace the src with your actual icon file -->
+  <img src="assets/icons/menu-mobile.png" alt="" width="40" height="40">
+</button>
+    </div>
+
+    <!-- Mobile full-screen overlay menu (reuses your existing structure) -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <button class="menu-close" aria-label="Close menu">✕</button>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a class="active" href="about.html">ABOUT US</a></li>
+        <li><a href="impact.html">IMPACT</a></li>
+        <li><a href="get-involved.html">GET INVOLVED</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ===== HERO (dark panel with centered title) ===== -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="hero-card">
+        <img class="hero-bg" src="assets/images/hero-desktop.jpg" alt="">
+        <h1 class="hero-title">About Us</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Mission / Founder image / Vision (3-up) ===== -->
+  <section class="mfv">
+    <div class="container mfv-grid" div id="Our Mission">
+      <!-- Mission -->
+      <div class="mfv-block mfv-mission">
+        <h2 class="title-green">Our Mission</h2>
+        <p class="body-lg">
+          To combat domestic and gender-based violence by empowering survivors through 
+          education, advocacy, and sustainable support systems, equipping women and 
+          children with the tools to overcome trauma, achieve independence, and thrive.  
+        </p>
+      </div>
+
+      <!-- Founder image (center) -->
+      <figure class="founder-photo" figure id="Our Misssion">
+        <img src="assets/images/model-center.jpg" alt="model-center portrait">
+      </figure>
+
+      <!-- Vision -->
+      <div class="mfv-block mfv-vision">
+        <h2 class="title-blue">Our Vision</h2>
+        <p class="body-lg">
+         A just world where no woman or child lives in fear- where safety, 
+         equality, and opportunity are not privileges, but fundamental rights.  
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Founder’s Story (grey panel) ===== -->
+  <section class="founder-story" >
+     <div id="founder-story"></div>
+    <div class="container">
+      <h2 class="story-heading">Founder’s Story</h2>
+
+      <div class="story-grid">
+        <!-- Left: tall card with overlay -->
+        <article class="story-card"  aria-labelledby="founder-story">
+          <img src="assets/images/founder-story.jpg" alt="Oluwatoyin Omotayo">
+          <div class="story-grad"></div>
+          <div class="story-cap">
+            <span class="dot" aria-hidden="true"></span>
+            <div class="cap-text">
+              <div class="name">Oluwatoyin Aanuoluwapo Omotayo Esq.</div>
+              <div class="role">FOUNDER</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Right: long narrative -->
+        <div class="story-copy">
+          <p>
+            Oluwatoyin Aanuoluwapo Omotayo Esq. journey is one of resilience, 
+            courage, and an unwavering commitment to empower others.
+          </p>
+          <p>
+            Her empathy for women struggling to survive after domestic 
+            violence began in childhood, inspired by the tireless 
+            example of her mother’s strength and dignity. 
+          </p>
+          <p>
+             These early lessons, combined with her own lived experiences of 
+             domestic violence, shaped her conviction to transform pain into purpose.
+          </p>
+          <p>
+            A dedicated advocate for women’s rights, Oluwatoyin has become a strong voice 
+            against domestic and gender-based violence, working to raise awareness and 
+            challenge cultural and systemic barriers that silence survivors. Through her 
+            advocacy, she has authored thought-provoking articles and essays on domestic violence, 
+            women’s empowerment, and the intersection of human rights and migration.
+          </p>
+          <p>
+            Her writings reflect her deep commitment to ensuring that survivors not 
+            only find justice but also access the education, resources, and opportunities 
+            they need to rebuild their lives.
+          </p>
+          <p>
+            Oluwatoyin holds a Law degree (LL.B) from Adekunle Ajasin University, was 
+            called to the Nigerian Bar after the Nigerian Law School, and pursued advanced 
+            studies at the University of Hull, UK, where she earned a Master’s in 
+            International Law (Conflicts, Security, and Human Rights). She is preparing to 
+            further her research work through a Ph.D., focusing on Female Genital Mutilation 
+            as a Violation of Human Rights and a Catalyst for Forced Migration.
+          </p>
+          <p>
+            In 2020, she founded The Olanike Omopariola Foundation (TOOF), in honor of 
+            her mother, as a platform to advocate for survivors of abuse, promote social 
+            justice, and support vulnerable families. Building on this, she established 
+            The Oluwatoyin Omotayo Initiative (TOOI), a program dedicated to empowering 
+            young people from disadvantaged backgrounds through education, 
+            mentorship, and access to opportunities.
+          </p>
+          <p>
+            Beyond her professional and advocacy work, Oluwatoyin is the proud 
+            mother of two amazing boys. Her story continues to inspire others as living 
+            proof that from adversity can emerge strength, and from pain, 
+            a powerful mission to uplift others.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Meet the Team ===== -->
+  <section class="team">
+    <div class="container">
+      <h2 class="team-heading">Meet the Team</h2>
+
+      <div class="team-grid">
+        <!-- 1 -->
+        <article class="tcard">
+          <div class="timg"><img src="assets/images/founnder-story.jpg" alt="Olanike Omopariola" /></div>
+          <h3 class="tname">Oluwatoyin Aanuoluwapo Omotayo Esq</h3>
+          <p class="trole">FOUNDER & EXECUTIVE DIRECTOR</p>
+          <!-- ADD inside each .tcard, after .trole -->
+<p class="tdesc">
+  Oluwatoyin Aanuoluwapo Omotayo Esq. leads strategy and partnerships across all programs, with a focus on
+  education access and GBV advocacy. She mentors volunteers, drives growth, and
+  ensures every outreach is people-first and measurable.
+</p>
+
+        </article>
+
+        <!-- 2 -->
+        <article class="tcard">
+          <div class="timg"><img src="assets/images/Tolulope.jpg" alt="Mrs. Tolulope Raymond-Ayube" /></div>
+          <h3 class="tname">Tolulope Raymond-Ayube</h3>
+          <p class="trole">TRUSTEE TOOF</p>
+          <!-- ADD inside each .tcard, after .trole -->
+<p class="tdesc">
+  Tolulope Raymond-Ayube serves as a trustee of TOOF, 
+  bringing with her a deep passion for charitable work 
+  and a strong commitment to supporting vulnerable women 
+  and girls. Since joining the board, she has played an active 
+  role in advancing the foundation’s mission. In 2023, 
+  she convened the “Caring for Your Menstrual Health” charity programme, 
+  through which TOOF distributed sanitary pads to 2,000 girls 
+  across three schools in the Federal Capital Territory, 
+  Abuja. Beyond her philanthropic engagements, Mrs. Tolulope 
+  is the General Manager of 1314 Hotel and Suites in Abuja.
+</p>
+
+        </article>
+
+        <!-- 3 -->
+        <article class="tcard">
+          <div class="timg"><img src="assets/images/Kolade.jpg" alt="Engr. Pastor Kolade Omotayo" /></div>
+          <h3 class="tname">Engr. Kolade Omotayo</h3>
+          <p class="trole">TRUSTEE TOOF</p>
+          <!-- ADD inside each .tcard, after .trole -->
+<p class="tdesc">
+  Engr. Kolade Omotayo is a devoted trustee of TOOF, 
+  a qualified engineer, accomplished businessman, and pastor. 
+  He brings his commitment to charity and advocacy against 
+  domestic violence into every aspect of his service 
+  with the foundation. In 2024, he anchored TOOF’s Charity 
+  and Empowerment Programme, where 10 survivors of domestic 
+  violence and single mothers received seed funding to 
+  support their businesses and strengthen their economic independence. 
+  The programme also provided food items to more than 100 
+  women, reflecting his passion for empowerment and community upliftment.
+</p>
+
+        </article>
+
+        <!-- 4 -->
+        <article class="tcard">
+          <div class="timg"><img src="assets/images/Ogunbuyide.jpg" alt="Ayo Ogunbuyide" /></div>
+          <h3 class="tname">Ayo Ogunbuyide</h3>
+          <p class="trole">TRUSTEE TOOF, UK</p>
+          <!-- ADD inside each .tcard, after .trole -->
+<p class="tdesc">
+  Ayo Ogunbuyide is the Chief Executive Officer of Shine Development Concept CIC.
+  A UK registered Organisation that supports people going through difficult times in Northamtpon.
+He bagged his masters degree in Youth & Community leadership from the University of Northampton.
+He's passionate about the wellbeing & welfare of marginalised communities.
+</p>
+
+        </article>
+
+        <!-- 5 -->
+        <article class="tcard">
+          <div class="timg"><img src="assets/images/Awoyemi.jpg" alt="Oluwaseun Awoyemi" /></div>
+          <h3 class="tname">Oluwaseun Awoyemi</h3>
+          <p class="trole">TRUSTEE TOOF, UK</p>
+          <p class="tdesc">
+  Oluwaseun Awoyemi is an Accounting graduate and a dedicated Project Officer with a
+strong background in financial services, telecommunications, academic operations,
+and project management. She currently works at the University of Bradford, where she
+plays a key role in facilitating smooth faculty processes and supporting educational
+excellence.
+With a passion for community development and a heart for service, Oluwaseun brings a
+wealth of experience in organisational coordination and stakeholder engagement. Her
+commitment to empowering individuals and fostering inclusive opportunities aligns
+deeply with the mission of The Olanike Omopariola Foundation.
+Oluwaseun is honoured to contribute her skills and insights to further the Foundation’s
+work in uplifting lives and promoting sustainable impact.
+</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer (reuse your site footer) ===== -->
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <!-- Left: logo, email, socials -->
+      <div class="foot-brand">
+        <img class="foot-logo" src="assets/images/logo.png" alt="The Olanike Omopariola Foundation">
+  
+        <p class="foot-email">
+          <a href="mailto:info@olanikeomopariolafoundation.org">info@olanikeomopariolafoundation.org</a>
+        </p>
+  
+        <ul class="socials">
+          <li><a class="soc" href="https://www.instagram.com/too.foundation?igsh=cXhxbWNqZmZkeWlp&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <img class="soc-ico" src="assets/icons/instagram.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.facebook.com/share/1FJnW1cmfu/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+            <img class="soc-ico" src="assets/icons/facebook.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.tiktok.com/@toofoundation?_t=ZN-8zcILXztZkk&_r=1" target="_blank" rel="noopener" aria-label="X">
+            <img class="soc-ico" src="assets/icons/x.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://wa.me/447769494810" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <img class="soc-ico" src="assets/icons/whatsapp.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.youtube.com/@TOOFoundationtv" target="_blank" rel="noopener" aria-label="YouTube">
+            <img class="soc-ico" src="assets/icons/youtube.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.linkedin.com/in/oluwatoyin-omotayo-ll-b-bl-ll-m-8708bab8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <img class="soc-ico" src="assets/icons/linkedin.png" alt="">
+          </a></li>
+        </ul>
+      </div>
+  
+      <!-- Right: two link columns -->
+      <nav class="foot-nav" aria-label="Footer">
+        <ul class="col">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+        <ul class="col">
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="impact.html#featured-stories">Impact Stories</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html#mission">Our Mission</a></li>
+        </ul>
+      </nav>
+    </div>
+  
+    <div class="foot-bottom">
+      © 2025 The Olanike Omopariola Foundation. All rights reserved.
+    </div>
+  </footer>
+
+
+  <!-- Minimal JS: mobile menu toggle (uses your existing classes) -->
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const menu   = document.getElementById('mobileMenu');
+    const close  = document.querySelector('.menu-close');
+
+    if (toggle && menu && close) {
+      toggle.addEventListener('click', () => {
+        menu.classList.add('open');
+        menu.setAttribute('aria-hidden', 'false');
+      });
+      close.addEventListener('click', () => {
+        menu.classList.remove('open');
+        menu.setAttribute('aria-hidden', 'true');
+      });
+    }
+  </script>
+  <script>
+  // Collapsible team bios (photo or name toggles)
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.team .tcard').forEach(card => {
+      const img  = card.querySelector('.timg');
+      const name = card.querySelector('.tname');
+
+      // make both focusable & clickable
+      [img, name].forEach(el => {
+        if (!el) return;
+        el.setAttribute('tabindex', '0');
+        el.setAttribute('role', 'button');
+
+        const toggle = () => card.classList.toggle('is-open');
+
+        el.addEventListener('click', toggle);
+        el.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle();
+          }
+        });
+      });
+    });
+  });
+</script>
+
+  
+</body>
+</html>

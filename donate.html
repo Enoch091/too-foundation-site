@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Donate — The Olanike Omopariola Foundation</title>
+  <meta name="description" content="Support The Olanike Omopariola Foundation. Choose your donation type and complete via bank transfer." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Base site styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <!-- Page-specific -->
+  <link rel="stylesheet" href="css/donate.css" />
+  <link rel="stylesheet" href="css/responsive-hotfix.css">
+
+</head>
+<body>
+
+  <!-- HEADER (same structure as Impact/Volunteer) -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav-wrap">
+      <a class="logo" href="index.html" aria-label="Home">
+        <img src="assets/images/logo.png" alt="The Olanike Omopariola Foundation" />
+      </a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+        <img src="assets/icons/menu-mobile.png" alt="" width="40" height="40">
+      </button>
+
+      <nav class="main-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="impact.html">Impact</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-green donate-pill active" href="donate.html" aria-current="page" aria-label="Donate">
+          <svg class="heart" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 21s-6.7-4.4-9.2-6.9A5.5 5.5 0 0 1 10.5 6.5L12 8l1.5-1.5a5.5 5.5 0 0 1 7.7 7.7C18.7 16.6 12 21 12 21z"/>
+          </svg>
+          Donate
+        </a>
+      </div>
+    </div>
+
+    <!-- MOBILE MENU OVERLAY (no active mark here) -->
+    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+      <button class="menu-close" aria-label="Close menu">✕</button>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="impact.html">IMPACT</a></li>
+        <li><a href="get-involved.html">GET INVOLVED</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="don-hero" aria-labelledby="donTitle">
+      <div class="hero-card">
+        <img class="hero-img" src="assets/images/donate-hero.jpg" alt="">
+        <h1 id="donTitle" class="hero-title">Donate</h1>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="don-intro">
+      <div class="container">
+        <p class="intro-text">Your gift fuels safety, dignity, and opportunity.</p>
+      </div>
+    </section>
+
+   <!-- DONATE FORM (accordion with nested sponsor list) -->
+<section class="donate-form" aria-labelledby="donTitle">
+  <div class="container donate-grid">
+    <!-- LEFT: Donation -->
+    <div class="panel">
+      <h2 id="donTitle" class="sr-only">Choose donation and payment</h2>
+
+      <div class="panel-head" role="button" tabindex="0" aria-expanded="false">
+        <span class="panel-title">DONATION TYPE</span>
+        <span class="chev" aria-hidden="true">▾</span>
+      </div>
+      <ul class="tick-list">
+        <li>
+          <label class="tick-row">
+            <input type="radio" name="donation" value="One-time donation">
+            <span class="row-label">One-time donation</span>
+            <span class="box" aria-hidden="true"></span>
+          </label>
+        </li>
+        <li>
+          <label class="tick-row">
+            <input type="radio" name="donation" value="Monthly giving">
+            <span class="row-label">Monthly giving</span>
+            <span class="box" aria-hidden="true"></span>
+          </label>
+        </li>
+
+        <!-- Sponsor toggle row (no input here) -->
+        <li>
+          <div class="tick-row row-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="sponsorSubList">
+            <span class="row-label strong">SPONSOR A PROJECT</span>
+            <span class="chev-sm" aria-hidden="true">▾</span>
+          </div>
+          <!-- Nested sublist (radios share the same "donation" name) -->
+          <ul id="sponsorSubList" class="sub-list" hidden>
+            <li>
+              <label class="tick-row">
+                <input type="radio" name="donation" value="Cloth a Kid">
+                <span class="row-label">Cloth a Kid</span>
+                <span class="box" aria-hidden="true"></span>
+              </label>
+            </li>
+            <li>
+              <label class="tick-row">
+                <input type="radio" name="donation" value="Sponsor a Student">
+                <span class="row-label">Sponsor a Student</span>
+                <span class="box" aria-hidden="true"></span>
+              </label>
+            </li>
+            <li>
+              <label class="tick-row">
+                <input type="radio" name="donation" value="Free an Abuse Victim">
+                <span class="row-label">Free an Abuse Victim</span>
+                <span class="box" aria-hidden="true"></span>
+              </label>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- LOCATION -->
+<div class="panel">
+  <div class="panel-head" role="button" tabindex="0" aria-expanded="false">
+    <span class="panel-title">LOCATION</span>
+    <span class="chev" aria-hidden="true">▾</span>
+  </div>
+  <ul class="tick-list">
+    <li>
+      <label class="tick-row">
+        <input type="radio" name="location" value="Nigeria">
+        <span class="row-label">Nigeria</span>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+    </li>
+    <li>
+      <label class="tick-row">
+        <input type="radio" name="location" value="UK">
+        <span class="row-label">United Kingdom (UK)</span>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+    </li>
+  </ul>
+</div>
+
+
+    <!-- RIGHT: Payment -->
+    <div class="panel">
+      <div class="panel-head" role="button" tabindex="0" aria-expanded="false">
+        <span class="panel-title">PAYMENT METHOD</span>
+        <span class="chev" aria-hidden="true">▾</span>
+      </div>
+      <ul class="tick-list">
+        <li class="is-disabled" aria-disabled="true">
+          <label class="tick-row">
+            <input type="radio" name="payment" value="Paystack" disabled>
+            <span class="row-label">Paystack</span>
+            <span class="box" aria-hidden="true"></span>
+          </label>
+        </li>
+        <li>
+          <label class="tick-row">
+            <input type="radio" name="payment" value="Bank Transfer">
+            <span class="row-label">Bank Transfer</span>
+            <span class="box" aria-hidden="true"></span>
+          </label>
+        </li>
+        <li class="is-disabled" aria-disabled="true">
+          <label class="tick-row">
+            <input type="radio" name="payment" value="Direct Debit" disabled>
+            <span class="row-label">Direct Debit</span>
+            <span class="box" aria-hidden="true"></span>
+          </label>
+        </li>
+        <li class="is-disabled" aria-disabled="true">
+          <label class="tick-row">
+            <input type="radio" name="payment" value="International Card" disabled>
+            <span class="row-label">International Card</span>
+            <span class="box" aria-hidden="true"></span>
+          </label>
+        </li>
+      </ul>
+    </div>
+
+    <!-- CTA lives on its own row/column -->
+    <div class="donate-cta-wrap">
+      <button id="donateBtn" class="donate-cta" type="button" disabled>Donate</button>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <!-- FOOTER (reuse) -->
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <!-- Left: logo, email, socials -->
+      <div class="foot-brand">
+        <img class="foot-logo" src="assets/images/logo.png" alt="The Olanike Omopariola Foundation">
+  
+        <p class="foot-email">
+          <a href="mailto:info@olanikeomopariolafoundation.org">info@olanikeomopariolafoundation.org</a>
+        </p>
+  
+        <ul class="socials">
+          <li><a class="soc" href="https://www.instagram.com/too.foundation?igsh=cXhxbWNqZmZkeWlp&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <img class="soc-ico" src="assets/icons/instagram.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.facebook.com/share/1FJnW1cmfu/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+            <img class="soc-ico" src="assets/icons/facebook.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.tiktok.com/@toofoundation?_t=ZN-8zcILXztZkk&_r=1" target="_blank" rel="noopener" aria-label="X">
+            <img class="soc-ico" src="assets/icons/x.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://wa.me/447769494810" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <img class="soc-ico" src="assets/icons/whatsapp.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.youtube.com/@TOOFoundationtv" target="_blank" rel="noopener" aria-label="YouTube">
+            <img class="soc-ico" src="assets/icons/youtube.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.linkedin.com/in/oluwatoyin-omotayo-ll-b-bl-ll-m-8708bab8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <img class="soc-ico" src="assets/icons/linkedin.png" alt="">
+          </a></li>
+        </ul>
+      </div>
+  
+      <!-- Right: two link columns -->
+      <nav class="foot-nav" aria-label="Footer">
+        <ul class="col">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+        <ul class="col">
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="impact.html#featured-stories">Impact Stories</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html#mission">Our Mission</a></li>
+        </ul>
+      </nav>
+    </div>
+  
+    <div class="foot-bottom">
+      © 2025 The Olanike Omopariola Foundation. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- POPUP (direct child of body) -->
+  <div id="bankOverlay" class="pop-overlay" hidden>
+    <div class="pop-card" role="dialog" aria-modal="true" aria-label="Bank transfer details">
+      <button class="pop-close" aria-label="Close">✕</button>
+      <h3 class="pop-title">Bank Transfer</h3>
+
+      <div class="acct">
+        <div class="row">
+          <span class="k">Account Name</span>
+          <span class="v" id="acctName">—</span>
+          <button class="copy" data-copy="#acctName" aria-label="Copy account name">Copy</button>
+        </div>
+        <div class="row">
+          <span class="k">Account Number</span>
+          <span class="v mono" id="acctNumber">—</span>
+          <button class="copy" data-copy="#acctNumber" aria-label="Copy account number">Copy</button>
+        </div>
+        <div class="row">
+          <span class="k">Bank</span>
+          <span class="v" id="acctBank">—</span>
+          <button class="copy" data-copy="#acctBank" aria-label="Copy bank">Copy</button>
+        </div>
+      </div>
+<p class="bank-note">Donation Type:  <strong id="bankDescription">Donation</strong></p>
+
+      <p class="pop-instruction">
+        When making your transfer, please include this in the description:
+      </p>
+      <p class="pop-desc mono" id="transferDesc">—</p>
+    </div>
+  </div>
+
+  <!--script src="js/donate.js" defer></script-->
+  <!-- in your donate page, keep your popup script as-is -->
+<script src="js/donate-ui.js" defer></script>
+
+</body>
+</html>

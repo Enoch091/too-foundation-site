@@ -134,21 +134,21 @@
   /* =========================
      ABOUT
      ========================= */
-  .about{padding:160px 0 0; left:320;}
-  .about-grid{display:grid; grid-template-columns:413px 1fr; gap:120px; align-items:center}
-  .founder-card{width:413px; height:512px; border-radius:var(--card-r32); overflow:hidden; background:#eee; position:relative; margin:0}
+  .about{padding:100px 0 0; left:320;}
+  .about-grid{display:grid; grid-template-columns:413px 13fr; gap:120px; align-items:center}
+  .founder-card{width:453px; height:812px; border-radius:var(--card-r32); overflow:hidden; background:#eee; position:relative; margin:0}
   .founder-card img{width:100%; height:100%; object-fit:cover}
   .founder-card:hover{ transform:translateY(-5px)}
   .founder-cap{
-    position:absolute; left:0; right:0; bottom:0; height:115px;
+    position:absolute; left:0; right:0; bottom:0; height:315px;
     background:linear-gradient(180deg,rgba(0, 0, 0, 0) 0%,rgba(0,0,0,3) 100%);
-    color:#fff; display:flex; align-items:center; gap:12px; padding:0 20px; font-weight:700;
+    color:#fff; display:flex; align-items:center; gap:12px; padding:0 30px; font-weight:700;
   }
-  .founder-cap .dot{width:12px; height:12px; border-radius:50%; background:var(--green)}
-  .founder-cap .name{font-size:20px}
-  .founder-cap .role{font-size:14px; font-weight:300; margin-left:12px; opacity:.95}
+  .founder-cap .dot{width:14px; height:14px; border-radius:50%;  background:var(--green)}
+  .founder-cap .name{font-size:40px}
+  .founder-cap .role{font-size:24px; font-weight:300; margin-left:12px; opacity:.95}
   
-  .about-title{font-family:"Coolvetica","Poppins",sans-serif; font-size:56px; line-height:1.06; color:var(--navy); margin:0 0 16px}
+  .about-title{font-family:"Coolvetica","Poppins",sans-serif; font-size:56px; line-height:1.06; color:var(--navy); margin:90px 0px 16px}
   .about-text{font-size:26px; line-height:39px; color:#333; max-width:500px; margin:0 0 16px}
   .about-read{font-size:27px; font-weight:520; color:#333;}
   -.about{padding:160px 0 0}
@@ -198,7 +198,7 @@
   .story-card{position:relative; width:600px; height:622px; border-radius:var(--card-r32); overflow:hidden; display:block}
   .story-card img{width:100%; height:100%; object-fit:cover}
   .story-card:hover{ transform:translateY(-8px)}
-  .story-grad{position:absolute; left:0; right:0; bottom:0; height:180px; background:linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(0,0,0,.9) 100%)}
+  .story-grad{position:absolute; left:0; right:0; bottom:0; height:180px; background:linear-gradient(180deg,rgba(0,0,0,0) 20%, rgba(0,0,0,.9) 100%)}
   .story-title{position:absolute; left:54px; bottom:78px; color:#fff; margin:0; font-size:24px; font-weight:600; line-height:1.2}
   /* Force space below Featured Stories */
 
@@ -400,8 +400,8 @@
 
 .story-media{ position:relative; width:100%; height:100%; }
 .story-media img{ width:100%; height:100%; object-fit:cover; }
-.story-grad{ position:absolute; left:0; right:0; bottom:0; height:100px;
-  background:linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(0,0,0,.9) 100%);
+.story-grad{ position:absolute; left:0; right:0; bottom:0; height:500px;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 10%, rgba(0,0,0,.9) 100%);
 }
 .story-title{
   position:absolute; left:44px; bottom:68px; margin:0;
@@ -949,7 +949,13 @@
   .founder-card{ width:382px !important; height:412px !important; border-radius:32px !important; margin:0 auto 2px !important; }
   .about-text{ font-size:16px !important; line-height:26px !important; letter-spacing:.32px !important; color:#000 !important; }
   .about-read{ font-size:16px !important; line-height:30.25px !important; padding:48px 0 0 !important; }
-
+  .founder-cap{
+    position:absolute; left:0; right:0; padding-top:140px; height:315px;
+  }
+.founder-cap .dot{width:10px; height:10px; border-radius:50%;  background:var(--green)}
+  .founder-cap .name{font-size:32px}
+  .founder-cap .role{font-size:14px; font-weight:300; margin-left:12px; opacity:.95}
+  
   /* =========================
      MISSION & FOCUS — 1 col, smaller tiles
      ========================= */
@@ -1045,7 +1051,7 @@
     display:block !important;
     position:absolute; left:0; right:0; bottom:0;
     height:96.31px !important;
-    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.9) 100%) !important;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.9) 90%) !important;
   }
   .featured .story-title{
     position:absolute !important;

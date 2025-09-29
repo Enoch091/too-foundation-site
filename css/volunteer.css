@@ -1,0 +1,204 @@
+/* ===== Page tokens ===== */
+:root{
+  --green:#65AC42;
+  --navy:#2D308F;
+  --text:#000;
+  --white:#fff;
+
+  --container:1280px;
+  --r-32:32px;
+  --r-39:39px;
+}
+
+/* Local Coolvetica for headings */
+@font-face{
+  font-family:"Coolvetica";
+  src:url("../assets/fonts/Coolvetica.woff2") format("woff2"),
+      url("../assets/fonts/Coolvetica.woff") format("woff");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+/* Utilities */
+.container{ width:var(--container); max-width:100%; margin:0 auto; }
+.center{ text-align:center; }
+.sr-only{ position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+/* Keep active link tint like the rest of the site */
+.main-nav a.active, .foot-nav a.active{ color:var(--green); }
+
+/* ===== HERO ===== */
+.vol-hero{ padding:90px 0 0; }
+.vol-hero .hero-card{
+  width:1276px; height:431px; margin:0 auto; position:relative; border-radius:var(--r-32); overflow:hidden;
+  background:#242424;
+}
+.vol-hero .hero-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.23; }
+.vol-hero .hero-title{
+  position:absolute; inset:0; display:grid; place-items:center;
+  margin:0; color:#fff; font-family:"Coolvetica","Poppins",sans-serif; font-weight:400; font-size:56px; line-height:96px;
+}
+
+/* ===== INTRO ===== */
+.vol-intro{ padding:80px 0 90px; }
+.intro-text{
+  max-width:1165px; margin:0 auto; text-align:center;
+  font:300 32px/42px "Poppins",sans-serif; color:#000; letter-spacing:.64px;
+}
+
+/* ===== FORM CARD ===== */
+.vol-form{ padding:0 0 120px; }
+.form-card{
+  width:1077px; max-width:calc(100% - 32px);
+  margin:0 auto; background:#fff; border-radius:var(--r-39);
+  padding:64px 96px 72px; box-sizing:border-box;
+}
+
+/* Center whole form stack */
+#volunteerForm{ max-width:880px; margin:0 auto; text-align:center; }
+#volunteerForm .group{ margin-inline:auto; }
+#volunteerForm .checks-grid{ justify-content:center; }
+#volunteerForm .radios{ justify-content:center; }
+
+/* Pill inputs (taller, soft) */
+.pill-fields{ display:flex; flex-direction:column; gap:31px; margin-bottom:72px; }
+.pill{ display:block; background:#DDDDDD; border-radius:93px; padding:42px 101px; box-sizing:border-box; }
+.pill input{
+  width:100%; border:0; outline:0; background:transparent; color:#000;
+  font:400 20px/42px "Poppins",sans-serif; letter-spacing:.4px;
+}
+.pill input::placeholder{ color:#000; opacity:.34; }
+
+/* Groups */
+.group{ margin:64px 0; }
+.group-title{
+  margin:0 0 28px; color:var(--green);
+  font:400 56px/56px "Coolvetica","Poppins",sans-serif;
+}
+
+/* Interests (2-column on desktop) */
+.checks-grid{ display:grid; grid-template-columns:1fr 1fr; gap:38px 61px; }
+.check{ display:flex; align-items:center; gap:9px; font:300 26px/42px "Poppins",sans-serif; color:#000; }
+.check input{ position:absolute; opacity:0; pointer-events:none; }
+.check .box{ width:30px; height:30px; border-radius:4px; outline:1.5px solid var(--green); outline-offset:-.75px; background:#fff; }
+.check input:checked + .box{ background:var(--green); }
+
+/* Availability radios */
+.radios{ display:flex; align-items:center; gap:112px; }
+.radio{ display:flex; align-items:center; gap:9px; font:300 26px/42px "Poppins",sans-serif; }
+.radio input{ position:absolute; opacity:0; pointer-events:none; }
+.radio .rbox{ width:30px; height:30px; border-radius:4px; outline:1.5px solid var(--green); outline-offset:-.75px; background:#fff; }
+.radio input:checked + .rbox{ background:var(--green); }
+
+/* Why */
+.why textarea{
+  width:100%; box-sizing:border-box; border:0; outline:0;
+  background:#E9E9E9; border-radius:8px; padding:18px 22px;
+  font:300 20px/32px "Poppins",sans-serif; color:#000;
+}
+.why textarea::placeholder{ color:#000; opacity:.34; }
+
+/* Consent */
+.consent{ display:flex; align-items:flex-start; gap:11px; margin:22px 0 40px; font:300 19px/31px "Poppins",sans-serif; color:#000; }
+.consent input{ position:absolute; opacity:0; }
+.consent .cbox{ width:22px; height:22px; border-radius:3px; outline:1.1px solid var(--green); outline-offset:-.55px; background:#fff; margin-top:4px; }
+.consent input:checked + .cbox{ background:var(--green); }
+.help{ margin:8px 0 0; min-height:1em; color:#c0392b; font:400 14px/20px "Poppins",sans-serif; }
+
+/* Submit pill */
+.submit-row{ display:flex; justify-content:center; margin-top:36px; }
+.cta-pill{
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  padding:42px 81px; border-radius:1111px; cursor:pointer; border:0;
+  font:400 28.39px/24.02px "Poppins",sans-serif;
+  transition:transform .16s ease, box-shadow .16s ease, background-color .16s ease, color .16s ease;
+}
+.btn-green{ background:var(--green); color:#fff; }
+@media (hover:hover){ .cta-pill:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.12); } .btn-green:hover{ background:#4E8C34; } }
+.cta-pill:focus-visible{ outline:3px solid rgba(101,172,66,.45); outline-offset:4px; }
+
+/* ===== TESTIMONIALS (unchanged) ===== */
+.testimonials-belt{ background:#EEEEEE; padding:90px 0; }
+.section-title{ margin:0; text-align:center; color:var(--navy); font:400 56px/56px "Coolvetica","Poppins",sans-serif; }
+.testi-wrap{ max-width:1211px; margin:90px auto 0; display:grid; grid-template-columns:56px 1fr 56px; align-items:center; gap:24px; }
+.testi-nav{ width:56px; height:56px; display:grid; place-items:center; padding:8px; border-radius:86px; background:#797979; opacity:.45; border:none; color:#fff; font-size:38px; line-height:1; cursor:pointer; }
+.testi-viewport{ text-align:center; padding:80px 24px; }
+.testi-quote{ margin:0 0 12px; font:300 20px/42px "Poppins",sans-serif; color:#000; }
+.testi-author{ margin:0; font:500 24px/42px "Poppins",sans-serif; color:var(--green); }
+
+/* ===== THANK-YOU POPUP (exact comp, responsive scale) ===== */
+.thanks-overlay[hidden]{ display:none !important; }
+.thanks-overlay{ position:fixed; inset:0; z-index:99999; display:grid; place-items:center; background:rgba(0,0,0,.45); }
+
+.thanks-card{
+  /* exact desktop proportions from your snippet, scaled responsively */
+  --baseW: 540;  /* width that fits 81px side paddings nicely */
+  --baseH: 335;
+  --w: min(90vw, 540px);
+  --s: calc(var(--w) / var(--baseW));
+
+  width: var(--w);
+  height: calc(var(--baseH) * var(--s));
+  padding: calc(42px * var(--s)) calc(81px * var(--s));
+  border-radius: calc(43px * var(--s));
+  background:#fff;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap: calc(41px * var(--s));
+  box-shadow: 0 18px 48px rgba(0,0,0,.18);
+}
+
+.thanks-title{
+  margin:0; color:#65AC42;
+  font:400 calc(96px * var(--s))/24.02px "Coolvetica","Poppins",sans-serif;
+  text-align:center;
+}
+.thanks-body{
+  margin:0; color:#000;
+  font:400 calc(28.39px * var(--s))/24.02px "Poppins",sans-serif;
+  text-align:center;
+}
+
+/* ===== Mobile (≤ 430px): match your comp layout ===== */
+@media (max-width:430px){
+  .vol-hero{ padding:24px 0 0; }
+  .vol-hero .hero-card{ width:382px; height:129px; border-radius:9.6px; }
+  .vol-hero .hero-title{ font-size:32px; line-height:28.74px; }
+
+  .vol-intro{ padding:16px 0 48px; }
+  .intro-text{ font:300 16px/35px "Poppins",sans-serif; max-width:379px; }
+
+  .form-card{ width:100%; max-width:382px; padding:32px 24px 40px; border-radius:15.6px; }
+  .pill{ padding:26px 40px; border-radius:37.13px; background:#EFEFEF; }
+  .pill input{ font:400 15px/16.77px "Poppins",sans-serif; }
+
+  .group{ margin:40px 0; }
+  .group-title{ font:400 32px/22.36px "Coolvetica","Poppins",sans-serif; margin-bottom:24px; }
+
+  .checks-grid{ display:flex; flex-direction:column; gap:35px; background:#EFEFEF; border-radius:32px; padding:65px 70px; }
+  .check{ gap:15px; font:300 16px/16.77px "Poppins",sans-serif; }
+  .check .box{ width:20.95px; height:20.95px; border-radius:2.79px; outline-width:1.05px; }
+
+  .radios{ flex-direction:column; gap:30px; align-items:flex-start; }
+  .radio{ gap:10px; font:300 16px/16.77px "Poppins",sans-serif; }
+  .radio .rbox{ width:20.95px; height:20.95px; border-radius:2.79px; outline-width:1.05px; }
+
+  .why textarea{ font:300 12px/16.77px "Poppins",sans-serif; padding:18px 22px 62px; }
+
+  .consent{ gap:11px; font:300 12px/21px "Poppins",sans-serif; }
+  .consent .cbox{ width:15px; height:15px; border-radius:2px; outline-width:1.5px; }
+
+  .submit-row{ margin-top:34px; }
+  .cta-pill{ padding:24px 32px; border-radius:443.57px; font:400 14px/9.6px "Poppins",sans-serif; }
+}
+
+/* Mobile: keep text left and snug to the box */
+@media (max-width:430px){
+  .checks-grid{ align-items:flex-start; text-align:left; }
+  .checks-grid .check{ justify-content:flex-start; }
+  .checks-grid .lbl{ display:inline-block; text-align:left; }
+}
+/* Guarantee curved edges and no clipping artifacts */
+.thanks-card{
+  border-radius: calc(43px * var(--s));
+  overflow: hidden;
+}
+

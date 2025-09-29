@@ -1,0 +1,316 @@
+:root{
+  --green:#65AC42;
+  --navy:#2D308F;
+  --muted:#505050;
+  --white:#fff;
+  --nav-h:134px;
+
+  --r-32:32px;
+  --r-39:39px;
+}
+
+@font-face{
+  font-family:"Coolvetica";
+  src:url("../assets/fonts/Coolvetica.woff2") format("woff2"),
+      url("../assets/fonts/Coolvetica.woff") format("woff");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+.container{ width:1280px; max-width:100%; margin:0 auto; }
+.sr-only{ position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+/* Keep Donate active in desktop, not in mobile overlay */
+.main-nav a[aria-current="page"], .foot-nav a.active{ color:var(--green);  }
+
+/* ===== HERO ===== */
+.don-hero{ padding:90px 0 0; }
+.don-hero .hero-card{
+  width:1276px; height:431px; margin:0 auto; position:relative; border-radius:var(--r-32); overflow:hidden;
+  background:#242424;
+}
+.don-hero .hero-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.23; }
+.don-hero .hero-title{
+  position:absolute; inset:0; display:grid; place-items:center;
+  margin:0; color:#fff; font-family:"Coolvetica","Poppins",sans-serif; font-weight:400; font-size:56px; line-height:96px;
+}
+
+/* ===== INTRO ===== */
+.don-intro{ padding:80px 0 90px; }
+.intro-text{
+  max-width:1165px; margin:0 auto; text-align:center;
+  font:300 32px/42px "Poppins",sans-serif; color:#000; letter-spacing:.64px;
+}
+
+/* ===== CARD ===== */
+.don-form{ padding:0 0 120px; }
+.don-card{
+  width:1077px; max-width:calc(100% - 32px);
+  margin:0 auto; background:#fff; border-radius:var(--r-39);
+  padding:64px 96px 72px; box-sizing:border-box;
+
+}
+
+/* Groups */
+.group{ margin:48px 0; }
+.group-title{
+  margin:0 0 24px; color:var(--green);
+  font:400 56px/56px "Coolvetica","Poppins",sans-serif;
+}
+.muted{ color:#7a7a7a; font:400 18px/1 "Poppins",sans-serif; }
+
+/* Chips */
+.chip-row{ display:flex; flex-wrap:wrap; gap:16px 18px; }
+.chip{
+  position:relative;
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:16px 24px; border-radius:1111px; cursor:pointer; user-select:none;
+  background:#EEEEEE; color:#000; font:500 16px/1 "Poppins",sans-serif;
+}
+.chip input{ position:absolute; opacity:0; pointer-events:none; }
+.chip input:checked + span,
+.chip input:checked ~ span{ background:transparent; color:#fff; }
+.chip input:checked ~ span::before{ content:""; }
+
+.chip span{
+  position:relative; z-index:1;
+  padding:8px 6px 6px; border-radius:1111px;
+}
+
+/* Active-only styling for Bank Transfer */
+.chip.active-only input:checked + span{
+  background:var(--green); color:#fff;
+}
+
+/* Disabled (coming soon) */
+.chip.disabled{
+  opacity:.35; cursor:not-allowed;
+}
+.chip.disabled input:disabled + span{
+  background:#EEEEEE; color:#000;
+}
+
+/* Toggle chips (checkboxes) use same highlight */
+.chip.toggle input:checked + span{
+  background:var(--navy); color:#fff;
+}
+
+/* Helper */
+.coming-note{ margin:10px 0 0; color:#7a7a7a; font:400 14px/1.6 "Poppins",sans-serif; }
+
+/* Submit */
+.submit-row{ display:flex; justify-content:center; margin-top:40px; }
+.cta-pill{
+  display:flex; align-items:center; justify-content:center;
+  padding:24px 48px; border-radius:1111px; border:0; cursor:pointer;
+  font:500 18px/1 "Poppins",sans-serif; background:var(--green); color:#fff;
+  transition:opacity .16s ease, transform .16s ease, box-shadow .16s ease;
+}
+.cta-pill[disabled]{ opacity:.4; cursor:not-allowed; }
+@media (hover:hover){
+  .cta-pill:not([disabled]):hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.12); }
+}
+
+/* ===== POPUP ===== */
+.pop-overlay[hidden]{ display:none !important; }
+.pop-overlay{
+  position:fixed; inset:0; display:grid; place-items:center;
+  background:rgba(0,0,0,.45); z-index:9999;
+}
+
+/* Curved edges; scales nicely on mobile too */
+.pop-card{
+  width:min(560px, 92vw);
+  background:#fff; border-radius:32px; /* curved */
+  padding:28px 24px 24px; box-sizing:border-box;
+  display:flex; flex-direction:column; gap:18px;
+  box-shadow:0 18px 48px rgba(0,0,0,.18);
+}
+.pop-close{
+  align-self:flex-end; border:0; background:transparent; cursor:pointer; font-size:22px; line-height:1;
+}
+.pop-title{
+  margin:0; text-align:center; color:var(--green);
+  font:400 28px/1 "Coolvetica","Poppins",sans-serif;
+}
+
+.acct{ display:flex; flex-direction:column; gap:10px; }
+.acct .row{
+  display:grid; grid-template-columns: 1fr auto auto; align-items:center; gap:12px;
+  padding:10px 12px; border-radius:12px; background:#F5F5F5;
+}
+.acct .k{ color:#7a7a7a; font:500 12px/1 "Poppins",sans-serif; }
+.acct .v{ color:#000; font:500 15px/1.2 "Poppins",sans-serif; }
+.mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+.copy{
+  border:0; border-radius:20px; padding:8px 12px; cursor:pointer;
+  background:#2D308F; color:#fff; font:500 12px/1 "Poppins",sans-serif;
+}
+
+.pop-instruction{
+  margin:8px 0 0; color:#000; font:400 14px/1.6 "Poppins",sans-serif; text-align:center;
+}
+.pop-desc{
+  margin:0; text-align:center; padding:10px 12px; background:#F5F5F5; border-radius:10px;
+  font:600 14px/1.4 "Poppins",sans-serif;
+}
+
+/* ===== Mobile (≤ 430px) ===== */
+@media (max-width:430px){
+  .don-hero{ padding:24px 0 0; }
+  .don-hero .hero-card{ width:382px; height:129px; border-radius:9.6px; }
+  .don-hero .hero-title{ font-size:32px; line-height:28.74px; }
+
+  .don-intro{ padding:16px 0 48px; }
+  .intro-text{ font:300 16px/35px "Poppins",sans-serif; max-width:379px; }
+
+  .don-card{ width:100%; max-width:382px; padding:32px 24px 40px; border-radius:15.6px; }
+
+  .group-title{ font:400 32px/1 "Coolvetica","Poppins",sans-serif; }
+  .chip{ padding:14px 20px; font-size:14px; }
+  .pop-card{ width:min(540px, 92vw); border-radius:24px; padding:24px 18px; }
+}
+
+
+/* grid & cta placement */
+.donate-grid{ display:grid; gap:32px; align-items:start; }
+@media (min-width:992px){ .donate-grid{ grid-template-columns:1fr 1fr; grid-template-rows:auto auto; } }
+.donate-cta-wrap{ width:100%; }
+@media (min-width:992px){ .donate-cta-wrap{ grid-column:2; } } /* under the right column */
+.donate-cta{
+  display:block; width:100%; border:none; border-radius:8px; padding:24px 20px;
+  background:#A7D08A; color:#fff; font:600 20px/1 Poppins, sans-serif; cursor:not-allowed;
+}
+.donate-cta.is-enabled{ background:#65AC42; cursor:pointer; }
+.donate-cta.is-enabled:hover{ filter:brightness(.95); }
+
+/* panel + rows (unchanged pieces kept brief) */
+.panel{ background:#fff; border-radius:8px; overflow:hidden; }
+.panel-head{ display:flex; justify-content:space-between; align-items:center; padding:24px 28px; border-bottom:1px solid #ECECEC; cursor:pointer; }
+.panel-title{ font:600 16px/1.2 Poppins, sans-serif; text-transform:uppercase; color:#151515; }
+.chev{ transition:transform .18s ease; color:#888; }
+.panel-head[aria-expanded="false"] .chev{ transform:rotate(180deg); }
+
+.tick-list{ list-style:none; margin:0; padding:0; overflow:hidden; transition:max-height .24s ease; max-height:1000px; }
+.panel-head[aria-expanded="false"] + .tick-list{ max-height:0; }
+
+/* row */
+.tick-list li{ border-bottom:1px solid #ECECEC; }
+.tick-list li:last-child{ border-bottom:none; }
+.tick-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 28px; cursor:pointer; }
+.tick-row input{ position:absolute; opacity:0; pointer-events:none; }
+.row-label{ font:400 16px/1.2 Poppins, sans-serif; color:#171717; }
+
+/* selection box: FILLED instead of checkmark */
+.box{ width:22px; height:22px; border:1.5px solid #1F1F1F; border-radius:4px; flex:0 0 22px; background:#fff; transition:background .15s ease, border-color .15s ease; }
+.tick-row input:checked + .row-label + .box{ background:#65AC42; border-color:#65AC42; }
+
+/* disabled payment methods look faint */
+.is-disabled{ opacity:.35; }
+.is-disabled .tick-row{ cursor:not-allowed; }
+
+/* mobile spacing */
+@media (max-width:480px){
+  .panel-head{ padding:22px 24px; }
+  .tick-row{ padding:22px 24px; }
+  .donate-cta{ margin-top:8px; }
+}
+
+/* a11y helper */
+.sr-only{ position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+
+/* layout & CTA placement */
+.donate-grid{ display:grid; gap:32px; }
+@media (min-width:992px){ .donate-grid{ grid-template-columns:1fr 1fr; } }
+@media (min-width:992px){ .donate-cta-wrap{ grid-column:2; } }
+.donate-cta{
+  width:100%; border:none; border-radius:8px; padding:24px 20px;
+  background:#A7D08A; color:#fff; font:600 20px/1 Poppins, sans-serif;
+  cursor:not-allowed; transition:filter .15s ease, background .15s ease;
+}
+.donate-cta.is-enabled{ background:#65AC42; cursor:pointer; }
+.donate-cta.is-enabled:hover{ filter:brightness(.95); }
+
+/* panels & accordions */
+.panel{ background:#fff; border-radius:8px; overflow:hidden; }
+.panel-head{ display:flex; justify-content:space-between; align-items:center; padding:24px 28px; border-bottom:1px solid #EEE; cursor:pointer; }
+.panel-title{ font:600 16px/1.2 Poppins, sans-serif; color:#141414; }
+.chev{ color:#8a8a8a; transition:transform .18s ease; }
+.panel-head[aria-expanded="false"] .chev{ transform:rotate(180deg); }
+
+/* lists collapse */
+.tick-list{ list-style:none; margin:0; padding:0; overflow:hidden; max-height:0; transition:max-height .24s ease; }
+.panel-head[aria-expanded="true"] + .tick-list{ max-height:1000px; }
+
+/* rows */
+.tick-list li{ border-bottom:1px solid #EEE; }
+.tick-list li:last-child{ border-bottom:none; }
+.tick-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 28px; cursor:pointer; }
+.tick-row input{ position:absolute; opacity:0; pointer-events:none; }
+.row-label{ font:400 16px/1.2 Poppins, sans-serif; color:#171717; }
+.row-label.strong{ font-weight:600; letter-spacing:.02em; }
+
+/* filled selection box */
+.box{
+  width:22px; height:22px; border:1.5px solid #1F1F1F; border-radius:4px; flex:0 0 22px;
+  background:#fff; transition:background .15s ease, border-color .15s ease;
+}
+.tick-row input:checked + .row-label + .box{ background:#65AC42; border-color:#65AC42; }
+
+/* sponsor nested list */
+.row-toggle{ user-select:none; }
+.chev-sm{ color:#8a8a8a; transition:transform .18s ease; }
+.row-toggle[aria-expanded="false"] .chev-sm{ transform:rotate(180deg); }
+
+.sub-list{ list-style:none; margin:0; padding:0 0 0 0; border-top:1px solid #EEE; overflow:hidden; max-height:0; transition:max-height .24s ease; }
+.sub-list.show{ max-height:1000px; }
+.sub-list[hidden]{ display:block; }  /* allow height animation while semantically 'hidden' */
+
+/* disabled payment methods look faint */
+.is-disabled{ opacity:.35; }
+.is-disabled .tick-row{ cursor:not-allowed; }
+
+/* mobile tweaks */
+@media (max-width:480px){
+  .panel-head{ padding:22px 24px; }
+  .tick-row{ padding:22px 24px; }
+  .donate-cta{ margin-top:8px; }
+}
+
+/* a11y helper */
+.sr-only{ position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+/* --- Accordion driven by .panel.open --- */
+.tick-list{ max-height:0; overflow:hidden; transition:max-height .24s ease; }
+.panel.open .tick-list{ max-height:1200px; }
+
+.chev{ transform:rotate(180deg); transition:transform .18s ease; }
+.panel.open .chev{ transform:rotate(0); }
+
+/* Sponsor sub-list */
+.sub-list{ max-height:0; overflow:hidden; transition:max-height .24s ease; }
+.sub-list.open{ max-height:600px; }
+.row-toggle .chev-sm{ transform:rotate(180deg); transition:transform .18s ease; }
+.row-toggle.open .chev-sm{ transform:rotate(0); }
+
+/* Filled box (no check icon) */
+.tick-row input:checked + .row-label + .box{
+  background:#65AC42; border-color:#65AC42;
+}
+
+/* Donate button enabled state */
+.donate-cta{ cursor:not-allowed; background:#A7D08A; }
+.donate-cta.is-enabled{ cursor:pointer; background:#65AC42;  }
+
+
+/* --- Gap between Donate form and footer --- */
+.don-form{
+  padding-bottom: clamp(96px, 8vw, 160px);
+}
+
+/* extra safety: give the button wrapper a margin in case markup changes */
+.donate-cta-wrap{
+  margin-bottom: clamp(332px, 4vw, 64px);
+}
+
+

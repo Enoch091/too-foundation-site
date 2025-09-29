@@ -1,0 +1,514 @@
+/* ===== TOKENS (aligned to your system) ===== */
+:root{
+  --green:#65AC42;
+  --navy:#2D308F;            /* UPDATED navy */
+  --text:#000;
+  --muted:#505050;
+  --white:#fff;
+
+  --canvas:1440px;
+  --container:1280px;
+  --nav-h:134px;
+
+  --r-32:32px;
+  --r-24:24px;
+}
+
+/* Coolvetica (local; adjust paths if needed) */
+@font-face{
+  font-family:"Coolvetica";
+  src:url("../assets/fonts/Coolvetica.woff2") format("woff2"),
+      url("../assets/fonts/Coolvetica.woff") format("woff");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+/* Base helpers (keeps page self-contained if global isn’t loaded) */
+.container{ width:var(--container); max-width:100%; margin:0 auto; }
+
+/* Active nav (ensure green on this page) */
+.main-nav a.active{ color:var(--green); }
+
+/* Offset anchor landing under sticky header */
+.anchor-target{ scroll-margin-top: calc(var(--nav-h) + 24px); }
+
+/* ===== HERO ===== */
+.impact-hero{ padding:90px 0 0; }
+.impact-hero .hero-card{
+  width:1276px; height:431px; margin:0 auto; position:relative; border-radius:var(--r-32); overflow:hidden;
+  background:#242424;
+}
+.impact-hero .hero-img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.23;
+}
+.impact-hero .hero-title{
+  position:absolute; inset:0; display:grid; place-items:center;
+  color:#fff; margin:0; font-family:"Coolvetica","Poppins",sans-serif; font-size:56px; line-height:96px; font-weight:400;
+}
+
+/* ===== INTRO ===== */
+.impact-intro{ padding:80px 0 150px; }
+.intro-text{
+  max-width:1165px; margin:0 auto; text-align:center;
+  font:300 32px/42px "Poppins",sans-serif; color:#000; letter-spacing:.64px;
+}
+
+/* ===== FOCUS BELT ===== */
+.focus-belt{ background:#EEEEEE; padding:120px 0; }
+.section-title{
+  text-align:center; color:var(--navy); margin:0 0 16px;
+  font-family:"Coolvetica","Poppins",sans-serif; font-size:56px; font-weight:400;
+}
+.section-title .amp{ font-family:"Poppins",sans-serif; font-weight:700; }
+.section-subtitle{
+  text-align:center; max-width:944px; margin:26px auto 120px;
+  font:400 32px/42px "Poppins",sans-serif; color:#000;
+}
+
+.focus-row{
+  display:grid; grid-template-columns:600px 1fr; gap:53px; align-items:center;
+  max-width:1253px; margin:80px auto 63px;
+}
+.focus-card{
+  width:600px; height:622px; position:relative; overflow:hidden; border-radius:var(--r-32);
+  background:#2D308F;
+  transform:translateZ(0); transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  cursor:default; /* non-clickable */
+}
+.focus-card:hover{ transform:translateY(-6px); filter:brightness(1.02); box-shadow:0 10px 24px rgba(0,0,0,.16); }
+.focus-card img{ width:100%; height:100%; object-fit:cover; display:block; }
+.focus-grad{
+  position:absolute; left:0; right:0; bottom:0; height:256px;
+  background:linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 100%); color:#fff; padding:0 60px 28px;
+}
+.focus-grad h3{ margin:80px 0 16px; font:600 34.9px/36.3px "Poppins",sans-serif; }
+.focus-grad p{ margin:0; font:300 20.3px/30px "Poppins",sans-serif; opacity:.95; }
+.focus-copy{
+  font:300 20px/42px "Poppins",sans-serif; color:#000; letter-spacing:.4px;
+}
+
+/* ===== STATS ===== */
+.stats-belt{ background:#fff; padding:80px 0; }
+.stats-row{ display:flex; justify-content:space-between; align-items:center; gap:24px; }
+.stat{ text-align:center; }
+.stat .num{
+  display:block; font-family:"Coolvetica","Poppins",sans-serif; font-size:49.57px; line-height:1; color:var(--green);
+}
+.stat .lbl{ display:block; margin-top:8px; font:400 17.7px/37.2px "Poppins",sans-serif; color:#000; letter-spacing:.35px; }
+
+/* ===== STORIES ===== */
+.stories-belt{ padding:120px 0; }
+.center{ text-align:center; }
+.story-block{ max-width:846px; margin:0 auto 126px; }
+.story-row{ display:flex; gap:20px; align-items:center; }
+.story-card{
+  width:305px; height:310px; border-radius:16px; overflow:hidden; background:#2D308F; flex:0 0 auto;
+}
+.story-card img{ width:100%; height:100%; object-fit:cover; display:block; }
+.story-meta{ width:521px; display:flex; flex-direction:column; gap:11px; }
+.story-heading{ margin:0; font-family:"Coolvetica","Poppins",sans-serif; font-size:40px; line-height:40px; font-weight:400; }
+.story-heading.green{ color:var(--green); }
+.story-lead{ margin:0; font:500 20px/42px "Poppins",sans-serif; letter-spacing:.4px; color:#000; }
+.story-body{
+  margin-top:12px; font:300 20px/42px "Poppins",sans-serif; letter-spacing:.4px; color:#000;
+}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials-belt{ background:#EEEEEE; padding:90px 90px; }
+.testi-wrap{
+  max-width:1211px; margin:90px auto; display:grid; grid-template-columns:56px 1fr 56px; align-items:center; gap:24px;
+}
+.testi-nav{
+  padding:8px; border-radius:288px; background:#797979; opacity:.45; border:none; color:#fff; cursor:pointer;
+  width:56px; height:56px; display:grid; place-items:center; font-size:38px; line-height:1;
+}
+.testi-viewport{ text-align:center; padding:80px 24px; }
+.testi-quote{
+  margin:0 0 12px; font:300 20px/42px "Poppins",sans-serif; color:#000;
+}
+.testi-author{
+  margin:0; font:500 24px/42px "Poppins",sans-serif; color:var(--green);
+}
+
+/* ===== CTA ===== */
+.impact-cta{ background:#EEEEEE; padding:96px 0;  }
+.cta-inner{
+  max-width:881px; margin:0 auto;
+  display:flex; flex-direction:column; gap:48px; align-items:center;
+}
+.cta-heading{
+  margin:0; text-align:center;
+  font:400 48px/48px "Coolvetica","Poppins",sans-serif; color:#5D5D5D;
+}
+.cta-heading .accent{ color:var(--green); }
+
+/* layout */
+.cta-buttons{
+  display:flex; gap:37px; justify-content:center; flex-wrap:wrap;
+}
+
+/* shared button styling; height from padding, width set via --cta-w */
+.cta-pill{
+  box-sizing:border-box;
+  padding:42px 88px;                 /* keep current height */
+  border-radius:1111px;
+  font:400 28.4px/24px "Poppins",sans-serif;
+  text-align:center;
+  width:min(var(--cta-w, auto), 100%); /* equalized width on desktop, safe on small screens */
+  transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, color .16s ease;
+  will-change: transform;
+}
+
+/* colors */
+.btn-blue{  background:#2D3091; color:#fff; }
+.btn-green{ background:var(--green); color:#fff; }
+
+/* hover/focus (desktop) */
+@media (hover:hover){
+  .cta-pill:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.12); }
+  .btn-blue:hover{  background:#24307a; }
+  .btn-green:hover{ background:#4E8C34; }
+}
+.cta-pill:focus-visible{
+  outline:3px solid rgba(101,172,66,.45);
+  outline-offset:4px;
+}
+
+/* mobile: stack + full width */
+@media (max-width:480px){
+  .cta-buttons{ flex-direction:column; align-items:stretch; gap:22px; }
+  .cta-pill{ width:100%; } /* green is 100%, so both match automatically */
+}
+
+.btn-blue{ background:#2D3091; color:#fff; }
+.btn-green{ background:var(--green); color:#fff; }
+
+/* ===== CTA: stay side-by-side on desktop, no squish ===== */
+
+/* Desktop/tablet: two columns, equal widths */
+@media (min-width: 481px){
+  .cta-buttons{
+    flex-wrap: nowrap;                 /* force single row */
+  }
+  .cta-pill{
+    width: calc((100% - 37px) / 2) !important;
+    flex: 0 0 calc((100% - 37px) / 2); /* lock width so they share the row */
+    white-space: nowrap;               /* stop label from breaking awkwardly */
+  }
+}
+
+/* Narrow desktops: relax horizontal padding so text breathes */
+@media (min-width: 481px) and (max-width: 992px){
+  .cta-pill{
+    padding-inline: 64px;              /* keep height: vertical stays 42px */
+    font-size: 26px;                   /* slight downscale to avoid crowding */
+  }
+}
+
+/* Very narrow “desktop” widths: one more step (still ≥481px) */
+@media (min-width: 481px) and (max-width: 760px){
+  .cta-pill{
+    padding-inline: 48px;              /* height still unchanged */
+    font-size: 22px;
+  }
+}
+
+/* Mobile rule you already had remains the same */
+@media (max-width:480px){
+  .cta-buttons{ flex-direction:column; align-items:stretch; gap:22px; }
+  .cta-pill{ width:100%; }
+}
+
+/* CTA pills: perfect centering */
+.cta-pill{
+  display:flex;                 /* turn the anchor into a flex box */
+  align-items:center;           /* vertical centering */
+  justify-content:center;       /* horizontal centering */
+  text-align:center;            /* fallback for multi-line cases */
+  padding-block:42px;           /* preserve your button height */
+}
+
+/* keep the desktop side-by-side sizing you already set */
+@media (min-width:481px){
+  .cta-buttons{ flex-wrap:nowrap; }
+  .cta-pill{
+    width: calc((100% - 37px) / 2);
+    flex: 0 0 calc((100% - 37px) / 2);
+    white-space: nowrap;        /* prevent awkward line breaks */
+  }
+}
+
+
+/* ===== FOOTER MOBILE one-column tweaks (ensure) ===== */
+@media (max-width: 430px){
+  .impact-hero{ padding:24px 0 0; }
+  .impact-hero .hero-card{ width:382px; height:129px; border-radius:9.6px; }
+  .impact-hero .hero-title{ font-size:32px; line-height:28.7px; }
+
+  .impact-intro{ padding-top:16px; }
+  .intro-text{ font:300 16px/35px "Poppins",sans-serif; max-width:379px; }
+
+  .focus-belt{ padding:48px 0; }
+  .section-title{ font-size:32px; line-height:36px; }
+  .section-subtitle{ font:400 16px/23px "Poppins",sans-serif; max-width:290px; }
+
+  .focus-row{
+    grid-template-columns:1fr; gap:30px; margin-bottom:73px; max-width:350px;
+  }
+  .focus-card{ width:350px; height:362.8px; border-radius:18.7px; }
+  .focus-grad{ height:149px; padding:0 35px 172px; }
+  .focus-grad h3{ font-size:20.3px; line-height:9.2px; }
+  .focus-grad p{ font-size:11.9px; line-height:17.7px; }
+  .focus-copy{ font:300 16px/32px "Poppins",sans-serif; }
+
+  .stats-belt{ padding:64px 0; }
+  .stats-row{ flex-direction:column; gap:32px; }
+
+  .stories-belt{ padding:64px 0 120px; }
+  .story-row{ flex-direction:column; align-items:flex-start; gap:18px; }
+  .story-card{ width:305px; height:310px; margin:0 auto; }
+  .story-meta{ width:100%; }
+  .story-heading{ font-size:32px; line-height:40px; }
+  .story-lead{ font-size:20px; line-height:42px; }
+
+  .testimonials-belt{ padding:64px 0; }
+  .testi-wrap{ grid-template-columns:44px 1fr 44px; max-width:372px; }
+  .testi-nav{ width:44px; height:44px; font-size:22px; }
+  .testi-quote{ font-size:16px; line-height:32px; }
+  .testi-author{ font-size:17px; line-height:42px; }
+
+  .impact-cta{ padding:48px 0; }
+  .cta-inner{ max-width:332px; gap:34px; }
+  .cta-heading{ font-size:32px; line-height:48px; }
+  .cta-buttons{ flex-direction:column; gap:22px; }
+  .cta-pill{ width:255px; padding:25px 0; font-size:17.2px; border-radius:672px; }
+}
+
+
+/* === PATCH: keep Testimonials on grey === */
+.testimonials-belt{
+  background:#EEEEEE;         /* already grey, keep it */
+  padding:90px 0;
+  border:0;
+}
+
+/* === PATCH: move CTA to its own white block === */
+.impact-cta{
+  background:#fff;            /* was #EEEEEE */
+  padding:96px 0;
+  border-top:1px solid #EDEDED;   /* clean separation after grey block */
+}
+
+/* Mobile spacings to match your comp */
+@media (max-width:430px){
+  .testimonials-belt{ padding:64px 0; }
+  .impact-cta{ padding:48px 0; }
+}
+
+
+/* ========= Featured Stories (scoped) ========= */
+#impactStories{ padding:96px 0 120px; background:#fff; }
+#impactStories .wrap{ width:846px; max-width:100%; margin:0 auto; }
+#impactStories .title{
+  margin:0;
+  text-align:center;
+  font-family:"Coolvetica","Poppins",sans-serif;
+  font-size:56px; line-height:56px; font-weight:400;
+  color:#2D308F; /* var(--navy) if you prefer */
+}
+
+/* spacing between title and first story, and between stories */
+#impactStories .story:first-of-type{ margin-top:126px; }
+#impactStories .story + .story{ margin-top:113px; }
+
+/* Use grid on the article so the body can span full width beneath */
+#impactStories .story{
+  display:grid;
+  grid-template-columns:305px 20px 521px;  /* 305 | 20 gap | 521 = 846 */
+  grid-template-areas:
+    "media . rail"
+    "body  body body";
+  align-items:start;
+}
+
+/* left image card */
+#impactStories .story-media{
+  grid-area:media;
+  width:305px; height:310px;
+  margin:0;
+  border-radius:16px; overflow:hidden;
+  background:#2D308F; /* safe tint while image loads */
+}
+#impactStories .story-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* right rail (title + lede) */
+#impactStories .story-rail{ grid-area:rail; }
+#impactStories .story-h{
+  margin:0 0 11px 0;
+  font-family:"Coolvetica","Poppins",sans-serif;
+  font-size:40px; line-height:40px; font-weight:400;
+  color:#65AC42;  /* green */
+}
+#impactStories .story-lede{
+  margin:0;
+  font:300 20px/42px "Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  letter-spacing:.4px; color:#000;
+}
+#impactStories .lede-strong{ font-weight:600; }
+
+/* full-width body under both columns */
+#impactStories .story-body{
+  grid-area:body;
+  margin-top:12px;
+}
+#impactStories .story-body p{
+  margin:0 0 22px 0;
+  font:300 20px/42px "Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  letter-spacing:.4px; color:#000;
+}
+#impactStories .story-body p:last-child{ margin-bottom:0; }
+
+/* --------- Mobile ≤ 430px --------- */
+@media (max-width:430px){
+  #impactStories{ padding:48px 0 120px; }
+  #impactStories .wrap{ max-width:430px; padding:0 24px; }
+
+  #impactStories .title{ font-size:32px; line-height:32px; }
+
+  /* stack layout */
+  #impactStories .story{ display:block; }
+  #impactStories .story:first-of-type{ margin-top:53px; }
+  #impactStories .story + .story{ margin-top:226px; } /* big gap per comp */
+
+  #impactStories .story-media{
+    width:305px; height:310px;
+    margin:0 auto; border-radius:16px;
+  }
+
+  #impactStories .story-rail{
+    max-width:340px;
+    margin:66px auto 0;
+  }
+  #impactStories .story-h{ font-size:32px; line-height:40px; }
+  #impactStories .story-lede{ font-size:20px; line-height:42px; }
+
+  #impactStories .story-body{
+    max-width:340px;
+    margin:25px auto 0;
+  }
+  #impactStories .story-body p{ font-size:20px; line-height:42px; }
+}
+
+/* ===== FEATURED STORIES (scoped) ===== */
+.featured-stories{
+  background:#fff;
+  padding:100px 0 120px;
+}
+.featured-stories .fs-container{
+  width:var(--container,1280px);
+  max-width:100%;
+  margin:0 auto;
+  padding:0;                    /* your canvas already centers this */
+}
+
+.fs-title{
+  margin:0 0 56px;
+  text-align:center;
+  font-family:"Coolvetica","Poppins",sans-serif;
+  font-size:56px;
+  line-height:1;
+  color:#2D308F;                /* navy */
+  font-weight:400;
+}
+
+/* ---- A single-flow block where image floats left ---- */
+.fs-block{
+  position:relative;
+  margin:0 auto 140px;
+  max-width:960px;              /* readable line length ~80ch */
+  opacity:0; transform:translateY(12px); /* reveal anim */
+  transition:opacity .45s ease, transform .45s ease;
+}
+.fs-block.in{ opacity:1; transform:none; }
+
+/* The magic: float + shape for rounded wrap */
+.fs-media{
+  float:left;
+  width:305px;                  /* Figma ~305 × 310 */
+  height:310px;
+  margin:0 44px 24px 0;
+  border-radius:18px;           /* 15.95 ≈ 18 */
+  overflow:hidden;
+  shape-outside: inset(0 round 18px);
+}
+.fs-media img{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+
+/* Text stack lives in ONE column so it wraps under the image naturally */
+.fs-body{ color:#000; }
+.fs-h3{
+  margin:0 0 6px;
+  font-family:"Coolvetica","Poppins",sans-serif;
+  font-size:32px;
+  line-height:40px;
+  color:#65AC42;                /* green */
+  font-weight:400;
+}
+.fs-lead{
+  margin:0 0 10px;
+  font-family:"Poppins",system-ui,sans-serif;
+  font-weight:600;
+  font-size:20px;
+  line-height:42px;
+  color:#000;
+}
+.fs-body p{
+  margin:0 0 18px;
+  font:300 20px/42px "Poppins",system-ui,sans-serif;
+}
+
+/* Clear the float at the end of each block */
+.fs-block::after{ content:""; display:table; clear:both; }
+
+/* ===== MOBILE (≤ 480 / 430) ===== */
+@media (max-width:480px){
+  .featured-stories{ padding:48px 0 120px; }
+  .featured-stories .fs-container{ padding:0 24px; }
+
+  .fs-title{
+    font-size:32px; line-height:32px; margin-bottom:44px; text-align:center;
+  }
+
+  .fs-block{
+    max-width:none;
+    margin:0 0 72px;
+  }
+
+  /* Image becomes a centered card; no wrap */
+  .fs-media{
+    float:none; shape-outside:none;
+    width:349.03px; height:340.36px;
+    border-radius:32px;
+    margin:0 auto 24px;
+  }
+
+  .fs-body{
+    max-width:340px;            /* your Figma text column */
+    margin:0 auto;
+  }
+  .fs-h3{
+    font-size:21.89px; line-height:1.05; font-weight:400; color:#65AC42;
+    text-align:left; margin-bottom:8px;
+  }
+  .fs-lead{
+    font-size:16px; line-height:32px; font-weight:600; margin-bottom:6px;
+  }
+  .fs-body p{
+    font-size:16px; line-height:32px; font-weight:300; margin-bottom:10px;
+  }
+}
+
+/* Reduced-motion friendly */
+@media (prefers-reduced-motion:reduce){
+  .fs-block{ transition:none; }
+}
