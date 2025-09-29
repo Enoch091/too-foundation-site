@@ -1,19 +1,13 @@
 [build]
   publish = "."
 
-[build.processing]
-  skip_processing = false
-
-[build.processing.forms]
-  enabled = true
-
-# Email when CONTACT succeeds
+# Email me when the CONTACT form succeeds
 [[notifications]]
   type      = "email"
   to        = "enochakinbola@gmail.com"
   condition = { form = "contact", success = true }
 
-# Email when VOLUNTEER succeeds
+# Email me when the VOLUNTEER form succeeds
 [[notifications]]
   type      = "email"
   to        = "enochakinbola@gmail.com"
