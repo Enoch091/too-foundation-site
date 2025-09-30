@@ -15,6 +15,369 @@
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 <link rel="stylesheet" href="css/responsive-hotfix.css">
+<link rel="stylesheet" href="css/events-override.css?v=3">
+
+<style>
+/* ======= EV (isolated) ======= */
+:root{
+  --ev-blue:  #2737B0;   /* your deep blue */
+  --ev-green: #58AB41;   /* your green */
+  --ev-title:#2A3DA5;    /* title blue */
+}
+
+#ev-belt{ background:#EEE; padding:48px 0; }
+#ev-belt .ev-wrap{ max-width:1200px; margin:0 auto; padding:0 16px; }
+
+#ev-belt .ev-title{
+  margin:0 0 28px;
+  font-weight:700;
+  color:var(--ev-title);
+  font-size:clamp(28px,6vw,56px);
+  line-height:1.05;
+}
+
+/* Grid: mobile = stacked */
+#ev-belt .ev-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:26px;
+}
+
+/* Tablet: 2-up */
+@media (min-width:700px){
+  #ev-belt .ev-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+}
+
+/* Desktop: 3-up */
+@media (min-width:1024px){
+  #ev-belt .ev-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:26px; }
+}
+
+/* Card */
+#ev-belt .ev-card{
+  position:relative;
+  padding:48px 40px 44px;
+  min-height:320px;
+  border-radius:0;               /* square corners */
+  color:#fff; overflow:hidden;
+}
+#ev-belt .ev-card.is-green{ background:var(--ev-green); }
+#ev-belt .ev-card.is-blue { background:var(--ev-blue);  }
+
+/* Make whole card clickable (Instagram) */
+#ev-belt .ev-link{ position:absolute; inset:0; z-index:1; }
+
+/* Arrow */
+#ev-belt .ev-arr{
+  position:absolute; right:20px; bottom:20px; z-index:2;
+  pointer-events:none; font-weight:700;
+}
+
+/* Date block */
+#ev-belt .ev-date{ display:inline-grid; gap:4px; }
+#ev-belt .ev-mth{
+  text-transform:uppercase; letter-spacing:.06em;
+  font-weight:600; font-size:clamp(12px,1.6vw,14px); line-height:1;
+}
+#ev-belt .ev-day{
+  font-weight:700; font-size:clamp(24px,2.3vw,28px); line-height:1.1;
+}
+
+/* Title + meta */
+#ev-belt .ev-h{
+  margin-top:22px; font-weight:700;
+  font-size:clamp(22px,2.8vw,32px);
+  line-height:clamp(28px,3.6vw,42px);
+}
+#ev-belt .ev-meta{
+  margin-top:18px; font-weight:500;
+  font-size:clamp(14px,1.8vw,16px);
+  line-height:clamp(20px,2.6vw,24px); opacity:.95;
+}
+
+/* Button */
+#ev-belt .ev-more{
+  display:block; margin:28px auto 0; cursor:pointer;
+  padding:16px 26px; border-radius:999px; border:none;
+  background:var(--ev-green); color:#fff; font-weight:700;
+  font-size:16px; box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+/* Tighten on small phones */
+@media (max-width:640px){
+  #ev-belt .ev-card{ padding:36px 20px 40px; min-height:auto; }
+}
+/* =========================
+   EVENTS – layout + full-bleed background + equal cards
+   ========================= */
+
+/*  Full-bleed background even if content is inside a .container  */
+.events {
+  position: relative;
+  padding: 56px 0;
+  background: #eeeeee;
+}
+/* Pull the section background out to the viewport edges */
+.events::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc(50% - 50vw);   /* left/right extend to full viewport */
+  background: #eeeeee;
+  z-index: -1;
+}
+
+/* Title centered */
+.events .section-title {
+  text-align: center;
+  margin: 0 auto 24px;
+}
+
+/* Grid: stacked on mobile, 3-up on desktop */
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: stretch;           /* stretch all children */
+}
+@media (min-width: 900px) {
+  .events-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+/* Cards: equal height, no rounded corners, spacing consistent */
+.event {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;                   /* fill the grid cell */
+  min-height: 320px;              /* consistent floor so rows match visually */
+  padding: 32px 36px;
+  border-radius: 0;
+  color: #fff;
+}
+
+/* Top-left month/day cluster */
+.event .md { display: flex; flex-direction: column; gap: 2px; }
+.event .mth { font-size: 14px; letter-spacing: .04em; font-weight: 600; }
+.event .day { font-size: 28px; font-weight: 700; line-height: 1; }
+
+/* Title + meta sizes (desktop scales a bit) */
+.event h3 { font-size: 26px; line-height: 1.25; margin: 18px 0 10px; }
+.event .meta { font-size: 15px; line-height: 1.4; opacity: .95; }
+
+/* Arrow position bottom-right */
+.event .arr { position: absolute; right: 18px; bottom: 18px; }
+
+/* Button row centered */
+.events-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+/* Keep mobile stack readable */
+@media (max-width: 420px) {
+  .event { min-height: 300px; padding: 28px 24px; }
+  .event h3 { font-size: 22px; }
+  .event .meta { font-size: 14px; }
+}
+/* =========================
+   EVENTS – full-bleed bg, spacing, grid, interactions
+   ========================= */
+
+/* EXTRA SPACE ABOVE the section so it doesn't kiss "Read Story →" */
+.events {
+  position: relative;
+  padding: 80px 0 56px;           /* top space increased */
+  margin-top: 56px;               /* extra breathing room above */
+  background: #eeeeee;
+}
+
+/* Full-bleed background even inside a .container */
+.events::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc(50% - 50vw);      /* stretch to viewport edges */
+  background: #eeeeee;
+  z-index: -1;
+}
+
+/* Title */
+.events .section-title {
+  text-align: center;
+  margin: 0 auto 28px;
+}
+
+/* Grid */
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;     /* stacked on mobile */
+  gap: 28px;
+  align-items: stretch;
+}
+@media (min-width: 900px) {
+  .events-grid {
+    grid-template-columns: repeat(3, 1fr);  /* 3-up desktop */
+    gap: 32px;
+  }
+}
+
+/* Cards */
+.event {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;                   /* equal height in the grid cell */
+  min-height: 320px;              /* consistent floor so rows match */
+  padding: 32px 36px;
+  border-radius: 0;               /* square corners (your design) */
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+/* Hover/focus interactive feel */
+.event:hover,
+.event:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+
+/* Month / day */
+.event .md { display: flex; flex-direction: column; gap: 2px; }
+.event .mth { font-size: 14px; letter-spacing: .04em; font-weight: 600; text-transform: uppercase; }
+.event .day { font-size: 28px; font-weight: 700; line-height: 1; }
+
+/* Title + meta */
+.event h3 { font-size: 26px; line-height: 1.25; margin: 18px 0 10px; }
+.event .meta { font-size: 15px; line-height: 1.4; opacity: .95; }
+
+/* Arrow (moves slightly on hover) */
+.event .arr {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  transition: transform .18s ease;
+}
+.event:hover .arr,
+.event:focus-visible .arr { transform: translateX(4px); }
+
+/* Actions row (button) */
+.events-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+/* More button styling (matching your green pill) */
+.more-events {
+  appearance: none;
+  border: 0;
+  border-radius: 9999px;
+  padding: 12px 20px;
+  font-weight: 600;
+  background: #54A340;   /* green */
+  color: #fff;
+  cursor: pointer;
+  transition: filter .15s ease, transform .15s ease;
+}
+.more-events:hover { filter: brightness(1.05); }
+.more-events:active { transform: translateY(1px); }
+
+/* Mobile fine-tune */
+@media (max-width: 420px) {
+  .event { min-height: 300px; padding: 28px 24px; }
+  .event h3 { font-size: 22px; }
+  .event .meta { font-size: 14px; }
+}
+/* Make sure [hidden] truly hides even if a framework overrides it */
+.events [hidden] { display: none !important; }
+
+/* Smaller, sane heading on phones */
+#events .section-title{
+  font-size: clamp(24px, 6.5vw, 40px) !important;
+  line-height: 1.15 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  text-align: center !important;
+}
+
+/* MOBILE: force true 1-column stack + full-width cards */
+@media (max-width: 900px){
+  #events .events-grid{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-auto-flow: row !important;
+    grid-auto-columns: unset !important;
+    justify-items: stretch !important;
+    align-items: stretch !important;
+    gap: 22px !important;
+  }
+
+  /* kill any old fixed widths */
+  #events .events-grid > *,
+  #events .event,
+  #events .ev-card{
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    justify-self: stretch !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* slightly smaller card text on mobile */
+  #events .event h3, #events .ev-card h3{
+    font-size: 22px !important;
+    line-height: 1.28 !important;
+    margin: 12px 0 8px !important;
+  }
+  #events .event .meta, #events .ev-card .meta{
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+}
+
+/* Make the “More events” button bigger */
+#events .more-events{
+  min-width: 260px !important;
+  padding: 18px 28px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  border-radius: 9999px !important;
+}
+
+/* ---------- Events: final mobile polish ---------- */
+@media (max-width: 900px){
+  /* Smaller, single-line-ish heading */
+  #events .section-title{
+    font-size: clamp(22px, 5.2vw, 32px) !important;
+    line-height: 1.12 !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Trim the left/right gutters of the events container */
+  #events .container{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Slightly tighter card padding so content never looks squished */
+  #events .event, #events .ev-card{
+    padding: 24px 20px !important;
+  }
+}
+
+
+</style>
+
 
 </head>
 <body>
@@ -265,135 +628,32 @@ violence has no place.
         
         
     <!-- EVENTS: 3×2; 413×329 r=24; 20px gaps; alternating colors; month14/date28/title28; arrow bottom-right -->
-    <section class="events" id="events">
-      <div class="container">
-        <h2 class="section-title center">Upcoming Events</h2>
+   <!-- EVENTS (isolated) -->
+<!-- =======================
+     UPCOMING EVENTS
+     ======================= -->
+<section id="events" class="events">
+  <div class="container">
+    <h2 class="section-title"
+    style="font-size:clamp(22px,5.2vw,32px);line-height:1.15;margin:0 auto 16px;text-align:center;">
+  Upcoming Events
+</h2>
 
-        <div class="events-grid">
-          <article class="event card-green">
-            <div class="md"><span class="mth">DEC</span><span class="day">15</span></div>
-            <h3>Health and wellness walk against Domestic violence</h3>
-            <p class="meta">5:00 PM WAT ·  Nigeria and UK</p>
-            <a
-  class="arr arr-link"
-  href="https://www.instagram.com/p/POST_ID_1/"
-  target="_blank" rel="noopener"
-  aria-label="Open Instagram post"
->→</a>
 
-          </article>
+    <div id="eventsGrid" class="events-grid"></div>
 
-          <article class="event card-blue">
-            <div class="md"><span class="mth">SEP</span><span class="day">7</span></div>
-            <h3>Building Confidence and Career Readiness in Young Women</h3>
-            <p class="meta">10:00 AM – 2:00 PM · Lagos Mainland Resource Center</p>
-            <a
-  class="arr arr-link"
-  href="https://www.instagram.com/p/POST_ID_1/"
-  target="_blank" rel="noopener"
-  aria-label="Open Instagram post"
->→</a>
+    <div class="events-actions">
+      <!-- hidden by JS unless total > 6 -->
+      <button id="moreEvents" class="more-events" hidden>More events</button>
+    </div>
+  </div>
+</section>
 
-          </article>
 
-          <article class="event card-green">
-            <div class="md"><span class="mth">SEP</span><span class="day">21</span></div>
-            <h3>A 5km awareness walk with banners, conversations, and survivor testimonies</h3>
-            <p class="meta">8:30 AM · University of Ibadan to Bodija axis</p>
-            <a
-  class="arr arr-link"
-  href="https://www.instagram.com/p/POST_ID_1/"
-  target="_blank" rel="noopener"
-  aria-label="Open Instagram post"
->→</a>
 
-          </article>
+<!-- Load after your other page scripts -->
 
-          <article class="event card-blue">
-            <div class="md"><span class="mth">OCT</span><span class="day">4</span></div>
-            <h3>Olanike Omopariola and guest family therapist</h3>
-            <p class="meta">6:00 PM WAT · Instagram Live</p>
-            <a
-  class="arr arr-link"
-  href="https://www.instagram.com/p/POST_ID_1/"
-  target="_blank" rel="noopener"
-  aria-label="Open Instagram post"
->→</a>
 
-          </article>
-
-          <article class="event card-green">
-            <div class="md"><span class="mth">OCT</span><span class="day">12</span></div>
-            <h3>Distribution of books, mentorship talks, and safe-space training</h3>
-            <p class="meta">9:00 AM · Ijebu-Ode Community School</p>
-            <a
-  class="arr arr-link"
-  href="https://www.instagram.com/p/POST_ID_1/"
-  target="_blank" rel="noopener"
-  aria-label="Open Instagram post"
->→</a>
-
-          </article>
-
-          <article class="event card-blue">
-            <div class="md"><span class="mth">NOV</span><span class="day">30</span></div>
-            <h3>Hope in Motion</h3>
-            <p class="meta">5:00 PM WAT · Civic Centre, Victoria Island, Lagos</p>
-            <a
-  class="arr arr-link"
-  href="https://www.instagram.com/p/POST_ID_1/"
-  target="_blank" rel="noopener"
-  aria-label="Open Instagram post"
->→</a>
-
-          </article>
-        </div>
-
-        <div class="center">
-          <button class="btn btn-green more-events" data-more-target="#moreEvents">More Events</button>
-        </div>
-
-        <!-- Inline reveal (adds one more row on same page) -->
-        <div id="moreEvents" class="events-grid hidden">
-          <article class="event card-green">
-            <div class="md"><span class="mth">DEC</span><span class="day">10</span></div>
-            <h3>Year-End Community Drive</h3>
-            <p class="meta">10:00 AM · Community Hall</p>
-            <a
-  class="arr arr-link"
-  href="https://www.instagram.com/p/POST_ID_1/"
-  target="_blank" rel="noopener"
-  aria-label="Open Instagram post"
->→</a>
-
-          </article>
-          <article class="event card-blue">
-            <div class="md"><span class="mth">JAN</span><span class="day">15</span></div>
-            <h3>New Year Mentorship Kickoff</h3>
-            <p class="meta">1:00 PM · Online</p>
-            <a
-  class="arr arr-link"
-  href="https://www.instagram.com/p/POST_ID_1/"
-  target="_blank" rel="noopener"
-  aria-label="Open Instagram post"
->→</a>
-
-          </article>
-          <article class="event card-green">
-            <div class="md"><span class="mth">FEB</span><span class="day">5</span></div>
-            <h3>Health &amp; Wellness Workshop</h3>
-            <p class="meta">11:00 AM · Local Clinic</p>
-            <a
-  class="arr arr-link"
-  href="https://www.instagram.com/p/POST_ID_1/"
-  target="_blank" rel="noopener"
-  aria-label="Open Instagram post"
->→</a>
-
-          </article>
-        </div>
-      </div>
-    </section>
 
     <!-- GALLERY: big 845×816 at right; two small stacked left; then three small below (all r=32); button 387×109 -->
     <section class="gallery">
@@ -497,5 +757,192 @@ violence has no place.
   
 
   <script src="js/main.js"></script>
+
+<script>
+/**
+ * Events renderer (single source of truth)
+ * - Loads /assets/data/events.json
+ * - Shows up to 6 initially; shows the button ONLY if total > 6
+ * - Card links to Instagram: evt.url || evt.link || evt.instagram
+ * - Displays details line (meta): meta | details | "time · location/venue/place"
+ */
+(function () {
+  const EVENTS_JSON   = '/assets/data/events.json';
+  const INITIAL_LIMIT = 6;
+
+  const grid    = document.getElementById('eventsGrid');
+  const moreBtn = document.getElementById('moreEvents');
+  if (!grid) return;
+
+  moreBtn?.setAttribute('hidden', '');           // make sure it's hidden by default
+  const PALETTE = ['#2F43A6', '#54A340'];        // blue, green fallback
+
+  function makeEventCard(evt, i) {
+    const link = evt.url || evt.link || evt.instagram || null;
+
+    // --- month/day ---
+    let month = (evt.month || '').toString();
+    let day   = (evt.day   || '').toString();
+    if ((!month || !day) && evt.date) {
+      const d = new Date(evt.date);
+      if (!isNaN(d)) {
+        month = d.toLocaleString('en-US', { month: 'short', timeZone: 'Africa/Lagos' }).toUpperCase();
+        day   = String(d.getDate());
+      }
+    }
+
+    // --- details/meta line ---
+    function buildMeta(e) {
+      if (e.meta)    return e.meta;
+      if (e.details) return e.details;
+      const time = e.time || e.when || '';
+      const loc  = e.location || e.venue || e.place || '';
+      if (time && loc) return `${time} · ${loc}`;
+      return time || loc || '';
+    }
+    const metaLine = buildMeta(evt);
+
+    // anchor if clickable; div otherwise (hover style still applies)
+    const el = document.createElement(link ? 'a' : 'div');
+    el.className = 'event';
+    el.style.display = 'block';
+    el.style.background =
+      evt.theme === 'green' ? '#54A340' :
+      evt.theme === 'blue'  ? '#2F43A6' :
+      PALETTE[i % PALETTE.length];
+
+    if (link) {
+      el.href   = link;
+      el.target = '_blank';
+      el.rel    = 'noopener noreferrer';
+      el.setAttribute('aria-label', evt.title || 'Event');
+    }
+
+    el.innerHTML = `
+      <div class="md">
+        <div class="mth">${(month || '').toUpperCase()}</div>
+        <div class="day">${day || ''}</div>
+      </div>
+      <h3>${evt.title || ''}</h3>
+      ${metaLine ? `<div class="meta">${metaLine}</div>` : ''}
+      <span class="arr" aria-hidden="true">→</span>
+    `;
+    return el;
+  }
+
+  function render(list) {
+    grid.innerHTML = '';
+    list.forEach((evt, i) => grid.appendChild(makeEventCard(evt, i)));
+  }
+
+  async function init() {
+    try {
+      const res  = await fetch(EVENTS_JSON, { cache: 'no-store' });
+      const data = await res.json();
+
+      data.sort((a, b) => (new Date(a.date || 0)) - (new Date(b.date || 0)));
+
+      const total   = data.length;
+      const initial = data.slice(0, Math.min(INITIAL_LIMIT, total));
+      render(initial);
+
+      if (total > INITIAL_LIMIT) {
+        moreBtn.hidden = false;
+        moreBtn.onclick = () => { render(data); moreBtn.hidden = true; };
+      } else {
+        moreBtn.hidden = true;
+      }
+    } catch (err) {
+      console.error('Events load error:', err);
+      moreBtn.hidden = true;
+    }
+  }
+
+  init();
+})();
+</script>
+
+
+ <script>
+(function(){
+  var grid = document.getElementById('eventsGrid');
+  if(!grid) return;
+
+  function forceOneCol(){
+    if (window.innerWidth <= 900){
+      grid.style.setProperty('display','grid','important');
+      grid.style.setProperty('grid-template-columns','1fr','important');
+      grid.style.setProperty('justify-items','stretch','important');
+      grid.querySelectorAll(':scope > *').forEach(function(el){
+        el.style.setProperty('width','100%','important');
+        el.style.setProperty('max-width','none','important');
+        el.style.setProperty('min-width','0','important');
+        el.style.setProperty('height','auto','important');
+      });
+    } else {
+      grid.style.removeProperty('grid-template-columns');
+      grid.style.removeProperty('justify-items');
+      grid.querySelectorAll(':scope > *').forEach(function(el){
+        el.style.removeProperty('width');
+        el.style.removeProperty('max-width');
+        el.style.removeProperty('min-width');
+        el.style.removeProperty('height');
+      });
+    }
+  }
+  forceOneCol();
+  window.addEventListener('resize', forceOneCol);
+})();
+</script>
+
+<script>
+(function fixEventsLayout(){
+  var grid = document.getElementById('eventsGrid');
+  if (!grid) return;
+
+  function apply(){
+    var mobile = window.matchMedia('(max-width: 900px)').matches;
+    if (mobile){
+      // force a single column on phones
+      grid.style.setProperty('display', 'grid', 'important');
+      grid.style.setProperty('grid-template-columns', '1fr', 'important');
+      grid.style.setProperty('grid-auto-flow', 'row', 'important');
+      grid.style.setProperty('grid-auto-columns', 'unset', 'important');
+      grid.style.setProperty('justify-items', 'stretch', 'important');
+      grid.style.setProperty('align-items', 'stretch', 'important');
+
+      // remove any leftover fixed widths on children
+      grid.querySelectorAll(':scope > *').forEach(function(el){
+        el.style.setProperty('width', '100%', 'important');
+        el.style.setProperty('max-width', 'none', 'important');
+        el.style.setProperty('min-width', '0', 'important');
+        el.style.setProperty('justify-self', 'stretch', 'important');
+        el.style.setProperty('box-sizing', 'border-box', 'important');
+      });
+    } else {
+      // desktop: let your normal CSS take over
+      grid.style.removeProperty('display');
+      grid.style.removeProperty('grid-template-columns');
+      grid.style.removeProperty('grid-auto-flow');
+      grid.style.removeProperty('grid-auto-columns');
+      grid.style.removeProperty('justify-items');
+      grid.style.removeProperty('align-items');
+
+      grid.querySelectorAll(':scope > *').forEach(function(el){
+        el.style.removeProperty('width');
+        el.style.removeProperty('max-width');
+        el.style.removeProperty('min-width');
+        el.style.removeProperty('justify-self');
+        el.style.removeProperty('box-sizing');
+      });
+    }
+  }
+
+  apply();
+  window.addEventListener('resize', apply);
+})();
+</script>
+
+
 </body>
 </html>

@@ -1,0 +1,461 @@
+/* =========================
+   EVENTS LAYOUT (v5)
+   Mobile-first: 1 col → 2 cols ≥700px → 3 cols ≥1024px
+   Scope with #eventsBelt to avoid clashes.
+   ========================= */
+
+:root{
+  --blue: #2533A3;     /* your card blue */
+  --green:#58AB41;     /* your card green */
+  --titleBlue:#2940A5; /* section title blue */
+}
+
+#eventsBelt{
+  background:#eee;
+  padding:48px 0;
+}
+#eventsBelt .wrap{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 16px;
+}
+
+/* Section title */
+#eventsBelt .section-title{
+  margin:0 0 28px;
+  color:var(--titleBlue);
+  font-weight:700;
+  font-size:clamp(28px,6vw,56px);
+  line-height:1.05;
+}
+
+/* Grid */
+#eventsBelt .grid{
+  display:grid;
+  grid-template-columns:1fr;       /* phones: stacked */
+  gap:26px;
+}
+
+/* ≥700px: 2 columns (tablets) */
+@media (min-width:700px){
+  #eventsBelt .grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:22px;
+  }
+}
+
+/* ≥1024px: 3 columns (desktop) */
+@media (min-width:1024px){
+  #eventsBelt .grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:26px;
+  }
+}
+
+/* Card */
+#eventsBelt .card{
+  position:relative;
+  border-radius:0;            /* square corners, per your comp */
+  padding:48px 40px 44px;     /* extra bottom for arrow */
+  min-height:320px;           /* close to your reference height */
+  color:#fff;
+  overflow:hidden;
+}
+#eventsBelt .card.is-blue{  background:var(--blue);  }
+#eventsBelt .card.is-green{ background:var(--green); }
+
+/* Make the entire card clickable (Instagram) */
+#eventsBelt .card > a.card-link{
+  position:absolute;
+  inset:0;    /* top/right/bottom/left: 0 */
+  z-index:1;
+}
+
+/* Arrow */
+#eventsBelt .card .arr{
+  position:absolute;
+  right:20px;
+  bottom:20px;
+  z-index:2;
+  pointer-events:none;
+}
+
+/* Date block (month + day) */
+#eventsBelt .date{
+  display:inline-grid;
+  grid-auto-flow:row;
+  gap:4px;
+}
+#eventsBelt .mth{
+  text-transform:uppercase;
+  font-weight:600;
+  letter-spacing:.06em;
+  font-size:clamp(12px,1.6vw,14px);
+  line-height:1;
+  opacity:.95;
+}
+#eventsBelt .day{
+  font-weight:700;
+  font-size:clamp(24px,2.3vw,28px);
+  line-height:1.1;
+}
+
+/* Title & meta */
+#eventsBelt h3{
+  margin-top:22px;
+  font-weight:700;
+  font-size:clamp(22px,2.8vw,32px);
+  line-height:clamp(28px,3.6vw,42px);
+}
+#eventsBelt .meta{
+  margin-top:18px;
+  font-weight:500;
+  font-size:clamp(14px,1.8vw,16px);
+  line-height:clamp(20px,2.6vw,24px);
+  opacity:.95;
+}
+
+/* Small-screen padding tighten */
+@media (max-width:640px){
+  #eventsBelt .card{
+    padding:36px 20px 40px;
+    min-height:auto;
+  }
+}
+
+
+
+/* ===== Scoped Events styles (no conflict) ===== */
+#events .events-grid {
+  display: grid;
+  grid-template-columns: 1fr;      /* stacked on mobile */
+  gap: 28px;
+  align-items: stretch;
+}
+
+@media (min-width: 900px) {
+  #events .events-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+/* Card (use .ev-card instead of .event) */
+#events .ev-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 320px;
+  padding: 32px 36px;
+  border-radius: 0;
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+  box-sizing: border-box;
+}
+
+/* Interactive feel */
+#events .ev-card:hover,
+#events .ev-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+
+/* Date cluster */
+#events .ev-card .md { display: flex; flex-direction: column; gap: 2px; }
+#events .ev-card .mth { font-size: 14px; letter-spacing: .04em; font-weight: 600; text-transform: uppercase; }
+#events .ev-card .day { font-size: 28px; font-weight: 700; line-height: 1; }
+
+/* Title + meta */
+#events .ev-card h3 { font-size: 26px; line-height: 1.25; margin: 18px 0 10px; }
+#events .ev-card .meta { font-size: 15px; line-height: 1.4; opacity: .95; }
+
+/* Arrow bottom-right */
+#events .ev-card .arr {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  transition: transform .18s ease;
+}
+#events .ev-card:hover .arr,
+#events .ev-card:focus-visible .arr { transform: translateX(4px); }
+
+/* Mobile fine-tune */
+@media (max-width: 420px) {
+  #events .ev-card { min-height: 300px; padding: 28px 24px; }
+  #events .ev-card h3 { font-size: 22px; }
+  #events .ev-card .meta { font-size: 14px; }
+}
+
+/* Bigger More button */
+#events .more-events {
+  appearance: none;
+  border: 0;
+  border-radius: 9999px;
+  padding: 18px 28px;
+  font-size: 18px;
+  font-weight: 700;
+  background: #54A340;
+  color: #fff;
+  cursor: pointer;
+  min-width: 220px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.10);
+}
+#events .more-events:hover { filter: brightness(1.05); }
+#events .more-events:active { transform: translateY(1px); }
+
+/* Make sure [hidden] truly hides */
+#events [hidden] { display: none !important; }
+
+
+/* kill-switch for old fixed widths */
+@media (max-width: 1200px){
+  #events .events-grid > *,
+  #events .event,
+  #events .ev-card{
+    width:100% !important;
+    max-width:none !important;
+    min-width:0 !important;
+    height:auto !important;
+  }
+  /* never center fixed-size cards on mobile */
+  #events .events-grid{
+    justify-items:stretch !important;
+  }
+}
+#events.events{ margin-top:64px !important; }
+
+@media (max-width: 900px){
+  #events .events-grid{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:22px !important;
+    justify-items:stretch !important;
+    align-items:stretch !important;
+  }
+  #events .event, #events .ev-card{
+    padding:24px 22px !important;
+    white-space:normal !important;
+    overflow-wrap:break-word !important;
+    word-break:normal !important;
+  }
+  #events .event h3, #events .ev-card h3{
+    font-size:22px !important;
+    line-height:1.25 !important;
+    margin:12px 0 8px !important;
+  }
+  #events .event .meta, #events .ev-card .meta{
+    font-size:14px !important;
+    line-height:1.35 !important;
+  }
+}
+
+#events .more-events{
+  min-width:260px !important;
+  padding:18px 28px !important;
+  font-size:18px !important;
+  font-weight:700 !important;
+  border-radius:9999px !important;
+}
+
+/* Events title: smaller, single-line feel on phones */
+#events .section-title{
+  font-size: clamp(24px, 6.5vw, 40px) !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+  word-break: normal !important;
+  white-space: normal !important;
+  text-align: center !important;
+}
+
+/* Smaller, sane heading on phones */
+#events .section-title{
+  font-size: clamp(24px, 6.5vw, 40px) !important;
+  line-height: 1.15 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  text-align: center !important;
+}
+
+/* MOBILE: force true 1-column stack + full-width cards */
+@media (max-width: 900px){
+  #events .events-grid{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-auto-flow: row !important;
+    grid-auto-columns: unset !important;
+    justify-items: stretch !important;
+    align-items: stretch !important;
+    gap: 22px !important;
+  }
+
+  /* kill any old fixed widths */
+  #events .events-grid > *,
+  #events .event,
+  #events .ev-card{
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    justify-self: stretch !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* slightly smaller card text on mobile */
+  #events .event h3, #events .ev-card h3{
+    font-size: 22px !important;
+    line-height: 1.28 !important;
+    margin: 12px 0 8px !important;
+  }
+  #events .event .meta, #events .ev-card .meta{
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+}
+
+/* Make the “More events” button bigger */
+#events .more-events{
+  min-width: 260px !important;
+  padding: 18px 28px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  border-radius: 9999px !important;
+}
+
+/* -------------- EVENTS: mobile hard reset & sizing -------------- */
+
+/* Make the section title sane on phones */
+#events .section-title{
+  font-size: clamp(24px, 6vw, 38px) !important;
+  line-height: 1.15 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  text-align: center !important;
+  margin-bottom: 18px !important;
+}
+
+/* Bigger "More events" button */
+#events .more-events{
+  min-width: 260px !important;
+  padding: 18px 28px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  border-radius: 9999px !important;
+}
+
+/* ===== MOBILE: force real 1-column stack and kill any legacy layout ===== */
+@media (max-width: 900px){
+
+  /* Nuke any flex/float/columns/inline widths the old CSS might apply */
+  #events,
+  #events .container,
+  #events .events-grid{
+    float: none !important;
+    display: block !important;
+    columns: auto !important;
+    column-count: initial !important;
+    column-gap: normal !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  /* Our actual layout */
+  #events .events-grid{
+    display: grid !important;
+    grid-template-columns: minmax(0,1fr) !important;  /* ONE column, allow shrink */
+    grid-auto-flow: row !important;
+    gap: 22px !important;
+    justify-items: stretch !important;
+    align-items: stretch !important;
+    box-sizing: border-box !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Make every child a full-width block */
+  #events .events-grid > *,
+  #events .event,
+  #events .ev-card{
+    float: none !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    justify-self: stretch !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* Comfortable mobile type sizes */
+  #events .event h3, #events .ev-card h3{
+    font-size: 22px !important;
+    line-height: 1.28 !important;
+    margin: 12px 0 8px !important;
+  }
+  #events .event .meta, #events .ev-card .meta{
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+}
+/* ---------- Events: final mobile polish ---------- */
+@media (max-width: 900px){
+  /* Smaller, single-line-ish heading */
+  #events .section-title{
+    font-size: clamp(22px, 5.2vw, 32px) !important;
+    line-height: 1.12 !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Trim the left/right gutters of the events container */
+  #events .container{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Slightly tighter card padding so content never looks squished */
+  #events .event, #events .ev-card{
+    padding: 24px 20px !important;
+  }
+}
+
+<style>
+/* FINAL EVENTS MOBILE FIX — wins the cascade */
+@media (max-width: 900px){
+  /* remove leftover fixed widths and center-margins from any legacy CSS */
+  #events .events-grid{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+    justify-items: stretch !important;
+    align-items: stretch !important;
+  }
+  #events .events-grid > *{
+    width: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;              /* kill any auto-centering */
+    justify-self: stretch !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;     /* prevents vertical “letter” wrapping */
+    overflow-wrap: anywhere !important; /* long words won’t squish the card */
+  }
+  /* comfy mobile padding + smaller title */
+  #events .event, #events .ev-card{ padding: 22px 18px !important; }
+  #events .event h3, #events .ev-card h3{
+    font-size: 22px !important; line-height: 1.28 !important; margin: 12px 0 8px !important;
+  }
+  #events .event .meta, #events .ev-card .meta{ font-size: 14px !important; line-height: 1.35 !important; }
+  /* reduce side gutters on the container so cards feel full-width */
+  #events .container{ padding-left:16px !important; padding-right:16px !important; }
+  /* bigger “More events” button (if/when it shows) */
+  #events .more-events{ min-width:260px !important; padding:18px 28px !important; font-size:18px !important; font-weight:700 !important; }
+}
+</style>

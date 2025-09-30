@@ -204,33 +204,7 @@
 
 
   
-  /* =========================
-     EVENTS (1236px total area)
-     ========================= */
-  .events{padding:80px 0}
-  .events-grid{
-    margin-top:62px;
-    display:grid; grid-template-columns:repeat(3, var(--event-w));
-    grid-auto-rows:var(--event-h);
-    gap:var(--event-gap);
-    justify-content:space-between;
-  }
-  .event{
-    position:relative; width:var(--event-w); height:var(--event-h);
-    color:#fff; border-radius:var(--card-r0); padding:38px;
-    display:grid; align-content:start; gap:2px;
-  }
-  .card-blue{background:var(--navy)}
-  .card-green{background:var(--green)}
-  .event .md{display:flex; align-items:flex-end; gap:8px}
-  .mth{font-size:14px; letter-spacing:1px; font-weight:600}
-  .day{font-size:28px; font-weight:700}
-  .event h3{margin:0; font-size:28px; font-weight:600; line-height:1.25}
-  .meta{margin-top:auto; font-size:16px; opacity:.9}
-  .arr{position:absolute; right:58px; bottom:14px; font-size:20px; opacity:.95}
-  
-  /* More Events (338×109) */
-  .more-events{width:338px; height:109px; line-height:105px; font-size:28px; font-weight:700; margin:94px auto 0}
+ 
   
   /* =========================
      GALLERY
@@ -440,46 +414,7 @@
 /* Optional: keep Events internal spacing as-is */
 .events{ padding-top: 100px !important; }
 
-/* EVENTS — full-bleed grey, including the center */
-.events{
-  position: relative;
-  margin-top: 160px !important;   /* white space above */
-  padding: 80px 0 120px;          /* internal spacing */
-  background: #EEEEEE !important; /* paint the center */
-  box-shadow: 0 0 0 100vmax #EEEEEE;  /* paint the sides (bleed) */
-  clip-path: inset(0 -100vmax);       /* keep layout intact */
-}
 
-/* ensure inner wrapper isn't forcing white */
-.events .container{ background: transparent !important; }
-
-
-/* Events: stack month (mth) above day */
-.event .md{
-  display: flex;              /* override earlier rule */
-  flex-direction: column;     /* vertical stack */
-  align-items: flex-start;    /* left-align */
-  gap: 4px;                   /* space between month and day */
-}
-
-.event .mth{ line-height: 1; }
-.event .day{ line-height: 1; }
-
-/* add a little space before the title below the date block */
-.events .event h3{ margin-top: 12px; }
-
-/* Arrow as a link (bigger tap target) */
-.arr-link{
-  width:44px; height:44px;              /* accessible target */
-  display:flex; align-items:center; justify-content:center;
-  border-radius:50%;
-  color:#fff; text-decoration:none;
-}
-.arr-link:hover,
-.arr-link:focus-visible{
-  background: rgba(255,255,255,0.15);   /* subtle hover */
-  outline: none;
-}
 
 
 /* CTA layout: buttons first (3 rows), then heading + body under them */
@@ -1426,3 +1361,188 @@
   /* Optional: stop body from scrolling when menu is open */
   body.menu-open{ overflow: hidden !important; touch-action: none; }
 }
+
+
+/* Grid layout */
+.events-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin: 32px auto 28px;
+  max-width: 1120px;
+}
+
+/* Card as a single clickable <a> */
+.event-card{
+  display:block;
+  position:relative;
+  border-radius:16px;
+  padding:24px;
+  color:#fff;
+  text-decoration:none;
+  min-height:220px;
+  overflow:hidden;
+}
+.event-card.green{ background:#65AC42; }  /* alternate colors */
+.event-card.navy { background:#2D308F; }
+
+.event-date{
+  font:600 12px/1 Poppins, sans-serif;
+  letter-spacing:.06em;
+  opacity:.9;
+  margin:0 0 2px;
+  text-transform:uppercase;
+}
+.event-day{
+  font:700 24px/1 Poppins, sans-serif;
+  margin:0 0 16px;
+}
+.event-title{
+  font:600 18px/1.3 Poppins, sans-serif;
+  margin:0 0 8px;
+}
+.event-meta{
+  font:400 12px/1.4 Poppins, sans-serif;
+  opacity:.95;
+}
+
+/* tiny arrow “→” area, still part of the link */
+.event-arrow{
+  position:absolute;
+  right:16px;
+  bottom:12px;
+  font:700 16px/1 Poppins, sans-serif;
+  opacity:.9;
+}
+
+/* CTA holder */
+.events-cta{
+  display:flex;
+  justify-content:center;
+  margin: 18px 0 8px;
+}
+
+
+/* ================================
+   EVENTS (force original design)
+   Paste this at the very end of your CSS
+   ================================ */
+
+/* Section background band */
+.events{
+  background:#EEEEEE !important;
+  padding:48px 0 !important;
+  margin:0 !important;          /* ← no side margins on mobile */
+  box-shadow:0 0 0 100vmax #EEEEEE !important;
+  clip-path: inset(0 -100vmax) !important;
+}
+
+/* Title */
+.events .section-title{
+  font-size:56px !important;
+  line-height:56px !important;
+  text-align:center !important;
+  margin:0 0 56px !important;
+  color:#2D308F !important; /* your navy */
+}
+
+/* Grid (3 up desktop, with the wide gutters from the comp) */
+.events .events-grid{
+  width:1276px !important;          /* same page container width from comps */
+  max-width:calc(100% - 48px) !important;
+  margin:0 auto !important;
+  display:grid !important;
+  grid-template-columns:repeat(3, 1fr) !important;
+  gap:28px !important;              /* vertical & horizontal spacing */
+  align-items:stretch !important;
+}
+
+/* Card */
+.events .event{
+  border-radius:0 !important;       /* square corners */
+  padding:38px 42px !important;     /* internal spacing like comp */
+  min-height:330px !important;      /* visual height match */
+  box-shadow:none !important;
+  position:relative !important;
+  color:#fff !important;
+}
+
+/* Month + Day stack (top-left) */
+.events .event .md{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:6px !important;
+  align-items:flex-start !important;
+}
+.events .event .mth{
+  font:600 14px/14px "Poppins",sans-serif !important;  /* small uppercase */
+  letter-spacing:.8px !important;
+  text-transform:uppercase !important;
+  opacity:.95 !important;
+}
+.events .event .day{
+  font:600 28px/30px "Poppins",sans-serif !important;
+}
+
+/* Title */
+.events .event h3{
+  margin:22px 0 16px !important;
+  color:#fff !important;
+  font:600 32px/40px "Poppins",sans-serif !important;  /* big & multi-line */
+}
+
+/* Meta line(s) */
+.events .event .meta{
+  font:400 16px/22px "Poppins",sans-serif !important;
+  opacity:.95 !important;
+  color:#fff !important;
+}
+
+/* Arrow (bottom-right) */
+.events .event .arr{
+  position:absolute !important;
+  right:18px !important;
+  bottom:18px !important;
+  color:#fff !important;
+  font-size:20px !important;
+  line-height:1 !important;
+  opacity:.9 !important;
+}
+
+/* COLORS
+   (cards already alternate via your JS; these ensure text stays readable) */
+.events .event.bg-green{ background:#65AC42 !important; color:#fff !important; }
+.events .event.bg-navy { background:#2D308F !important; color:#fff !important; }
+
+/* --- Responsive --- */
+
+/* Two-up on tablets */
+@media (max-width: 1050px){
+  .events .events-grid{
+    grid-template-columns:repeat(2, 1fr) !important;
+    gap:24px !important;
+  }
+  .events .event{
+    min-height:300px !important;
+    padding:34px 36px !important;
+  }
+  .events .event h3{ font-size:28px !important; line-height:36px !important; }
+}
+
+/* One-up on phones */
+@media (max-width: 640px){
+  .events{ padding:48px 0 72px !important; }
+  .events .section-title{ font-size:32px !important; line-height:30px !important; margin-bottom:28px !important; }
+  .events .events-grid{
+    grid-template-columns:1fr !important;
+    gap:20px !important;
+  }
+  .events .event{
+    min-height:auto !important;
+    padding:26px 24px !important;
+  }
+  .events .event h3{ font-size:22px !important; line-height:28px !important; }
+  .events .event .meta{ font-size:14px !important; line-height:20px !important; }
+}
+
+

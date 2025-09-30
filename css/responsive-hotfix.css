@@ -430,6 +430,248 @@ main { flex: 1 0 auto; }
   width:261px; height:200px; object-fit:cover; display:block; border-radius:12px;
 }
 
+/* ===== Upcoming Events — original look (3-up, flat, no rounded corners) ===== */
+
+/* Section wrapper */
+.events {
+  background:#EEE;
+  padding:48px 0 72px;
+}
+
+/* Title (if you use .section-title above grid) */
+.events .section-title {
+  margin:0 0 28px;
+  text-align:center;
+  font:700 56px/1 "Coolvetica","Poppins",sans-serif;
+  color:#2D308F;
+}
+
+/* Grid: 3 cards per row on desktop */
+.events-grid {
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:32px;
+  max-width:1240px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+/* Card */
+.event {
+  position:relative;
+  padding:28px 28px 40px;
+  min-height:280px;
+  color:#fff;
+  border-radius:0;              /* <- no rounded corners */
+  box-shadow:none;              /* flat like the comp */
+  display:flex;
+  flex-direction:column;
+}
+
+/* Alternate the two brand colors (green/blue). 
+   If you already set classes, you can remove these nth-child rules. */
+.events-grid .event:nth-child(odd)  { background:#65AC42; } /* green */
+.events-grid .event:nth-child(even) { background:#2D308F; } /* blue */
+
+/* Date stack (top-left) */
+.event .md { display:flex; flex-direction:column; gap:4px; }
+.mth { font:600 14px/1 "Poppins",sans-serif; text-transform:uppercase; letter-spacing:.08em; }
+.day { font:700 28px/1 "Poppins",sans-serif; }
+
+/* Title */
+.event h3 {
+  margin:16px 0 12px;
+  font:700 28px/1.25 "Poppins",sans-serif;
+}
+
+/* Meta line(s) */
+.meta {
+  margin:0;
+  font:500 14px/1.6 "Poppins",sans-serif;
+  opacity:.95;
+}
+
+/* Arrow bottom-right */
+.arr {
+  position:absolute;
+  right:18px;
+  bottom:14px;
+  font:700 18px/1 "Poppins",sans-serif;
+  pointer-events:none; /* click goes to the full-card link */
+  opacity:.9;
+}
+
+/* More/Hide button */
+.more-events {
+  display:flex;
+  justify-content:center;
+  margin-top:32px;
+}
+.more-events .btn {
+  appearance:none; border:0; cursor:pointer;
+  background:#65AC42; color:#fff;
+  padding:12px 20px;
+  border-radius:999px;           /* this pill stays rounded like the comp */
+  font:600 14px/1 "Poppins",sans-serif;
+  transition:transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+}
+.more-events .btn:hover {
+  transform:translateY(-1px);
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+  background:#4E8C34;
+}
+
+/* ===== Responsive ===== */
+@media (max-width:1100px){
+  .events-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width:640px){
+  .events .section-title { font-size:36px; }
+  .events-grid { grid-template-columns: 1fr; gap:20px; }
+  .event { padding:22px 22px 36px; min-height:0; }
+  .event h3 { font-size:22px; }
+  .day { font-size:24px; }
+}
+
+
+/* ======== FORCE EVENTS TO MATCH THE ORIGINAL DESIGN ======== */
+/* Hit almost any wrapper named events */
+section#events, section[id*="events"], section.events, .events-belt {
+  background:#EEEEEE !important;
+  padding:90px 0 120px !important;
+  box-shadow:0 0 0 100vmax #EEEEEE !important;
+  clip-path: inset(0 -100vmax) !important;
+}
+
+/* Title */
+section#events .section-title,
+section[id*="events"] .section-title,
+section.events .section-title,
+.events-belt .section-title {
+  font-size:56px !important;
+  line-height:56px !important;
+  text-align:center !important;
+  margin:0 0 56px !important;
+  color:#2D308F !important;
+}
+
+/* Grid: 3 per row desktop, centered container */
+section#events .events-grid,
+section[id*="events"] .events-grid,
+section.events .events-grid,
+.events-belt .events-grid,
+section#events .ev-grid,
+section[id*="events"] .ev-grid,
+section.events .ev-grid,
+.events-belt .ev-grid {
+  width:1276px !important;
+  max-width:calc(100% - 48px) !important;
+  margin:0 auto !important;
+  display:grid !important;
+  grid-template-columns:repeat(3, 1fr) !important;
+  gap:28px !important;
+  align-items:stretch !important;
+}
+
+/* Card (kill rounded corners everywhere) */
+section#events .event,
+section[id*="events"] .event,
+section.events .event,
+.events-belt .event,
+section#events [class*="event-card"],
+section[id*="events"] [class*="event-card"],
+section.events [class*="event-card"],
+.events-belt [class*="event-card"],
+section#events [class*="ev-card"],
+section[id*="events"] [class*="ev-card"],
+section.events [class*="ev-card"],
+.events-belt [class*="ev-card"] {
+  border-radius:0 !important;       /* ← square corners */
+  padding:38px 42px !important;
+  min-height:330px !important;
+  box-shadow:none !important;
+  position:relative !important;
+  color:#fff !important;
+}
+
+/* Month/Day stack (top-left) */
+section[id*="events"] .event .md,
+section[id*="events"] [class*="ev-card"] .md {
+  display:flex !important; flex-direction:column !important;
+  gap:6px !important; align-items:flex-start !important;
+}
+section[id*="events"] .event .mth,
+section[id*="events"] [class*="ev-card"] .mth {
+  font:600 14px/14px "Poppins",sans-serif !important;
+  letter-spacing:.8px !important; text-transform:uppercase !important; opacity:.95 !important;
+}
+section[id*="events"] .event .day,
+section[id*="events"] [class*="ev-card"] .day {
+  font:600 28px/30px "Poppins",sans-serif !important;
+}
+
+/* Title */
+section[id*="events"] .event h3,
+section[id*="events"] [class*="ev-card"] h3 {
+   font-size:56px !important;
+  margin:22px 0 16px !important;
+  color:#fff !important;
+  font:600 32px/40px "Poppins",sans-serif !important;
+ 
+}
+
+/* Meta lines */
+section[id*="events"] .event .meta,
+section[id*="events"] [class*="ev-card"] .meta {
+  font:400 16px/22px "Poppins",sans-serif !important;
+  color:#fff !important; opacity:.95 !important;
+}
+
+/* Arrow (bottom-right) */
+section[id*="events"] .event .arr,
+section[id*="events"] [class*="ev-card"] .arr {
+  position:absolute !important; right:18px !important; bottom:18px !important;
+  color:#fff !important; font-size:20px !important; line-height:1 !important; opacity:.9 !important;
+}
+
+/* Color blocks */
+section[id*="events"] .event.bg-green,
+section[id*="events"] [class*="ev-card"].bg-green { background:#65AC42 !important; color:#fff !important; }
+section[id*="events"] .event.bg-navy,
+section[id*="events"] [class*="ev-card"].bg-navy  { background:#2D308F !important; color:#fff !important; }
+
+/* Tablet: 2 per row */
+@media (max-width:1050px){
+  section[id*="events"] .events-grid, section[id*="events"] .ev-grid{
+    grid-template-columns:repeat(2,1fr) !important; gap:24px !important;
+  }
+  section[id*="events"] .event, section[id*="events"] [class*="ev-card"]{
+    min-height:300px !important; padding:34px 36px !important;
+  }
+  section[id*="events"] .event h3, section[id*="events"] [class*="ev-card"] h3{
+    font-size:28px !important; line-height:36px !important;
+  }
+}
+
+/* Phone: 1 per row */
+@media (max-width:640px){
+  section#events, section[id*="events"], section.events, .events-belt { padding:48px 0 72px !important; }
+  section[id*="events"] .section-title{ font-size:32px !important; line-height:30px !important; margin-bottom:28px !important; }
+  section[id*="events"] .events-grid, section[id*="events"] .ev-grid{
+    grid-template-columns:1fr !important; gap:20px !important;
+  }
+  section[id*="events"] .event, section[id*="events"] [class*="ev-card"]{
+    min-height:auto !important; padding:26px 24px !important;
+  }
+  section[id*="events"] .event h3, section[id*="events"] [class*="ev-card"] h3{
+    font-size:22px !important; line-height:28px !important;
+  }
+  section[id*="events"] .event .meta, section[id*="events"] [class*="ev-card"] .meta{
+    font-size:14px !important; line-height:20px !important;
+  }
+}
+
+
 /* --- Volunteer page scroll fix: kill nested scroller --- */
 html, body {
   height: auto;
@@ -449,4 +691,82 @@ main,
 /* keep the mentor bio animation working – only this can clip */
 .mentors .mdesc {
   overflow: hidden; /* needed for the open/close transition */
+}
+
+/* Smaller, sane heading on phones */
+#events .section-title{
+  font-size: clamp(24px, 6.5vw, 40px) !important;
+  line-height: 1.15 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  text-align: center !important;
+}
+
+/* MOBILE: force true 1-column stack + full-width cards */
+@media (max-width: 900px){
+  #events .events-grid{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-auto-flow: row !important;
+    grid-auto-columns: unset !important;
+    justify-items: stretch !important;
+    align-items: stretch !important;
+    gap: 22px !important;
+  }
+
+  /* kill any old fixed widths */
+  #events .events-grid > *,
+  #events .event,
+  #events .ev-card{
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    justify-self: stretch !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* slightly smaller card text on mobile */
+  #events .event h3, #events .ev-card h3{
+    font-size: 22px !important;
+    line-height: 1.28 !important;
+    margin: 12px 0 8px !important;
+  }
+  #events .event .meta, #events .ev-card .meta{
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+}
+
+/* Make the “More events” button bigger */
+#events .more-events{
+  min-width: 260px !important;
+  padding: 18px 28px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  border-radius: 9999px !important;
+}
+
+/* ---------- Events: final mobile polish ---------- */
+@media (max-width: 900px){
+  /* Smaller, single-line-ish heading */
+  #events .section-title{
+    font-size: clamp(22px, 5.2vw, 32px) !important;
+    line-height: 1.12 !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Trim the left/right gutters of the events container */
+  #events .container{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Slightly tighter card padding so content never looks squished */
+  #events .event, #events .ev-card{
+    padding: 24px 20px !important;
+  }
 }
