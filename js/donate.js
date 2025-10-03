@@ -21,8 +21,8 @@
   // ⬇️ FILL THESE WITH YOUR REAL DETAILS
   const BANK = {
     name:  'The Olanike Omopariola Foundation',
-    number:'0000000000',
-    bank:  'Sample Bank PLC'
+    number:'4011552271',
+    bank:  'Fidelity Bank'
   };
 
   const form      = document.getElementById('donateForm');
