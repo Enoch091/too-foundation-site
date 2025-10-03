@@ -2,7 +2,7 @@
 const BANKS = {
   NG: {
     name:  'The Olanike Omopariola Foundation',   // Nigeria account name
-    number:'4011552271',                           // Nigeria account number
+    number:'4011552272',                           // Nigeria account number
     bank:  'Fidelity Bank',                      // Nigeria bank name
     currency: 'NGN'
   },
