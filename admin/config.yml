@@ -3,20 +3,16 @@ backend:
   branch: main
 
 publish_mode: editorial_workflow
+
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
-publish_mode: editorial_workflow
-backend:
-  name: git-gateway
-  branch: main
-publish_mode: editorial_workflow
-site_url: https://toofoundation.org
-display_url: https://toofoundation.org
-build:
-  hooks:
-    - https://api.netlify.com/build_hooks/68fe6c821cad5bd5e1e8d0c2
+site_url: "https://toofoundation.org"
+display_url: "https://toofoundation.org"
 
+hooks:
+  - name: netlify_build
+    url: "https://api.netlify.com/build_hooks/68fe6c821cad5bd5e1e8d0c2"
 
 collections:
   - name: "blogs"
