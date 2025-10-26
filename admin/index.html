@@ -94,7 +94,7 @@
         background: #4ac857;
       }
 
-      /* ===== CMS AREA ===== */
+      /* ===== CMS WRAPPER ===== */
       .cms-wrapper {
         display: flex;
         justify-content: center;
@@ -140,25 +140,20 @@
       }
 
       /* ===== TOOLBAR ===== */
-      .nc-appHeader {
-        display: none !important; /* Hidden by default */
+      .toolbar-fixed {
         position: fixed !important;
         bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
+        left: 0;
+        right: 0;
         width: 100% !important;
-        z-index: 1000 !important;
         background: var(--white) !important;
         border-top: 1px solid #eaeaea !important;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-        transform: translateY(100%);
-        opacity: 0;
+        z-index: 999 !important;
+        box-shadow: 0 -1px 4px rgba(0,0,0,0.04);
       }
 
-      .nc-appHeader.active {
-        display: flex !important;
-        transform: translateY(0);
-        opacity: 1;
+      .toolbar-hidden {
+        display: none !important;
       }
 
       /* ===== MOBILE ===== */
@@ -186,6 +181,11 @@
           width: 100% !important;
           max-width: 100% !important;
         }
+
+        .toolbar-fixed {
+          bottom: 0;
+          position: fixed !important;
+        }
       }
     </style>
   </head>
@@ -193,7 +193,7 @@
   <body>
     <header id="main-header">
       <div class="header-left">
-        <img src="/assets/logo.png" alt="TOO Foundation Logo" />
+        <img src="/assets/images/logo.png" alt="TOO Foundation Logo" />
         <h1>Foundation Admin</h1>
       </div>
       <div class="header-right">
@@ -223,34 +223,38 @@
         });
       }
 
-      // Observer to control toolbar & headers
-      const observer = new MutationObserver(() => {
-        const isEditor = document.querySelector(".nc-entryEditor");
-        const editHeader = document.getElementById("edit-header");
-        const mainHeader = document.getElementById("main-header");
-        const toolbar = document.querySelector(".nc-appHeader");
+      function adjustToolbar() {
+        const toolbar = document.querySelector('.nc-appHeader');
+        const isEditor = document.querySelector('.nc-entryEditor');
+        const mainHeader = document.getElementById('main-header');
+        const editHeader = document.getElementById('edit-header');
 
-        if (toolbar) {
-          toolbar.classList.remove("active");
-          toolbar.style.display = "none";
-        }
+        if (!toolbar) return;
+
+        // Reset
+        toolbar.classList.remove('toolbar-fixed', 'toolbar-hidden');
 
         if (isEditor) {
-          editHeader.style.display = "flex";
-          mainHeader.style.display = "none";
-          if (toolbar) {
-            toolbar.style.display = "flex";
-            setTimeout(() => toolbar.classList.add("active"), 100);
-          }
+          mainHeader.style.display = 'none';
+          editHeader.style.display = 'flex';
+          toolbar.classList.add('toolbar-fixed');
         } else {
-          editHeader.style.display = "none";
-          mainHeader.style.display = "flex";
+          mainHeader.style.display = 'flex';
+          editHeader.style.display = 'none';
+          toolbar.classList.add('toolbar-hidden');
         }
-      });
+      }
 
+      // Watch DOM changes
+      const observer = new MutationObserver(() => adjustToolbar());
       observer.observe(document.body, { childList: true, subtree: true });
 
-      // Back button logic
+      // Adjust after CMS init
+      window.addEventListener('load', () => {
+        setTimeout(adjustToolbar, 1500);
+      });
+
+      // Back button
       document.getElementById("backButton").addEventListener("click", () => {
         const backBtn = document.querySelector(".nc-appHeader button");
         if (backBtn) backBtn.click();
