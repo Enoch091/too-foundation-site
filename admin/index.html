@@ -3,174 +3,188 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TOO Foundation – Admin</title>
-
-    <!-- Netlify Identity -->
+    <title>TOO Foundation Admin</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <style>
       :root {
         --brand: #60D669;
-        --text: #062C0C;
-        --gray-bg: #f5f6f7;
+        --dark: #062C0C;
+        --light: #f7f8fa;
       }
 
       html, body {
         margin: 0;
         padding: 0;
         font-family: "Inter", system-ui, sans-serif;
-        background: var(--gray-bg);
-        color: var(--text);
+        background: var(--light);
+        color: var(--dark);
         overflow-x: hidden;
         height: 100%;
         min-height: 100vh;
       }
 
-      /* Header */
+      /* ===== HEADER ===== */
       header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #fff;
-        border-bottom: 2px solid var(--brand);
-        padding: 1rem 1.5rem;
         position: sticky;
         top: 0;
         z-index: 1000;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-      }
-
-      .logo {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        justify-content: space-between;
+        background: #fff;
+        border-bottom: 2px solid var(--brand);
+        padding: 0.75rem 1.5rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
       }
 
-      .logo img {
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .header-left img {
         height: 30px;
         width: auto;
-        border-radius: 6px;
       }
 
-      .title {
-        font-weight: 700;
-        color: var(--text);
+      .header-left h1 {
         font-size: 1rem;
+        margin: 0;
+        color: var(--dark);
+        font-weight: 700;
       }
 
-      .hint a {
-        text-decoration: none;
-        color: var(--text);
-        font-weight: 500;
-        font-size: 0.9rem;
-        transition: color 0.2s ease;
-      }
-
-      .hint a:hover {
-        color: var(--brand);
-      }
-
-      /* CMS Root Wrapper */
-      .cms-wrapper {
+      .header-right {
         display: flex;
         align-items: center;
+        gap: 0.75rem;
+      }
+
+      .header-btn {
+        background: var(--brand);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 14px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.2s ease;
+      }
+
+      .header-btn:hover {
+        opacity: 0.9;
+      }
+
+      .back-btn {
+        background: transparent;
+        color: var(--dark);
+        border: 1px solid #ccc;
+      }
+
+      /* ===== CMS AREA ===== */
+      .cms-wrapper {
+        display: flex;
         justify-content: center;
-        height: calc(100vh - 70px);
-        width: 100%;
+        align-items: flex-start;
         padding: 1rem;
+        height: calc(100vh - 70px);
       }
 
       .cms-root {
         width: 100%;
         max-width: 1200px;
-        min-height: 500px;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
       }
 
-      /* Ensure CMS fills space properly */
-      .nc-app, .nc-root, .nc-mainContent {
-        margin: 0 !important;
-        padding: 0 !important;
+      #nc-root {
+        width: 100%;
+        height: 100%;
       }
 
-      /* Responsive Adjustments */
-      @media (max-width: 768px) {
-        header {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.3rem;
-          padding: 0.75rem 1rem;
-        }
-
-        .title {
-          font-size: 0.95rem;
-        }
-
-        .hint a {
-          font-size: 0.85rem;
-        }
-
-        .cms-wrapper {
-          padding: 0.5rem;
-          height: calc(100vh - 60px);
-        }
+      /* ===== STICKY TOOLBAR (Bottom) ===== */
+      .nc-appHeader {
+        position: fixed !important;
+        bottom: 0 !important;
+        top: auto !important;
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 500 !important;
+        background: #fff !important;
+        border-top: 2px solid var(--brand) !important;
+        box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.05) !important;
       }
 
-      /* Center Login Screen */
+      /* ===== LOGIN PAGE CENTER ===== */
       #nc-root:has(.nc-loginPage) {
         display: flex !important;
-        align-items: center !important;
         justify-content: center !important;
+        align-items: center !important;
         height: calc(100vh - 80px) !important;
       }
 
-      /* Center Netlify login elements */
-      .nc-loginPage {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-        height: calc(100vh - 100px) !important;
-      }
-
-      /* Center the login button */
       .nc-loginPage button {
         background-color: var(--brand) !important;
-        border: none !important;
         color: white !important;
-        border-radius: 6px !important;
-        padding: 10px 18px !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 12px 20px !important;
         font-size: 1rem !important;
         font-weight: 500 !important;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
       }
 
       .nc-loginPage button:hover {
         opacity: 0.9;
-        cursor: pointer;
       }
 
-      /* Make CMS entries align immediately at top */
-      .nc-collectionList, .nc-entryEditor {
-        margin-top: 0 !important;
-        padding-top: 1rem !important;
-      }
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.75rem;
+          padding: 1rem;
+        }
 
-      /* Prevent extra blank space after login */
-      .nc-app-content {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
+        .cms-wrapper {
+          height: auto;
+          padding-bottom: 5rem;
+        }
+
+        /* Force stacked layout in editor mode */
+        .nc-entryEditor {
+          display: flex;
+          flex-direction: column !important;
+        }
+
+        .nc-entryEditor-main,
+        .nc-entryEditor-preview {
+          width: 100% !important;
+        }
+
+        .header-btn {
+          font-size: 0.8rem;
+          padding: 7px 12px;
+        }
       }
     </style>
   </head>
 
   <body>
-    <header>
-      <div class="logo">
+    <header id="cms-header">
+      <div class="header-left">
         <img src="/assets/images/logo.png" alt="TOO Foundation Logo" />
-        <div class="title">Foundation Admin</div>
+        <h1>Foundation Admin</h1>
       </div>
-      <div class="hint">
-        <a href="/">← Back to Site</a>
+      <div class="header-right">
+        <button class="header-btn back-btn" id="backButton" style="display:none;">← Back</button>
+        <button class="header-btn" id="saveButton">💾 Save</button>
+        <button class="header-btn" id="publishButton">🚀 Publish</button>
       </div>
     </header>
 
@@ -178,11 +192,10 @@
       <div class="cms-root" id="nc-root"></div>
     </div>
 
-    <!-- Netlify CMS Script -->
     <script src="https://unpkg.com/netlify-cms@2.10.192/dist/netlify-cms.js"></script>
 
-    <!-- Netlify Identity Redirect -->
     <script>
+      // Identity redirect
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
           if (!user) {
@@ -192,6 +205,28 @@
           }
         });
       }
+
+      // Observe CMS view changes to toggle header buttons
+      const observer = new MutationObserver(() => {
+        const isEditor = document.querySelector(".nc-entryEditor");
+        const backBtn = document.getElementById("backButton");
+        const saveBtn = document.getElementById("saveButton");
+        const publishBtn = document.getElementById("publishButton");
+
+        if (isEditor) {
+          backBtn.style.display = "inline-block";
+        } else {
+          backBtn.style.display = "none";
+        }
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // Back button
+      document.getElementById("backButton").addEventListener("click", () => {
+        const backBtn = document.querySelector(".nc-appHeader button");
+        if (backBtn) backBtn.click(); // simulate clicking "Back to collection"
+      });
     </script>
   </body>
 </html>
