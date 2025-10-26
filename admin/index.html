@@ -12,18 +12,21 @@
       :root {
         --brand: #60D669;
         --text: #062C0C;
-        --gray-bg: #f4f5f7;
+        --gray-bg: #f5f6f7;
       }
 
       html, body {
         margin: 0;
         padding: 0;
-        font-family: 'Inter', system-ui, sans-serif;
+        font-family: "Inter", system-ui, sans-serif;
         background: var(--gray-bg);
         color: var(--text);
         overflow-x: hidden;
+        height: 100%;
+        min-height: 100vh;
       }
 
+      /* Header */
       header {
         display: flex;
         justify-content: space-between;
@@ -34,7 +37,7 @@
         position: sticky;
         top: 0;
         z-index: 1000;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
       }
 
       .logo {
@@ -44,15 +47,15 @@
       }
 
       .logo img {
-        height: 32px;
+        height: 30px;
         width: auto;
-        border-radius: 8px;
+        border-radius: 6px;
       }
 
       .title {
         font-weight: 700;
-        font-size: 1.1rem;
         color: var(--text);
+        font-size: 1rem;
       }
 
       .hint a {
@@ -67,34 +70,95 @@
         color: var(--brand);
       }
 
-      /* Ensure CMS section starts immediately, no blank gap */
+      /* CMS Root Wrapper */
+      .cms-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: calc(100vh - 70px);
+        width: 100%;
+        padding: 1rem;
+      }
+
       .cms-root {
-        min-height: calc(100vh - 70px);
-        margin-top: 0 !important;
-        padding-top: 0 !important;
+        width: 100%;
+        max-width: 1200px;
+        min-height: 500px;
       }
 
-      .nc-app {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
+      /* Ensure CMS fills space properly */
+      .nc-app, .nc-root, .nc-mainContent {
+        margin: 0 !important;
+        padding: 0 !important;
       }
 
-      /* Make admin layout responsive */
+      /* Responsive Adjustments */
       @media (max-width: 768px) {
         header {
           flex-direction: column;
           align-items: flex-start;
-          gap: 0.25rem;
+          gap: 0.3rem;
           padding: 0.75rem 1rem;
         }
 
         .title {
-          font-size: 1rem;
+          font-size: 0.95rem;
         }
 
         .hint a {
           font-size: 0.85rem;
         }
+
+        .cms-wrapper {
+          padding: 0.5rem;
+          height: calc(100vh - 60px);
+        }
+      }
+
+      /* Center Login Screen */
+      #nc-root:has(.nc-loginPage) {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: calc(100vh - 80px) !important;
+      }
+
+      /* Center Netlify login elements */
+      .nc-loginPage {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        height: calc(100vh - 100px) !important;
+      }
+
+      /* Center the login button */
+      .nc-loginPage button {
+        background-color: var(--brand) !important;
+        border: none !important;
+        color: white !important;
+        border-radius: 6px !important;
+        padding: 10px 18px !important;
+        font-size: 1rem !important;
+        font-weight: 500 !important;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .nc-loginPage button:hover {
+        opacity: 0.9;
+        cursor: pointer;
+      }
+
+      /* Make CMS entries align immediately at top */
+      .nc-collectionList, .nc-entryEditor {
+        margin-top: 0 !important;
+        padding-top: 1rem !important;
+      }
+
+      /* Prevent extra blank space after login */
+      .nc-app-content {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
       }
     </style>
   </head>
@@ -102,7 +166,7 @@
   <body>
     <header>
       <div class="logo">
-        <img src="assets/images/logo.png" alt="TOO Foundation Logo" />
+        <img src="/assets/images/logo.png" alt="TOO Foundation Logo" />
         <div class="title">Foundation Admin</div>
       </div>
       <div class="hint">
@@ -110,12 +174,14 @@
       </div>
     </header>
 
-    <div class="cms-root"></div>
+    <div class="cms-wrapper">
+      <div class="cms-root" id="nc-root"></div>
+    </div>
 
     <!-- Netlify CMS Script -->
     <script src="https://unpkg.com/netlify-cms@2.10.192/dist/netlify-cms.js"></script>
 
-    <!-- Identity Redirect Logic -->
+    <!-- Netlify Identity Redirect -->
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
