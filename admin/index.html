@@ -10,7 +10,7 @@
       :root {
         --brand: #60D669;
         --text: #032820;
-        --bg: #fafafa;
+        --bg: #f9f9f9;
         --white: #ffffff;
       }
 
@@ -25,7 +25,7 @@
         overflow-x: hidden;
       }
 
-      /* ===== HEADER (Dashboard only) ===== */
+      /* ===== HEADER ===== */
       header {
         position: sticky;
         top: 0;
@@ -66,7 +66,7 @@
         color: var(--brand);
       }
 
-      /* ===== BACK HEADER (when editing) ===== */
+      /* ===== BACK HEADER (edit mode) ===== */
       .edit-header {
         position: sticky;
         top: 0;
@@ -118,17 +118,9 @@
         height: 100%;
       }
 
-      /* ===== LOGIN PAGE ===== */
+      /* ===== LOGIN PAGE CENTER ===== */
       #nc-root:has(.nc-loginPage) {
         display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        height: calc(100vh - 80px) !important;
-      }
-
-      .nc-loginPage {
-        display: flex !important;
-        flex-direction: column !important;
         justify-content: center !important;
         align-items: center !important;
         height: calc(100vh - 80px) !important;
@@ -148,7 +140,7 @@
         background-color: #4ac857 !important;
       }
 
-      /* ===== TOOLBAR BOTTOM ===== */
+      /* ===== TOOLBAR POSITION ===== */
       .nc-appHeader {
         position: fixed !important;
         bottom: 0 !important;
@@ -159,6 +151,7 @@
         z-index: 1000 !important;
         background: var(--white) !important;
         border-top: 1px solid #eaeaea !important;
+        transition: transform 0.3s ease;
       }
 
       /* ===== RESPONSIVE ===== */
@@ -176,18 +169,25 @@
           padding: 0.5rem;
         }
 
+        /* Stack entry editor */
         .nc-entryEditor {
-          display: flex;
+          display: flex !important;
           flex-direction: column !important;
         }
 
         .nc-entryEditor-main,
         .nc-entryEditor-preview {
           width: 100% !important;
+          max-width: 100% !important;
         }
 
-        .back-btn {
-          width: fit-content;
+        .nc-appHeader {
+          position: fixed !important;
+          bottom: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100% !important;
+          transform: translateY(0) !important;
         }
       }
     </style>
@@ -196,7 +196,7 @@
   <body>
     <header id="main-header">
       <div class="header-left">
-        <img src="/assets/logo.png" alt="TOO Foundation Logo" />
+        <img src="/assets/images/logo.png" alt="TOO Foundation Logo" />
         <h1>Foundation Admin</h1>
       </div>
       <div class="header-right">
@@ -226,18 +226,25 @@
         });
       }
 
-      // Observe view changes
+      // Observer for page change
       const observer = new MutationObserver(() => {
         const isEditor = document.querySelector(".nc-entryEditor");
         const editHeader = document.getElementById("edit-header");
         const mainHeader = document.getElementById("main-header");
+        const toolbar = document.querySelector(".nc-appHeader");
 
         if (isEditor) {
           editHeader.style.display = "flex";
           mainHeader.style.display = "none";
+
+          // Move toolbar to bottom only in editor view
+          if (toolbar) toolbar.style.transform = "translateY(0)";
         } else {
           editHeader.style.display = "none";
           mainHeader.style.display = "flex";
+
+          // Hide toolbar when not editing
+          if (toolbar) toolbar.style.transform = "translateY(100%)";
         }
       });
 
