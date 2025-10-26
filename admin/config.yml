@@ -1,0 +1,44 @@
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: editorial_workflow
+
+media_folder: "/assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "blogs"
+    label: "Blogs"
+    folder: "content/blogs"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "TOO Foundation" }
+      - { label: "Cover Image", name: "image", widget: "image" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "events"
+    label: "Events"
+    folder: "content/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Event Title", name: "title", widget: "string" }
+      - { label: "Event Date", name: "event_date", widget: "datetime" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Banner Image", name: "image", widget: "image" }
+      - { label: "Description", name: "body", widget: "markdown" }
+
+  - name: "gallery"
+    label: "Gallery"
+    folder: "content/gallery"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Caption", name: "title", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Alt Text", name: "alt", widget: "string" }

@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>TOO Foundation — Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="/admin/">
+
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+      :root { --brand: #0532D3; }
+      html, body {
+        margin:0; padding:0;
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+      header {
+        display:flex; align-items:center;
+        gap:.75rem; padding:1rem 1.25rem;
+        border-bottom:1px solid #eee;
+        background:#fff; position:sticky; top:0;
+      }
+      .logo {
+        width:32px; height:32px; border-radius:8px;
+        background: var(--brand); color:#fff;
+        display:flex; align-items:center; justify-content:center;
+        font-weight:700;
+      }
+      .title { font-weight:700; font-size:1rem; }
+      .hint { margin-left:auto; font-size:.9rem; color:#555; }
+      .cms-root { height: calc(100dvh - 60px); }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">TOO</div>
+      <div class="title">Foundation Admin</div>
+      <div class="hint">Manage Blogs, Events & Gallery</div>
+    </header>
+
+    <div class="cms-root">
+      <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+      <script>
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.on("init", user => {
+            if (!user) {
+              window.netlifyIdentity.on("login", () => {
+                document.location.href = "/admin/";
+              });
+            }
+          });
+        }
+      </script>
+      <script type="module">
+        import '/src/cms/preview-templates.js';
+      </script>
+    </div>
+  </body>
+</html>

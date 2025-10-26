@@ -1,0 +1,18 @@
+:root {
+  --brand: #0532D3;
+}
+body {
+  font-family: Inter, Arial, sans-serif;
+}
+.nc-app-header {
+  background: var(--brand);
+}
+.nc-app-header h1 {
+  color: white;
+}
+button,
+input,
+select,
+textarea {
+  border-radius: 6px !important;
+}
