@@ -1,18 +1,69 @@
 :root {
-  --brand: #0532D3;
+  --brand: #60D669;
+  --text: #062C0C;
+  --gray-bg: #f7f8fa;
 }
+
 body {
-  font-family: Inter, Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
+  background-color: var(--gray-bg);
 }
+
+/* Header bar (inside CMS) */
 .nc-app-header {
-  background: var(--brand);
+  background-color: var(--brand) !important;
+  color: #fff !important;
 }
+
 .nc-app-header h1 {
-  color: white;
+  color: #fff !important;
+  font-weight: 600;
 }
+
+/* Buttons */
 button,
+input[type="submit"],
+.nc-collectionList-toolbar button {
+  background-color: var(--brand) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  opacity: 0.9;
+}
+
+/* Form elements */
 input,
 select,
 textarea {
   border-radius: 6px !important;
+  border: 1px solid #dcdcdc !important;
+  padding: 8px 10px !important;
+  font-size: 0.95rem !important;
+  color: var(--text);
+}
+
+/* Editor */
+.nc-entryEditor-Editor {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+}
+
+/* Media library */
+.nc-mediaLibrary-card {
+  border-radius: 8px !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .nc-app-header {
+    padding: 0.75rem 1rem !important;
+    text-align: center;
+  }
 }

@@ -1,58 +1,131 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>TOO Foundation — Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <base href="/admin/">
+    <title>TOO Foundation – Admin</title>
 
+    <!-- Netlify Identity -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
     <style>
-      :root { --brand: #0532D3; }
+      :root {
+        --brand: #60D669;
+        --text: #062C0C;
+        --gray-bg: #f4f5f7;
+      }
+
       html, body {
-        margin:0; padding:0;
+        margin: 0;
+        padding: 0;
         font-family: 'Inter', system-ui, sans-serif;
+        background: var(--gray-bg);
+        color: var(--text);
+        overflow-x: hidden;
       }
+
       header {
-        display:flex; align-items:center;
-        gap:.75rem; padding:1rem 1.25rem;
-        border-bottom:1px solid #eee;
-        background:#fff; position:sticky; top:0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        border-bottom: 2px solid var(--brand);
+        padding: 1rem 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       }
+
       .logo {
-        width:32px; height:32px; border-radius:8px;
-        background: var(--brand); color:#fff;
-        display:flex; align-items:center; justify-content:center;
-        font-weight:700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
       }
-      .title { font-weight:700; font-size:1rem; }
-      .hint { margin-left:auto; font-size:.9rem; color:#555; }
-      .cms-root { height: calc(100dvh - 60px); }
+
+      .logo img {
+        height: 32px;
+        width: auto;
+        border-radius: 8px;
+      }
+
+      .title {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--text);
+      }
+
+      .hint a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: color 0.2s ease;
+      }
+
+      .hint a:hover {
+        color: var(--brand);
+      }
+
+      /* Ensure CMS section starts immediately, no blank gap */
+      .cms-root {
+        min-height: calc(100vh - 70px);
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+
+      .nc-app {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+
+      /* Make admin layout responsive */
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.25rem;
+          padding: 0.75rem 1rem;
+        }
+
+        .title {
+          font-size: 1rem;
+        }
+
+        .hint a {
+          font-size: 0.85rem;
+        }
+      }
     </style>
   </head>
+
   <body>
     <header>
-      <div class="logo">TOO</div>
-      <div class="title">Foundation Admin</div>
-      <div class="hint">Manage Blogs, Events & Gallery</div>
+      <div class="logo">
+        <img src="/assets/logo.png" alt="TOO Foundation Logo" />
+        <div class="title">Foundation Admin</div>
+      </div>
+      <div class="hint">
+        <a href="/">← Back to Site</a>
+      </div>
     </header>
 
-    <div class="cms-root">
-      <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-      <script>
-        if (window.netlifyIdentity) {
-          window.netlifyIdentity.on("init", user => {
-            if (!user) {
-              window.netlifyIdentity.on("login", () => {
-                document.location.href = "/admin/";
-              });
-            }
-          });
-        }
-      </script>
-      <script type="module">
-        import '/src/cms/preview-templates.js';
-      </script>
-    </div>
+    <div class="cms-root"></div>
+
+    <!-- Netlify CMS Script -->
+    <script src="https://unpkg.com/netlify-cms@2.10.192/dist/netlify-cms.js"></script>
+
+    <!-- Identity Redirect Logic -->
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
   </body>
 </html>
