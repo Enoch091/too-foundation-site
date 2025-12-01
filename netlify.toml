@@ -1,4 +1,7 @@
 [build]
+  command = "npm run build:events && npm run build:blogs && npm run build:stories"
+
+[build]
   publish = "."
 
 # Email me when the CONTACT form succeeds
