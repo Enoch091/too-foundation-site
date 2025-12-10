@@ -6,190 +6,9 @@
     <title>TOO Foundation Admin</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-    <style>
-      :root {
-        --brand: #60D669;
-        --text: #032820;
-        --bg: #f9f9f9;
-        --white: #ffffff;
-      }
-
-      html, body {
-        margin: 0;
-        padding: 0;
-        font-family: "Inter", system-ui, sans-serif;
-        color: var(--text);
-        background: var(--bg);
-        height: 100%;
-        overflow-x: hidden;
-      }
-
-      /* ===== HEADER ===== */
-      header {
-        position: sticky;
-        top: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: var(--white);
-        border-bottom: 1px solid #eaeaea;
-        padding: 1rem 1.5rem;
-        z-index: 100;
-      }
-
-      .header-left {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-
-      .header-left img {
-        height: 26px;
-      }
-
-      .header-left h1 {
-        font-size: 1rem;
-        font-weight: 600;
-        margin: 0;
-      }
-
-      .header-right a {
-        text-decoration: none;
-        color: var(--text);
-        font-size: 0.9rem;
-        font-weight: 500;
-        transition: color 0.2s ease;
-      }
-
-      .header-right a:hover {
-        color: var(--brand);
-      }
-
-      /* ===== BACK HEADER ===== */
-      .edit-header {
-        position: sticky;
-        top: 0;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        background: var(--white);
-        border-bottom: 1px solid #eaeaea;
-        padding: 1rem 1.5rem;
-        z-index: 200;
-      }
-
-      .back-btn {
-        background: var(--brand);
-        color: var(--white);
-        border: none;
-        border-radius: 6px;
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: background 0.2s ease;
-      }
-
-      .back-btn:hover {
-        background: #4ac857;
-      }
-
-      /* ===== CMS WRAPPER ===== */
-      .cms-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        width: 100%;
-        height: calc(100vh - 70px);
-        padding: 1rem;
-      }
-
-      .cms-root {
-        width: 100%;
-        max-width: 1200px;
-        background: var(--white);
-        border-radius: 10px;
-        overflow: hidden;
-      }
-
-      #nc-root {
-        width: 100%;
-        height: 100%;
-      }
-
-      /* ===== LOGIN CENTER ===== */
-      #nc-root:has(.nc-loginPage) {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        height: calc(100vh - 80px) !important;
-      }
-
-      .nc-loginPage button {
-        background-color: var(--brand) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 6px !important;
-        padding: 12px 24px !important;
-        font-size: 1rem !important;
-        font-weight: 500 !important;
-      }
-
-      .nc-loginPage button:hover {
-        background-color: #4ac857 !important;
-      }
-
-      /* ===== TOOLBAR ===== */
-      .toolbar-fixed {
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0;
-        right: 0;
-        width: 100% !important;
-        background: var(--white) !important;
-        border-top: 1px solid #eaeaea !important;
-        z-index: 999 !important;
-        box-shadow: 0 -1px 4px rgba(0,0,0,0.04);
-      }
-
-      .toolbar-hidden {
-        display: none !important;
-      }
-
-      /* ===== MOBILE ===== */
-      @media (max-width: 768px) {
-        header,
-        .edit-header {
-          flex-direction: column;
-          align-items: flex-start;
-          padding: 0.75rem 1rem;
-          gap: 0.5rem;
-        }
-
-        .cms-wrapper {
-          height: auto;
-          padding: 0.5rem;
-        }
-
-        .nc-entryEditor {
-          display: flex !important;
-          flex-direction: column !important;
-        }
-
-        .nc-entryEditor-main,
-        .nc-entryEditor-preview {
-          width: 100% !important;
-          max-width: 100% !important;
-        }
-
-        .toolbar-fixed {
-          bottom: 0;
-          position: fixed !important;
-        }
-      }
-    </style>
+    <!-- replace inline styles with external stylesheet -->
+    <link rel="stylesheet" href="admin.css" />
   </head>
-
   <body>
     <header id="main-header">
       <div class="header-left">
@@ -212,53 +31,63 @@
     <script src="https://unpkg.com/netlify-cms@2.10.192/dist/netlify-cms.js"></script>
 
     <script>
-      // Identity redirect
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
+    (function(){
+      // small debounce
+      const debounce = (fn, wait = 150) => {
+        let t;
+        return (...args) => {
+          clearTimeout(t);
+          t = setTimeout(() => fn(...args), wait);
+        };
+      };
+
+      function safeDisplay(el, display) {
+        if (!el) return;
+        try { el.style.display = display; } catch (e) { /* ignore */ }
       }
 
       function adjustToolbar() {
         const toolbar = document.querySelector('.nc-appHeader');
-        const isEditor = document.querySelector('.nc-entryEditor');
+        const isEditor = !!document.querySelector('.nc-entryEditor');
         const mainHeader = document.getElementById('main-header');
         const editHeader = document.getElementById('edit-header');
 
         if (!toolbar) return;
 
-        // Reset
+        // reset classes
         toolbar.classList.remove('toolbar-fixed', 'toolbar-hidden');
 
         if (isEditor) {
-          mainHeader.style.display = 'none';
-          editHeader.style.display = 'flex';
+          safeDisplay(mainHeader, 'none');
+          safeDisplay(editHeader, 'flex');
           toolbar.classList.add('toolbar-fixed');
         } else {
-          mainHeader.style.display = 'flex';
-          editHeader.style.display = 'none';
+          safeDisplay(mainHeader, 'flex');
+          safeDisplay(editHeader, 'none');
           toolbar.classList.add('toolbar-hidden');
         }
       }
 
-      // Watch DOM changes
-      const observer = new MutationObserver(() => adjustToolbar());
+      const debouncedAdjust = debounce(adjustToolbar, 200);
+      const observer = new MutationObserver(debouncedAdjust);
       observer.observe(document.body, { childList: true, subtree: true });
 
-      // Adjust after CMS init
-      window.addEventListener('load', () => {
-        setTimeout(adjustToolbar, 1500);
-      });
+      // Ensure adjust runs after CMS loads
+      window.addEventListener('load', () => setTimeout(adjustToolbar, 800));
+      // Also run on orientation/resize (when mobile keyboard/viewport changes)
+      window.addEventListener('resize', debounce(adjustToolbar, 200));
 
-      // Back button
-      document.getElementById("backButton").addEventListener("click", () => {
-        const backBtn = document.querySelector(".nc-appHeader button");
-        if (backBtn) backBtn.click();
-      });
+      // Safe attach for back button
+      const backButton = document.getElementById('backButton');
+      if (backButton) {
+        backButton.setAttribute('aria-label', 'Back to Dashboard');
+        backButton.addEventListener('click', () => {
+          const cmsBack = document.querySelector('.nc-appHeader button');
+          if (cmsBack) cmsBack.click();
+        });
+      }
+    })();
     </script>
   </body>
 </html>
+
