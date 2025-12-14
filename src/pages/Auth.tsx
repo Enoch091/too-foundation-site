@@ -1,18 +1,62 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const signup = useMutation(api.auth.signup);
+  const signin = useMutation(api.auth.signin);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
-    console.log(isSignUp ? "Sign up" : "Sign in", { email, password });
+    try {
+      if (isSignUp) {
+        // Sign up
+        if (!name.trim()) {
+          setError("Please enter your name");
+          setLoading(false);
+          return;
+        }
+        const user = await signup({ email, password, name });
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+          setIsSignUp(false);
+          setEmail("");
+          setPassword("");
+          setName("");
+        }, 2000);
+      } else {
+        // Sign in
+        const user = await signin({ email, password });
+        // Use returned user (signin returns role); avoid unsupported `useClient` hook
+        const storeUser = user;
+        localStorage.setItem("user", JSON.stringify(storeUser));
+        setSuccess(true);
+        // Redirect to dashboard
+        setTimeout(() => {
+          if (storeUser.role === "admin") {
+            window.location.href = "/admin";
+          } else {
+            window.location.href = "/";
+          }
+        }, 500);
+      }
+    } catch (err: any) {
+      setError(err.message || "An error occurred");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -28,13 +72,13 @@ const Auth = () => {
 
         {/* Logo */}
         <div className="relative z-10">
-          <Link to="/" className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3">
             <img
               src="/assets/images/logo.png"
-              alt="Healed and Restored Logo"
+              alt="TOOF Logo"
               className="h-14 w-auto"
             />
-          </Link>
+          </a>
         </div>
 
         {/* Description */}
@@ -62,13 +106,13 @@ const Auth = () => {
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="lg:hidden mb-8 flex justify-center">
-            <Link to="/">
+            <a href="/">
               <img
                 src="/assets/images/logo.png"
-                alt="Healed and Restored Logo"
+                alt="TOOF Logo"
                 className="h-12 w-auto"
               />
-            </Link>
+            </a>
           </div>
 
           <h1 className="text-3xl font-bold text-foreground mb-2">
@@ -79,6 +123,20 @@ const Auth = () => {
               ? "Please fill in your details to create an account"
               : "Please enter your credentials to sign in!"}
           </p>
+
+          {error && (
+            <div className="mb-4 p-3 bg-red-100 border border-red-300 text-red-700 rounded">
+              {error}
+            </div>
+          )}
+
+          {success && (
+            <div className="mb-4 p-3 bg-green-100 border border-green-300 text-green-700 rounded">
+              {isSignUp
+                ? "Account created! Please sign in."
+                : "Signed in successfully!"}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
             {isSignUp && (
@@ -93,6 +151,7 @@ const Auth = () => {
                   onChange={(e) => setName(e.target.value)}
                   className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-green focus:border-transparent transition-all bg-background text-foreground placeholder:text-muted-foreground"
                   required
+                  disabled={loading}
                 />
               </div>
             )}
@@ -108,6 +167,7 @@ const Auth = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-green focus:border-transparent transition-all bg-background text-foreground placeholder:text-muted-foreground"
                 required
+                disabled={loading}
               />
             </div>
 
@@ -115,119 +175,46 @@ const Auth = () => {
               <label className="block text-sm font-medium text-foreground mb-2">
                 Password
               </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-green focus:border-transparent transition-all bg-background text-foreground placeholder:text-muted-foreground pr-12"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {showPassword ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
-                      <line x1="1" y1="1" x2="23" y2="23" />
-                    </svg>
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                      <circle cx="12" cy="12" r="3" />
-                    </svg>
-                  )}
-                </button>
-              </div>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-green focus:border-transparent transition-all bg-background text-foreground placeholder:text-muted-foreground"
+                required
+                disabled={loading}
+              />
+              {isSignUp && (
+                <small className="text-muted-foreground block mt-1">
+                  At least 6 characters
+                </small>
+              )}
             </div>
-
-            {isSignUp && (
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  Confirm Password
-                </label>
-                <input
-                  type="password"
-                  placeholder="Confirm your password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-green focus:border-transparent transition-all bg-background text-foreground placeholder:text-muted-foreground"
-                  required
-                />
-              </div>
-            )}
-
-            {!isSignUp && (
-              <div className="text-right">
-                <button
-                  type="button"
-                  className="text-green hover:text-green-dark text-sm font-medium transition-colors"
-                >
-                  Forgot Password?
-                </button>
-              </div>
-            )}
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-green hover:bg-green-dark text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-[1.02]"
+              className="w-full py-3 bg-green text-white rounded-lg font-semibold hover:bg-green-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={loading}
             >
-              {isSignUp ? "Sign Up" : "Sign In"}
+              {loading ? "Loading..." : isSignUp ? "Create Account" : "Sign In"}
             </button>
           </form>
 
-          <p className="text-center text-muted-foreground mt-6">
-            {isSignUp ? (
-              <>
-                Already have an account?{" "}
-                <button
-                  onClick={() => setIsSignUp(false)}
-                  className="text-green hover:text-green-dark font-semibold transition-colors"
-                >
-                  Sign in
-                </button>
-              </>
-            ) : (
-              <>
-                Don't have an account yet?{" "}
-                <button
-                  onClick={() => setIsSignUp(true)}
-                  className="text-green hover:text-green-dark font-semibold transition-colors"
-                >
-                  Sign up
-                </button>
-              </>
-            )}
-          </p>
-
-          <div className="mt-8 text-center">
-            <Link
-              to="/"
-              className="text-sm text-muted-foreground hover:text-green transition-colors"
+          <div className="mt-6 text-center">
+            <button
+              type="button"
+              onClick={() => {
+                setIsSignUp(!isSignUp);
+                setError("");
+                setSuccess(false);
+              }}
+              disabled={loading}
+              className="text-green hover:text-green-dark transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              ← Back to Home
-            </Link>
+              {isSignUp
+                ? "Already have an account? Sign In"
+                : "Don't have an account? Sign Up"}
+            </button>
           </div>
         </div>
       </div>

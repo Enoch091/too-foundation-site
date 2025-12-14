@@ -1,23 +1,25 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 // React + Vite conversion
-import Layout from './components/Layout';
-import Index from './pages/Index';
-import About from './pages/About';
-import Impact from './pages/Impact';
-import GetInvolved from './pages/GetInvolved';
-import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
-import Contact from './pages/Contact';
-import Donate from './pages/Donate';
-import Volunteer from './pages/Volunteer';
-import FAQ from './pages/FAQ';
-import Auth from './pages/Auth';
+import Layout from "./components/Layout";
+import Index from "./pages/Index";
+import About from "./pages/About";
+import Impact from "./pages/Impact";
+import GetInvolved from "./pages/GetInvolved";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+import Contact from "./pages/Contact";
+import Donate from "./pages/Donate";
+import Volunteer from "./pages/Volunteer";
+import FAQ from "./pages/FAQ";
+import Auth from "./pages/Auth";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/auth" element={<Auth />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Index />} />
           <Route path="about" element={<About />} />

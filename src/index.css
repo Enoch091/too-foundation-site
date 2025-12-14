@@ -46,14 +46,14 @@
   --radius-full: 9999px;
 }
 
-/* Coolvetica Font */
+/* Coolvetica Font - with fallback */
 @font-face {
   font-family: "Coolvetica";
   src: url("/assets/fonts/Coolvetica.woff2") format("woff2"),
        url("/assets/fonts/Coolvetica.woff") format("woff");
   font-weight: 200;
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
 }
 
 @font-face {
@@ -61,7 +61,7 @@
   src: url("/assets/fonts/Coolvetica-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
 }
 
 @font-face {
@@ -69,7 +69,7 @@
   src: url("/assets/fonts/Coolvetica-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
 }
 
 /* =========================
@@ -106,15 +106,18 @@ a {
    UTILITY CLASSES
    ========================= */
 .container {
-  width: 100%;
+  /* Make site content narrower and centered. Default: mobile-friendly 95% */
+  width: 95%;
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 16px;
 }
 
+/* On tablet and up, use 80% of viewport width to match requested layout */
 @media (min-width: 768px) {
   .container {
-    padding: 0 32px;
+    width: 80%;
+    padding: 0 24px;
   }
 }
 
