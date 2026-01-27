@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Olanike Omopariola Foundation (toofoundation) | toofoundation.org</title>
+  <meta name="description" content="The Olanike Omopariola Foundation (toofoundation), also known as toofoundation, is a nonprofit organization." />
+
+  <!-- Google Font for body/UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicons & Web App Manifest -->
+  <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/assets/site.webmanifest" />
+  <meta name="theme-color" content="#15803d" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+<link rel="stylesheet" href="css/responsive-hotfix.css">
+<link rel="stylesheet" href="css/events-override.css?v=3">
+
+<style>
+/* ======= EV (isolated) ======= */
+:root{
+  --ev-blue:  #2737B0;   /* your deep blue */
+  --ev-green: #58AB41;   /* your green */
+  --ev-title:#2A3DA5;    /* title blue */
+}
+
+#ev-belt{ background:#EEE; padding:48px 0; }
+#ev-belt .ev-wrap{ max-width:1200px; margin:0 auto; padding:0 16px; }
+
+#ev-belt .ev-title{
+  margin:0 0 28px;
+  font-weight:700;
+  color:var(--ev-title);
+  font-size:clamp(28px,6vw,56px);
+  line-height:1.05;
+}
+
+/* Grid: mobile = stacked */
+#ev-belt .ev-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:26px;
+}
+
+/* Tablet: 2-up */
+@media (min-width:700px){
+  #ev-belt .ev-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+}
+
+/* Desktop: 3-up */
+@media (min-width:1024px){
+  #ev-belt .ev-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:26px; }
+}
+
+/* Card */
+#ev-belt .ev-card{
+  position:relative;
+  padding:48px 40px 44px;
+  min-height:320px;
+  border-radius:0;               /* square corners */
+  color:#fff; overflow:hidden;
+}
+#ev-belt .ev-card.is-green{ background:var(--ev-green); }
+#ev-belt .ev-card.is-blue { background:var(--ev-blue);  }
+
+/* Make whole card clickable (Instagram) */
+#ev-belt .ev-link{ position:absolute; inset:0; z-index:1; }
+
+/* Arrow */
+#ev-belt .ev-arr{
+  position:absolute; right:20px; bottom:20px; z-index:2;
+  pointer-events:none; font-weight:700;
+}
+
+/* Date block */
+#ev-belt .ev-date{ display:inline-grid; gap:4px; }
+#ev-belt .ev-mth{
+  text-transform:uppercase; letter-spacing:.06em;
+  font-weight:600; font-size:clamp(12px,1.6vw,14px); line-height:1;
+}
+#ev-belt .ev-day{
+  font-weight:700; font-size:clamp(24px,2.3vw,28px); line-height:1.1;
+}
+
+/* Title + meta */
+#ev-belt .ev-h{
+  margin-top:22px; font-weight:700;
+  font-size:clamp(22px,2.8vw,32px);
+  line-height:clamp(28px,3.6vw,42px);
+}
+#ev-belt .ev-meta{
+  margin-top:18px; font-weight:500;
+  font-size:clamp(14px,1.8vw,16px);
+  line-height:clamp(20px,2.6vw,24px); opacity:.95;
+}
+
+/* Button */
+#ev-belt .ev-more{
+  display:block; margin:28px auto 0; cursor:pointer;
+  padding:16px 26px; border-radius:999px; border:none;
+  background:var(--ev-green); color:#fff; font-weight:700;
+  font-size:16px; box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+/* Tighten on small phones */
+@media (max-width:640px){
+  #ev-belt .ev-card{ padding:36px 20px 40px; min-height:auto; }
+}
+/* =========================
+   EVENTS – layout + full-bleed background + equal cards
+   ========================= */
+
+/*  Full-bleed background even if content is inside a .container  */
+.events {
+  position: relative;
+  padding: 56px 0;
+  background: #eeeeee;
+}
+/* Pull the section background out to the viewport edges */
+.events::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc(50% - 50vw);   /* left/right extend to full viewport */
+  background: #eeeeee;
+  z-index: -1;
+}
+
+/* Title centered */
+.events .section-title {
+  text-align: center;
+  margin: 0 auto 24px;
+}
+
+/* Grid: stacked on mobile, 3-up on desktop */
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: stretch;           /* stretch all children */
+}
+@media (min-width: 900px) {
+  .events-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+/* Cards: equal height, no rounded corners, spacing consistent */
+.event {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;                   /* fill the grid cell */
+  min-height: 320px;              /* consistent floor so rows match visually */
+  padding: 32px 36px;
+  border-radius: 0;
+  color: #fff;
+}
+
+/* Top-left month/day cluster */
+.event .md { display: flex; flex-direction: column; gap: 2px; }
+.event .mth { font-size: 14px; letter-spacing: .04em; font-weight: 600; }
+.event .day { font-size: 28px; font-weight: 700; line-height: 1; }
+
+/* Title + meta sizes (desktop scales a bit) */
+.event h3 { font-size: 26px; line-height: 1.25; margin: 18px 0 10px; }
+.event .meta { font-size: 15px; line-height: 1.4; opacity: .95; }
+
+/* Arrow position bottom-right */
+.event .arr { position: absolute; right: 18px; bottom: 18px; }
+
+/* Button row centered */
+.events-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+/* Keep mobile stack readable */
+@media (max-width: 420px) {
+  .event { min-height: 300px; padding: 28px 24px; }
+  .event h3 { font-size: 22px; }
+  .event .meta { font-size: 14px; }
+}
+/* =========================
+   EVENTS – full-bleed bg, spacing, grid, interactions
+   ========================= */
+
+/* EXTRA SPACE ABOVE the section so it doesn't kiss "Read Story →" */
+.events {
+  position: relative;
+  padding: 80px 0 56px;           /* top space increased */
+  margin-top: 56px;               /* extra breathing room above */
+  background: #eeeeee;
+}
+
+/* Full-bleed background even inside a .container */
+.events::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc(50% - 50vw);      /* stretch to viewport edges */
+  background: #eeeeee;
+  z-index: -1;
+}
+
+/* Title */
+.events .section-title {
+  text-align: center;
+  margin: 0 auto 28px;
+}
+
+/* Grid */
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;     /* stacked on mobile */
+  gap: 28px;
+  align-items: stretch;
+}
+@media (min-width: 900px) {
+  .events-grid {
+    grid-template-columns: repeat(3, 1fr);  /* 3-up desktop */
+    gap: 32px;
+  }
+}
+
+/* Cards */
+.event {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;                   /* equal height in the grid cell */
+  min-height: 320px;              /* consistent floor so rows match */
+  padding: 32px 36px;
+  border-radius: 0;               /* square corners (your design) */
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+/* Hover/focus interactive feel */
+.event:hover,
+.event:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+
+/* Month / day */
+.event .md { display: flex; flex-direction: column; gap: 2px; }
+.event .mth { font-size: 14px; letter-spacing: .04em; font-weight: 600; text-transform: uppercase; }
+.event .day { font-size: 28px; font-weight: 700; line-height: 1; }
+
+/* Title + meta */
+.event h3 { font-size: 26px; line-height: 1.25; margin: 18px 0 10px; }
+.event .meta { font-size: 15px; line-height: 1.4; opacity: .95; }
+
+/* Arrow (moves slightly on hover) */
+.event .arr {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  transition: transform .18s ease;
+}
+.event:hover .arr,
+.event:focus-visible .arr { transform: translateX(4px); }
+
+/* Actions row (button) */
+.events-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+/* More button styling (matching your green pill) */
+.more-events {
+  appearance: none;
+  border: 0;
+  border-radius: 9999px;
+  padding: 12px 20px;
+  font-weight: 600;
+  background: #54A340;   /* green */
+  color: #fff;
+  cursor: pointer;
+  transition: filter .15s ease, transform .15s ease;
+}
+.more-events:hover { filter: brightness(1.05); }
+.more-events:active { transform: translateY(1px); }
+
+/* Mobile fine-tune */
+@media (max-width: 420px) {
+  .event { min-height: 300px; padding: 28px 24px; }
+  .event h3 { font-size: 22px; }
+  .event .meta { font-size: 14px; }
+}
+/* Make sure [hidden] truly hides even if a framework overrides it */
+.events [hidden] { display: none !important; }
+
+/* Smaller, sane heading on phones */
+#events .section-title{
+  font-size: clamp(24px, 2.5vw, 40px) !important;
+  line-height: 1.15 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  text-align: center !important;
+}
+
+/* MOBILE: force true 1-column stack + full-width cards */
+@media (max-width: 900px){
+  #events .events-grid{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-auto-flow: row !important;
+    grid-auto-columns: unset !important;
+    justify-items: stretch !important;
+    align-items: stretch !important;
+    gap: 22px !important;
+  }
+
+  /* kill any old fixed widths */
+  #events .events-grid > *,
+  #events .event,
+  #events .ev-card{
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    justify-self: stretch !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* slightly smaller card text on mobile */
+  #events .event h3, #events .ev-card h3{
+    font-size: 22px !important;
+    line-height: 1.28 !important;
+    margin: 12px 0 8px !important;
+  }
+  #events .event .meta, #events .ev-card .meta{
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+}
+
+/* Make the “More events” button bigger */
+#events .more-events{
+  min-width: 260px !important;
+  padding: 18px 28px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  border-radius: 9999px !important;
+}
+
+/* ---------- Events: final mobile polish ---------- */
+@media (max-width: 900px){
+  /* Smaller, single-line-ish heading */
+  #events .section-title{
+    font-size: clamp(22px, 2.2vw, 32px) !important;
+    line-height: 1.12 !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Trim the left/right gutters of the events container */
+  #events .container{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Slightly tighter card padding so content never looks squished */
+  #events .event, #events .ev-card{
+    padding: 24px 20px !important;
+  }
+}
+
+/* Mobile: shrink the "Upcoming Events" heading */
+@media (max-width: 600px){
+  #events .section-title{
+    font-size: clamp(20px, 2.2vw, 24px) !important;
+    line-height: 1.22 !important;
+    margin: 0 0 16px !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+}
+
+
+</style>
+
+
+</head>
+<body>
+
+  <!-- NAV (134px), white, centered canvas 1440 with 80px side margins -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav-wrap">
+      <a class="logo" href="index.html" aria-label="Home">
+        <img src="assets/images/logo.png" alt="The Olanike Omopariola Foundation" />
+      </a>
+<button class="nav-toggle" aria-label="Open menu">
+  <!-- replace the src with your actual icon file -->
+  <img src="assets/icons/menu-mobile.png" alt="" width="40" height="40">
+</button>
+
+      <nav class="main-nav" aria-label="Primary">
+        <ul>
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="impact.html">Impact</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <!-- Donate 142×42, R=21, heart icon -->
+        <a class="btn btn-green donate-pill" href="donate.html" aria-label="Donate">
+          <svg class="heart" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 21s-6.7-4.4-9.2-6.9A5.5 5.5 0 0 1 10.5 6.5L12 8l1.5-1.5a5.5 5.5 0 0 1 7.7 7.7C18.7 16.6 12 21 12 21z"/>
+          </svg>
+          Donate
+        </a>
+
+    
+  <!-- Use your own icon (replace the src) -->
+  <button class="nav-toggle" aria-label="Open menu">
+    <img src="assets/icons/my-mobile-menu.png" alt="">
+  </button>
+</header>
+
+      </div>
+    </div>
+
+    <!-- MOBILE MENU OVERLAY (exact order, 62px vertical rhythm) -->
+    <div class="mobile-menu" aria-hidden="true">
+      <button class="menu-close" aria-label="Close menu">✕</button>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="impact.html">IMPACT</a></li>
+        <li><a href="get-involved.html">GET INVOLVED</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO 828px; left copy, right image; dark overlay; slideshow of 5 imgs -->
+    <section class="hero">
+      <div class="slides">
+        <div class="slide" style="background-image:url('assets/images/hero1.jpg')"></div>
+        <div class="slide" style="background-image:url('assets/images/hero2.jpg')"></div>
+        <div class="slide" style="background-image:url('assets/images/hero3.jpg')"></div>
+        <div class="slide" style="background-image:url('assets/images/hero4.jpg')"></div>
+        <div class="slide" style="background-image:url('assets/images/hero5.jpg')"></div>
+      </div>
+      <div class="hero-dim"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 class="display">
+            Together, We<br>Can Rebuild<br><span class="accent">Dreams</span>
+          </h1>
+          <p class="lead">
+            Empowering women and young people through advocacy,<br>
+            education, and hope.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-white btn-outline-green hero-btn" href="donate.html">Donate</a>
+            <a class="btn btn-green hero-btn" href="volunteer.html">Volunteer</a>
+          </div>
+        </div>
+        <div class="hero-right"><!-- empty for 65/35 split --></div>
+      </div>
+    </section>
+
+    <!-- ABOUT: title 56, body 26/39, Read More 27; founder card 413×512 r=32 with gradient tag -->
+    <section class="about">
+      <div class="container about-grid">
+        <figure class="founder-card" href="/about.html#founder-story" >
+          <img src="assets/images/founnder-story.jpg" alt="Oluwatoyin Omotayo" />
+          <figcaption class="founder-cap">
+            <span class="dot"></span>
+            <span class="name">Oluwatoyin Aanuoluwapo Omotayo Esq.</span>
+            <span class="role">FOUNDER</span>
+          </figcaption>
+        </figure>
+
+        <div class="about-copy">
+          <h2 class="about-title">About the<br>Foundation</h2>
+          <p class="about-text">
+            The Olanike Omopariola Foundation (toofoundation), also known as toofoundation, is a nonprofit organization dedicated
+            to ending domestic and gender-based violence and transforming the lives 
+            of women and children impacted by these injustices. We believe that every 
+            woman and child deserves to live free from fear, violence, and oppression.</p>
+
+<p class="about-text">Through bold advocacy, education, mentorship, and empowerment programs, TOOF 
+works to break the cycle of abuse and poverty. We amplify survivor voices, challenge 
+harmful norms, and influence policies that protect women and children. Our mission is 
+clear: to create safe spaces, build resilience, and restore hope for a future where 
+violence has no place.
+
+          </p>
+          <a class="about-read" href="/about.html#founder-story">Founders Story →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOCUS AREAS: bg #777777; 3×2 cards 413×391 r=32; 20px gaps; gradient on bottom 130px -->
+    <section class="focus">
+      <div class="container">
+        <h2 class="section-title">Our Mission &amp; Focus Areas</h2>
+        <p class="section-subtitle">
+          We’re on a mission to create safe, empowered, and educated communities—one life at a time.
+        </p>
+
+        <div class="focus-grid">
+          <a class="focus-tile" href="/impact.html#gbv">
+            <img src="assets/images/area-gbv.jpg" alt="Gender-Based Violence" />
+            <div class="tile-overlay"></div>
+            <div class="tile-text">
+              <h3>Gender-Based Violence</h3>
+              <p>Creating safe spaces and support for survivors.</p>
+            </div>
+          </a>
+
+          <a class="focus-tile" href="/impact.html#education">
+            <img src="assets/images/area-education.jpg" alt="Education Access" />
+            <div class="tile-overlay"></div>
+            <div class="tile-text">
+              <h3>Education Access</h3>
+              <p>Empowering children and youth through quality learning.</p>
+            </div>
+          </a>
+
+          <a class="focus-tile" href="/impact.html#women-empowerment">
+            <img src="assets/images/area-women.jpg" alt="Women Entrepreneurship" />
+            <div class="tile-overlay"></div>
+            <div class="tile-text">
+              <h3>Women Entrepreneurship</h3>
+              <p>Equipping women with skills, resources, and confidence.</p>
+            </div>
+          </a>
+
+          <a class="focus-tile" href="/impact.html#health-wellness">
+            <img src="assets/images/area-health.jpg" alt="Health & Nutrition" />
+            <div class="tile-overlay"></div>
+            <div class="tile-text">
+              <h3>Health &amp; Nutrition</h3>
+              <p>Promoting mental, physical, and emotional well-being.</p>
+            </div>
+          </a>
+
+          <a class="focus-tile" href="/impact.html#youth-mentorship">
+            <img src="assets/images/area-youth.jpg" alt="Youth Representation" />
+            <div class="tile-overlay"></div>
+            <div class="tile-text">
+              <h3>Youth Representation</h3>
+              <p>Raising the next generation of ethical leaders.</p>
+            </div>
+          </a>
+
+          <a class="focus-tile" href="/impact.html#community-development">
+            <img src="assets/images/area-community.jpg" alt="Community Development" />
+            <div class="tile-overlay"></div>
+            <div class="tile-text">
+              <h3>Community Development</h3>
+              <p>Driving sustainable impact at the grassroots.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS: 4 items; numbers Coolvetica 49 green; labels Poppins 17; count-up on scroll -->
+    <section class="stats">
+      <div class="container stats-row">
+        <div class="stat">
+          <span class="num" data-count="3000">0<span class="plus">+</span></span>
+          <span class="lbl">Lives Impacted</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="4">0</span>
+          <span class="lbl">States reached</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="8">0</span>
+          <span class="lbl">Active Volunteers</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="15">0</span>
+          <span class="lbl">Outreach Programmes</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED STORIES: 600×622 r=32; image fills; 100px bottom gradient with title -->
+    <section class="featured">
+      <div class="container">
+        <h2 class="section-title center">Featured Stories</h2>
+
+        <div class="stories">
+          <article class="story">
+            <a class="story-card" href="impact.html#fs-hope" aria-label="Hope in Her Hands">
+              <div class="story-media">
+                <img src="assets/images/story1.jpg" alt="Hope in Her Hands" />
+                <div class="story-grad"></div>
+                <h3 class="story-title">A Mother’s Victory:<br> How TOOF Helped Reunite Sarah<br> With Her Children Across Borders</h3>
+              </div>
+            </a>
+            <p class="story-excerpt">
+              When Sarah (name changed for privacy) first walked into The Olanike Omopariola Foundation (TOOF) office, her eyes were clouded with pain and exhaustion. 
+            </p>
+            <a class="story-read" href="impact.html#fs-hope">Read Story →</a>
+          </article>
+        
+          <article class="story">
+            <a class="story-card" href="impact.html#fs-volunteer" aria-label="The Volunteer Who Became Family">
+              <div class="story-media">
+                <img src="assets/images/story2.jpg" alt="The Volunteer Who Became Family" />
+                <div class="story-grad"></div>
+                <h3 class="story-title">From Pain to Purpose:<br> How TOOF Helped Grace Rebuild<br> Her Life and Business After Abuse</h3>
+              </div>
+            </a>
+            <p class="story-excerpt">
+              For years, Grace (name changed) endured the torment of a violent marriage. Her husband not only physically and emotionally abused her but also refused 
+              to take financ...
+            </p>
+            <a class="story-read" href="impact.html#fs-volunteer">Read Story →</a>
+          </article>
+        </div>
+        
+        
+    <!-- EVENTS: 3×2; 413×329 r=24; 20px gaps; alternating colors; month14/date28/title28; arrow bottom-right -->
+   <!-- EVENTS (isolated) -->
+<!-- =======================
+     UPCOMING EVENTS
+     ======================= -->
+<section id="events" class="events">
+  <div class="container">
+    <h2 class="section-title"
+    style="font-size:clamp(22px,5.2vw,32px);line-height:1.15;margin:0 auto 16px;text-align:center;">Upcoming Events
+</h2>
+
+
+    <div id="eventsGrid" class="events-grid"></div>
+
+    <div class="events-actions">
+      <!-- hidden by JS unless total > 6 -->
+      <button id="moreEvents" class="more-events" hidden>More events</button>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Load after your other page scripts -->
+
+
+
+    <!-- GALLERY: big 845×816 at right; two small stacked left; then three small below (all r=32); button 387×109 -->
+    <section class="gallery">
+      <div class="container">
+        <h2 class="section-title center">Media Gallery Highlights</h2>
+
+        <div class="gallery-grid">
+          <!-- left column, two stacked -->
+          <img class="sm top-left" src="assets/images/gallery2.jpg" alt="Gallery item" />
+          <img class="sm mid-left" src="assets/images/gallery3.jpg" alt="Gallery item" />
+
+          <!-- big right column spanning two rows -->
+          <img class="big" src="assets/images/gallery1.jpg" alt="Gallery feature" />
+
+          <!-- bottom row: three across -->
+          <img class="sm bottom-a" src="assets/images/gallery4.jpg" alt="Gallery item" />
+          <img class="sm bottom-b" src="assets/images/gallery5.jpg" alt="Gallery item" />
+          <img class="sm bottom-c" src="assets/images/gallery6.jpg" alt="Gallery item" />
+        </div>
+
+        <div class="center">
+          <a class="btn btn-green gallery-btn" href="https://toofoundation.pixieset.com">See Full Gallery</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA: gradient bg, image 627×539 (r=32); buttons 527×100; H=48, body=20 -->
+    <section class="cta">
+      <div class="container cta-grid">
+        <div class="cta-media">
+          <img src="assets/images/cta.jpg" alt="Hands together" />
+        </div>
+
+        <div class="cta-panel">
+          <h3>Your <span class="accent">support</span> goes a long way</h3>
+          <p>Join hands with us to make impact happen.</p>
+
+          <a class="cta-btn btn-grad-blue" href="donate.html">Donate <span>→</span></a>
+          <a class="cta-btn btn-grad-purple" href="volunteer.html">Volunteer <span>→</span></a>
+          <a class="cta-btn btn-grad-violet" href="https://www.instagram.com/too.foundation?igsh=cXhxbWNqZmZkeWlp&utm_source=qr">Follow Us <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <!-- Left: logo, email, socials -->
+      <div class="foot-brand">
+        <img class="foot-logo" src="assets/images/logo.png" alt="The Olanike Omopariola Foundation">
+  
+        <p class="foot-email">
+          <a href="mailto:info@toofoundation.org">info@toofoundation.org</a>
+        </p>
+  
+        <ul class="socials">
+          <li><a class="soc" href="https://www.instagram.com/too.foundation?igsh=cXhxbWNqZmZkeWlp&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <img class="soc-ico" src="assets/icons/instagram.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.facebook.com/share/1FJnW1cmfu/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+            <img class="soc-ico" src="assets/icons/facebook.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.tiktok.com/@toofoundation?_t=ZN-8zcILXztZkk&_r=1" target="_blank" rel="noopener" aria-label="X">
+            <img class="soc-ico" src="assets/icons/x.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://wa.me/447769494810" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <img class="soc-ico" src="assets/icons/whatsapp.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.youtube.com/@TOOFoundationtv" target="_blank" rel="noopener" aria-label="YouTube">
+            <img class="soc-ico" src="assets/icons/youtube.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.linkedin.com/in/oluwatoyin-omotayo-ll-b-bl-ll-m-8708bab8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <img class="soc-ico" src="assets/icons/linkedin.png" alt="">
+          </a></li>
+        </ul>
+      </div>
+  
+      <!-- Right: two link columns -->
+      <nav class="foot-nav" aria-label="Footer">
+        <ul class="col">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+        <ul class="col">
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="impact.html#featured-stories">Impact Stories</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html#mission">Our Mission</a></li>
+        </ul>
+      </nav>
+    </div>
+  
+    <div class="foot-bottom">
+      © 2025 The Olanike Omopariola Foundation. All rights reserved.
+    </div>
+  </footer>
+  
+  
+
+  <script src="js/main.js"></script>
+
+<script>
+/**
+ * Events renderer (single source of truth)
+ * - Loads /assets/data/events.json
+ * - Shows up to 6 initially; shows the button ONLY if total > 6
+ * - Card links to Instagram: evt.url || evt.link || evt.instagram
+ * - Displays details line (meta): meta | details | "time · location/venue/place"
+ */
+(function () {
+  const EVENTS_URL    = 'https://peaceful-loris-622.convex.site/public/events';
+  const INITIAL_LIMIT = 6;
+
+  const grid    = document.getElementById('eventsGrid');
+  const moreBtn = document.getElementById('moreEvents');
+  if (!grid) return;
+
+  moreBtn?.setAttribute('hidden', '');           // make sure it's hidden by default
+  const PALETTE = ['#2F43A6', '#54A340'];        // blue, green fallback
+
+  function makeEventCard(evt, i) {
+    const link = evt.url || evt.link || evt.instagram || null;
+
+    // --- month/day ---
+    let month = (evt.month || '').toString();
+    let day   = (evt.day   || '').toString();
+    if ((!month || !day) && evt.date) {
+      const d = new Date(evt.date);
+      if (!isNaN(d)) {
+        month = d.toLocaleString('en-US', { month: 'short', timeZone: 'Africa/Lagos' }).toUpperCase();
+        day   = String(d.getDate());
+      }
+    }
+
+    // --- details/meta line ---
+    function buildMeta(e) {
+      if (e.meta)    return e.meta;
+      if (e.details) return e.details;
+      const time = e.time || e.when || '';
+      const loc  = e.location || e.venue || e.place || '';
+      if (time && loc) return `${time} · ${loc}`;
+      return time || loc || '';
+    }
+    const metaLine = buildMeta(evt);
+
+    // anchor if clickable; div otherwise (hover style still applies)
+    const el = document.createElement(link ? 'a' : 'div');
+    el.className = 'event';
+    el.style.display = 'block';
+    el.style.background =
+      evt.theme === 'green' ? '#54A340' :
+      evt.theme === 'blue'  ? '#2F43A6' :
+      PALETTE[i % PALETTE.length];
+
+    if (link) {
+      el.href   = link;
+      el.target = '_blank';
+      el.rel    = 'noopener noreferrer';
+      el.setAttribute('aria-label', evt.title || 'Event');
+    }
+
+    el.innerHTML = `
+      <div class="md">
+        <div class="mth">${(month || '').toUpperCase()}</div>
+        <div class="day">${day || ''}</div>
+      </div>
+      <h3>${evt.title || ''}</h3>
+      ${metaLine ? `<div class="meta">${metaLine}</div>` : ''}
+      <span class="arr" aria-hidden="true">→</span>
+    `;
+    return el;
+  }
+
+  function render(list) {
+    grid.innerHTML = '';
+    list.forEach((evt, i) => grid.appendChild(makeEventCard(evt, i)));
+  }
+
+  async function init() {
+    try {
+      const res  = await fetch(EVENTS_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const payload = await res.json();
+      const raw = Array.isArray(payload.events) ? payload.events : [];
+
+      const data = raw
+        .map((e) => {
+          const dateObj = e.date
+            ? new Date(e.date)
+            : e.start_date
+              ? new Date(e.start_date)
+              : null;
+
+          const dateIso = dateObj ? dateObj.toISOString().slice(0,10) : '';
+          const timeStr = dateObj
+            ? dateObj.toLocaleTimeString('en-NG', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true,
+                timeZone: 'Africa/Lagos',
+              })
+            : (e.time || '');
+
+          const meta = e.meta
+            || e.details
+            || (timeStr && e.location ? `${timeStr} · ${e.location}` : '')
+            || timeStr
+            || e.location
+            || e.description
+            || '';
+
+          return {
+            title: e.title,
+            date: dateIso,
+            time: timeStr,
+            location: e.location,
+            url: e.url || e.link || e.instagram || null,
+            theme: e.theme,
+            meta,
+          };
+        })
+        .filter((e) => /^\d{4}-\d{2}-\d{2}$/.test(e.date));
+
+      data.sort((a, b) => a.date.localeCompare(b.date));
+
+      const total   = data.length;
+      const initial = data.slice(0, Math.min(INITIAL_LIMIT, total));
+      render(initial);
+
+      if (total > INITIAL_LIMIT) {
+        moreBtn.hidden = false;
+        moreBtn.onclick = () => { render(data); moreBtn.hidden = true; };
+      } else {
+        moreBtn.hidden = true;
+      }
+    } catch (err) {
+      console.error('Events load error:', err);
+      moreBtn.hidden = true;
+      render([]);
+    }
+  }
+
+  init();
+})();
+</script>
+
+
+ <script>
+(function(){
+  var grid = document.getElementById('eventsGrid');
+  if(!grid) return;
+
+  function forceOneCol(){
+    if (window.innerWidth <= 900){
+      grid.style.setProperty('display','grid','important');
+      grid.style.setProperty('grid-template-columns','1fr','important');
+      grid.style.setProperty('justify-items','stretch','important');
+      grid.querySelectorAll(':scope > *').forEach(function(el){
+        el.style.setProperty('width','100%','important');
+        el.style.setProperty('max-width','none','important');
+        el.style.setProperty('min-width','0','important');
+        el.style.setProperty('height','auto','important');
+      });
+    } else {
+      grid.style.removeProperty('grid-template-columns');
+      grid.style.removeProperty('justify-items');
+      grid.querySelectorAll(':scope > *').forEach(function(el){
+        el.style.removeProperty('width');
+        el.style.removeProperty('max-width');
+        el.style.removeProperty('min-width');
+        el.style.removeProperty('height');
+      });
+    }
+  }
+  forceOneCol();
+  window.addEventListener('resize', forceOneCol);
+})();
+</script>
+
+<script>
+(function fixEventsLayout(){
+  var grid = document.getElementById('eventsGrid');
+  if (!grid) return;
+
+  function apply(){
+    var mobile = window.matchMedia('(max-width: 900px)').matches;
+    if (mobile){
+      // force a single column on phones
+      grid.style.setProperty('display', 'grid', 'important');
+      grid.style.setProperty('grid-template-columns', '1fr', 'important');
+      grid.style.setProperty('grid-auto-flow', 'row', 'important');
+      grid.style.setProperty('grid-auto-columns', 'unset', 'important');
+      grid.style.setProperty('justify-items', 'stretch', 'important');
+      grid.style.setProperty('align-items', 'stretch', 'important');
+
+      // remove any leftover fixed widths on children
+      grid.querySelectorAll(':scope > *').forEach(function(el){
+        el.style.setProperty('width', '100%', 'important');
+        el.style.setProperty('max-width', 'none', 'important');
+        el.style.setProperty('min-width', '0', 'important');
+        el.style.setProperty('justify-self', 'stretch', 'important');
+        el.style.setProperty('box-sizing', 'border-box', 'important');
+      });
+    } else {
+      // desktop: let your normal CSS take over
+      grid.style.removeProperty('display');
+      grid.style.removeProperty('grid-template-columns');
+      grid.style.removeProperty('grid-auto-flow');
+      grid.style.removeProperty('grid-auto-columns');
+      grid.style.removeProperty('justify-items');
+      grid.style.removeProperty('align-items');
+
+      grid.querySelectorAll(':scope > *').forEach(function(el){
+        el.style.removeProperty('width');
+        el.style.removeProperty('max-width');
+        el.style.removeProperty('min-width');
+        el.style.removeProperty('justify-self');
+        el.style.removeProperty('box-sizing');
+      });
+    }
+  }
+
+  apply();
+  window.addEventListener('resize', apply);
+})();
+</script>
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script src="js/auto-date.js" defer></script>
+
+</body>
+</html>

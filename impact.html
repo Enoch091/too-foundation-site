@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Impact — The Olanike Omopariola Foundation</title>
+  <meta name="description" content="Stories of transformation across our focus areas — GBV advocacy, education access, women empowerment, health & wellness, youth mentorship, and community development." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Base site styles (from Home) -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <!-- Page-specific overrides -->
+  <link rel="stylesheet" href="css/impact.css" />
+  <link rel="stylesheet" href="css/responsive-hotfix.css">
+</head>
+<body>
+
+  <!-- HEADER (reuse, with Impact active) -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav-wrap">
+      <a class="logo" href="index.html" aria-label="Home">
+        <img src="assets/images/logo.png" alt="The Olanike Omopariola Foundation" />
+      </a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+        <img src="assets/icons/menu-mobile.png" alt="" width="40" height="40">
+      </button>
+
+      <nav class="main-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a class="active" href="impact.html" aria-current="page">Impact</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-green donate-pill" href="donate.html" aria-label="Donate">
+          <svg class="heart" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 21s-6.7-4.4-9.2-6.9A5.5 5.5 0 0 1 10.5 6.5L12 8l1.5-1.5a5.5 5.5 0 0 1 7.7 7.7C18.7 16.6 12 21 12 21z"/>
+          </svg>
+          Donate
+        </a>
+      </div>
+    </div>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+      <button class="menu-close" aria-label="Close menu">✕</button>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a class="active" href="impact.html" aria-current="page">IMPACT</a></li>
+        <li><a href="get-involved.html">GET INVOLVED</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO (dark card, no micro captions) -->
+    <section class="impact-hero" aria-labelledby="impactTitle">
+      <div class="hero-card">
+        <img class="hero-img" src="assets/images/impact-hero.jpg" alt="">
+        <h1 id="impactTitle" class="hero-title">Impact</h1>
+      </div>
+    </section>
+
+    <!-- INTRO BLURB -->
+    <section class="impact-intro">
+      <div class="container">
+        <p class="intro-text">
+          At The Olanike Omopariola Foundation, our impact goes beyond numbers. Every outreach, every workshop,
+          and every voice empowered is a story of transformation.
+        </p>
+      </div>
+    </section>
+
+    <!-- MISSION & FOCUS AREAS (non-clickable on this page) -->
+    <section class="focus-belt">
+      <div class="container">
+        <h2 class="section-title">Our Mission <span class="amp">&</span> Focus Areas</h2>
+        <p class="section-subtitle">
+          We’re on a mission to create safe, empowered, and educated communities—one life at a time.
+        </p>
+
+        <!-- 1) GBV -->
+        <div id="gbv" class="focus-row anchor-target">
+          <div class="focus-card">
+            <img src="assets/images/area-gbv.jpg" alt="" />
+            <div class="focus-grad">
+              <h3>Gender-Based Violence</h3>
+              <p>Creating safe spaces and support for survivors.</p>
+            </div>
+          </div>
+          <div class="focus-copy">
+            Silence fuels abuse. We’re breaking it—boldly. From school sensitization drives to survivor support sessions,
+            our GBV advocacy includes awareness campaigns, trauma-informed workshops, and public conversations that dismantle
+            shame and stigma. We help survivors find voice, strength, and access to safe channels for justice and healing.
+          </div>
+        </div>
+
+        <!-- 2) Education -->
+        <div id="education" class="focus-row anchor-target">
+          <div class="focus-card">
+            <img src="assets/images/area-education.jpg" alt="" />
+            <div class="focus-grad">
+              <h3>Education Access</h3>
+              <p>Empowering children and youth through quality learning.</p>
+            </div>
+          </div>
+          <div class="focus-copy">
+            Education is not a luxury—it’s a right. We run school outreach programs that provide underprivileged students with
+            learning materials, mentorship, and access to guidance resources. From early childhood to secondary school,
+            we’re ensuring that more children—especially girls—stay in school, dream bigger, and thrive.
+          </div>
+        </div>
+
+        <!-- 3) Women Empowerment -->
+        <div id="women-empowerment" class="focus-row anchor-target">
+          <div class="focus-card">
+            <img src="assets/images/area-women.jpg" alt="" />
+            <div class="focus-grad">
+              <h3>Women Empowerment</h3>
+              <p>Equipping women with skills, resources, and confidence.</p>
+            </div>
+          </div>
+          <div class="focus-copy">
+            We believe that empowering women is key to transforming communities.<br><br>
+            Through leadership programs, entrepreneurship training, and confidence-building spaces, we help women reclaim their voice,
+            pursue economic freedom, and take up meaningful roles in society. <br><br>
+            Our work includes mentorship circles, empowerment events, and advocacy that challenges harmful gender norms.
+          </div>
+        </div>
+
+        <!-- 4) Health & Wellness -->
+        <div id="health-wellness" class="focus-row anchor-target">
+          <div class="focus-card">
+            <img src="assets/images/area-health.jpg" alt="" />
+            <div class="focus-grad">
+              <h3>Health &amp; Wellness</h3>
+              <p>Promoting mental, physical, and emotional well-being.</p>
+            </div>
+          </div>
+          <div class="focus-copy">
+            True empowerment starts with well-being. We promote physical, mental, and emotional health through outreach clinics,
+            hygiene drives, and wellness sessions tailored for women and youth. Our programs focus on menstrual health education,
+            trauma healing, stress management, and fitness awareness—creating safe, supportive environments for individuals
+            to thrive inside and out.
+          </div>
+        </div>
+
+        <!-- 5) Youth Mentorship -->
+        <div id="youth-mentorship" class="focus-row anchor-target">
+          <div class="focus-card">
+            <img src="assets/images/area-youth.jpg" alt="" />
+            <div class="focus-grad">
+              <h3>Youth Mentorship</h3>
+              <p>Raising the next generation of ethical leaders.</p>
+            </div>
+          </div>
+          <div class="focus-copy">
+            Every young person deserves guidance. Our youth mentorship programs pair teens and young adults with role models
+            who help them navigate life, build character, and develop purpose. From career talks to life skills training,
+            we are shaping a generation of responsible, ethical, and visionary Nigerian leaders.
+          </div>
+        </div>
+
+        <!-- 6) Community Development -->
+        <div id="community-development" class="focus-row anchor-target">
+          <div class="focus-card">
+            <img src="assets/images/area-community.jpg" alt="" />
+            <div class="focus-grad">
+              <h3>Community Development</h3>
+              <p>Driving sustainable impact at the grassroots.</p>
+            </div>
+          </div>
+          <div class="focus-copy">
+            We don’t believe in one-off interventions. We believe in sustainable growth. Through clean water drives, health
+            sensitization, economic empowerment training, and local partnerships, we help communities build long-term systems
+            that improve daily life. Our goal is to leave each place better than we found it—structurally and socially.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS (non-clickable, animates) -->
+    <section id="stats" class="stats-belt">
+      <div class="container stats-row">
+        <div class="stat">
+          <span class="num" data-count="3000">0</span>
+          <span class="lbl">Lives Touched</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="8">0</span>
+          <span class="lbl">Active Volunteers</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="15">0</span>
+          <span class="lbl">Outreach Programs</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="4">0</span>
+          <span class="lbl">States Reached</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="7">0</span>
+          <span class="lbl">School Interventions</span>
+        </div>
+      </div>
+    </section>
+
+  <!-- ===== FEATURED STORIES (Impact page) ===== -->
+<section class="featured-stories" id="featured-stories">
+  <div class="fs-container">
+    <h2 class="fs-title">Featured Stories</h2>
+
+    <!-- Story 1 -->
+    <article class="fs-block" aria-labelledby="fs-hope">
+      <figure class="fs-media">
+        <img src="assets/images/story1.jpg" alt="Smiling girl reading a book with two younger children" />
+      </figure>
+
+      <div class="fs-body">
+        <h3 id="fs-hope" class="fs-h3">A Mother’s Victory</h3>
+        <p class="fs-lead">How TOOF Helped Reunite Sarah With Her Children Across Borders</p>
+
+        <p>When Sarah (name changed for privacy) first walked into The Olanike Omopariola Foundation (TOOF) office, her eyes were clouded with pain and exhaustion. Her two young children had been illegally taken abroad by her estranged husband, leaving her helpless and terrified. For months, she lived every mother’s worst nightmare , sleepless nights, endless calls to authorities, and the constant fear that she might never see her children again.
+
+Her husband, who had a history of emotional and physical abuse, disappeared with the children under the guise of a family vacation. It wasn’t until Sarah received a message from a relative abroad that she realised the trip had been a calculated plan to separate her from her children permanently.
+
+“I felt like my whole world had ended,” Sarah recalls. “I didn’t know who to trust or where to turn. Everywhere I went, I was told it was complicated because it involved another country.”</p>
+
+<p>That was when she found TOOF. Upon hearing her story, TOOF immediately sprang into action, rallying support from key government agencies, including the National Human Rights Commission, Interpol, and Nigerian Customs.
+
+The journey was long and challenging. TOOF’s legal team ensured every step was handled through the courts, safeguarding Sarah’s rights and ensuring her children were returned legally and safely. TOOF also offered Sarah emotional support, legal guidance, and a safe space to rebuild her strength during the process.
+
+After months of painstaking effort, Sarah’s perseverance paid off, her children were finally brought back home. The reunion was filled with tears, laughter, and overwhelming relief.
+
+“The day I held my children again, I knew hope was real,” Sarah said, her voice breaking with emotion. “TOOF gave me back my family and my voice. They never gave up on me.”</p>
+
+<p>Today, Sarah is an advocate for other mothers experiencing cross-border custody battles. Her story is a powerful reminder that justice is possible when survivors are given the right support and access to justice.
+
+At TOOF, we remain committed to protecting women and children, ensuring that no family is torn apart by abuse or injustice.
+[6:29 PM, 9/10/2025] Ariyike: “From Pain to Purpose: How TOOF Helped Grace Rebuild Her Life and Business After Abuse”
+
+For years, Grace (name changed) endured the torment of a violent marriage. Her husband not only physically and emotionally abused her but also refused to take financial responsibility for their children, leaving her struggling to feed and clothe them.
+
+Grace’s breaking point came one night when the violence escalated, and she realised she needed to escape to protect herself and her children. A neighbour connected her with The Olanike Omopariola Foundation (TOOF), and from that moment, her life began to change.
+
+TOOF provided immediate intervention, rescuing Grace and her children from the abusive home and placing them in a safe location. Beyond physical safety, TOOF understood that true empowerment comes from economic independence.
+
+After listening to Grace’s story and assessing her needs, TOOF decided to set her up with a Point-of-Sale (POS) business, giving her the opportunity to earn a steady income and regain her dignity.
+
+“For the first time, I feel like I can breathe,” Grace said with tears in her eyes. “TOOF didn’t just rescue me , they gave me the tools to stand on my own two feet and provide for my children.”</p>
+
+<p>Today, Grace’s POS business is thriving. She has become financially independent, able to pay school fees, provide nutritious meals for her children, and even save for the future. She now dreams of expanding her business and mentoring other women who are trying to rebuild their lives after abuse.
+
+Grace’s story is a testament to TOOF’s mission: breaking the cycle of abuse by equipping survivors with the resources to live free and dignified lives.
+
+At TOOF, we believe that every woman deserves safety, independence, and hope , and with collective action, we can turn stories of survival into stories of success.</p>
+      </div>
+    </article>
+
+    <!-- Story 2 -->
+    <article class="fs-block" aria-labelledby="fs-volunteer">
+      <figure class="fs-media">
+        <img src="assets/images/story2.jpg" alt="Volunteer smiling and giving a high five to a child" />
+      </figure>
+
+      <div class="fs-body">
+        <h3 id="fs-volunteer" class="fs-h3">From Pain to Purpose</h3>
+        <p class="fs-lead">How TOOF Helped Grace Rebuild Her Life and Business After Abuse</p>
+
+        <p>For years, Grace (name changed) endured the torment of a violent marriage. Her husband not only physically and emotionally abused her but also refused to take financial responsibility for their children, leaving her struggling to feed and clothe them.
+
+Grace’s breaking point came one night when the violence escalated, and she realised she needed to escape to protect herself and her children. A neighbour connected her with The Olanike Omopariola Foundation (TOOF), and from that moment, her life began to change.
+
+<p>TOOF provided immediate intervention, rescuing Grace and her children from the abusive home and placing them in a safe location. Beyond physical safety, TOOF understood that true empowerment comes from economic independence.
+
+After listening to Grace’s story and assessing her needs, TOOF decided to set her up with a Point-of-Sale (POS) business, giving her the opportunity to earn a steady income and regain her dignity.
+
+“For the first time, I feel like I can breathe,” Grace said with tears in her eyes. “TOOF didn’t just rescue me , they gave me the tools to stand on my own two feet and provide for my children.”
+
+Today, Grace’s POS business is thriving. She has become financially independent, able to pay school fees, provide nutritious meals for her children, and even save for the future. She now dreams of expanding her business and mentoring other women who are trying to rebuild their lives after abuse.</p>
+
+<p>Grace’s story is a testament to TOOF’s mission: breaking the cycle of abuse by equipping survivors with the resources to live free and dignified lives.
+
+At TOOF, we believe that every woman deserves safety, independence, and hope , and with collective action, we can turn stories of survival into stories of success.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+    <!-- TESTIMONIALS (one at a time, 7 total) -->
+    <section id="testimonials" class="testimonials-belt" aria-labelledby="testiTitle">
+      <div class="container">
+        <h2 id="testiTitle" class="section-title center">Testimonials &amp; Feedbacks</h2>
+
+        <div class="testi-wrap">
+          <button class="testi-nav prev" aria-label="Previous testimonial">
+            <span aria-hidden="true">‹</span>
+          </button>
+
+          <div class="testi-viewport" aria-live="polite">
+            <blockquote class="testi-quote">Loading…</blockquote>
+            <div class="testi-author">—</div>
+          </div>
+
+          <button class="testi-nav next" aria-label="Next testimonial">
+            <span aria-hidden="true">›</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+<section class="impact-cta">
+  <div class="cta-inner">
+    <h3 class="cta-heading">
+      Your <span class="accent">support</span> makes these stories possible.
+    </h3>
+
+    <!-- add data-equalize="cta" as a hook -->
+    <div class="cta-buttons" data-equalize="cta">
+      <a class="cta-pill btn-blue" href="donate.html">Donate Now</a>
+      <a class="cta-pill btn-green" href="volunteer.html">Volunteer With Us</a>
+    </div>
+  </div>
+</section>
+
+
+  </main>
+
+  <!-- FOOTER (reuse; mobile = single column) -->
+ <footer class="site-footer">
+    <div class="container foot-grid">
+      <!-- Left: logo, email, socials -->
+      <div class="foot-brand">
+        <img class="foot-logo" src="assets/images/logo.png" alt="The Olanike Omopariola Foundation">
+  
+        <p class="foot-email">
+          <a href="mailto:info@toofoundation.org">info@toofoundation.org</a>
+        </p>
+  
+        <ul class="socials">
+          <li><a class="soc" href="https://www.instagram.com/too.foundation?igsh=cXhxbWNqZmZkeWlp&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <img class="soc-ico" src="assets/icons/instagram.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.facebook.com/share/1FJnW1cmfu/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+            <img class="soc-ico" src="assets/icons/facebook.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.tiktok.com/@toofoundation?_t=ZN-8zcILXztZkk&_r=1" target="_blank" rel="noopener" aria-label="X">
+            <img class="soc-ico" src="assets/icons/x.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://wa.me/447769494810" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <img class="soc-ico" src="assets/icons/whatsapp.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.youtube.com/@TOOFoundationtv" target="_blank" rel="noopener" aria-label="YouTube">
+            <img class="soc-ico" src="assets/icons/youtube.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.linkedin.com/in/oluwatoyin-omotayo-ll-b-bl-ll-m-8708bab8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <img class="soc-ico" src="assets/icons/linkedin.png" alt="">
+          </a></li>
+        </ul>
+      </div>
+  
+      <!-- Right: two link columns -->
+      <nav class="foot-nav" aria-label="Footer">
+        <ul class="col">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+        <ul class="col">
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="impact.html#featured-stories">Impact Stories</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html#mission">Our Mission</a></li>
+        </ul>
+      </nav>
+    </div>
+  
+    <div class="foot-bottom">
+      © 2025 The Olanike Omopariola Foundation. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="js/impact.js" defer></script>
+  <script>
+  // Fade/raise each story when it appears
+  document.addEventListener('DOMContentLoaded', () => {
+    const blocks = document.querySelectorAll('.featured-stories .fs-block');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    blocks.forEach(b => io.observe(b));
+  });
+</script>
+<script src="js/auto-date.js"></script>
+
+</body>
+</html>

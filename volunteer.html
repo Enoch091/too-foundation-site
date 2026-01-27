@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Volunteer — The Olanike Omopariola Foundation</title>
+  <meta name="description" content="Volunteer with The Olanike Omopariola Foundation — teach, mentor, support outreach, advocate, and help us create safer, empowered communities." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Base site CSS (shared) -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <!-- Page-specific CSS -->
+  <link rel="stylesheet" href="css/volunteer.css" />
+  <link rel="stylesheet" href="css/responsive-hotfix.css">
+
+</head>
+<body>
+
+  <!-- HEADER (identical structure to Impact) -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav-wrap">
+      <a class="logo" href="index.html" aria-label="Home">
+        <img src="assets/images/logo.png" alt="The Olanike Omopariola Foundation" />
+      </a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+        <img src="assets/icons/menu-mobile.png" alt="" width="40" height="40">
+      </button>
+
+      <nav class="main-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="impact.html">Impact</a></li>
+          <li><a class="active" href="get-involved.html">Get Involved</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-green donate-pill" href="donate.html" aria-label="Donate">
+          <svg class="heart" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 21s-6.7-4.4-9.2-6.9A5.5 5.5 0 0 1 10.5 6.5L12 8l1.5-1.5a5.5 5.5 0 0 1 7.7 7.7C18.7 16.6 12 21 12 21z"/>
+          </svg>
+          Donate
+        </a>
+      </div>
+    </div>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+      <button class="menu-close" aria-label="Close menu">✕</button>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="impact.html">IMPACT</a></li>
+        <li><a class="active" href="get-involved.html">GET INVOLVED</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="vol-hero" aria-labelledby="volTitle">
+      <div class="hero-card">
+        <img class="hero-img" src="assets/images/volunteer-hero.jpg" alt="">
+        <h1 id="volTitle" class="hero-title">Volunteer</h1>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="vol-intro">
+      <div class="container">
+        <p class="intro-text">Because real change needs real people.</p>
+      </div>
+    </section>
+
+    <!-- FORM CARD -->
+    <section class="vol-form" aria-labelledby="formTitle">
+      <div class="form-card">
+        <h2 id="formTitle" class="sr-only">Volunteer Application Form</h2>
+
+       <form
+  id="volunteerForm"
+  name="volunteer"
+  method="POST"
+  data-netlify="true"
+  data-netlify-honeypot="bot-field"
+  novalidate
+>
+  <input type="hidden" name="form-name" value="volunteer">
+  <p class="sr-only" style="position:absolute; left:-9999px;">
+    <label>Don’t fill this out: <input name="bot-field"></label>
+  </p>
+
+  <!-- Name / Email / Phone -->
+  <div class="pill-fields">
+    <label class="pill"><input id="fullName" name="fullName" type="text" placeholder="Full Name" required></label>
+    <label class="pill"><input id="email"    name="email"    type="email" placeholder="Email Address" required></label>
+    <label class="pill">
+      <input id="phone" name="phone" type="tel" inputmode="tel"
+             placeholder="Phone Number (e.g., +2348012345678)"
+             pattern="^\+[1-9]\d{7,14}$" required>
+    </label>
+  </div>
+
+  <!-- Area of Interest -->
+  <div class="group">
+    <h3 class="group-title">Area of Interest</h3>
+    <div class="checks-grid" role="group" aria-label="Areas of interest">
+      <label class="check"><input type="checkbox" name="interests" value="Teaching / Mentoring"><span class="box"></span><span class="lbl">Teaching / Mentoring</span></label>
+      <label class="check"><input type="checkbox" name="interests" value="Organizing Events"><span class="box"></span><span class="lbl">Organizing Events</span></label>
+      <label class="check"><input type="checkbox" name="interests" value="Community Outreach"><span class="box"></span><span class="lbl">Community Outreach</span></label>
+      <label class="check"><input type="checkbox" name="interests" value="Media / Communications"><span class="box"></span><span class="lbl">Media / Communications</span></label>
+      <label class="check"><input type="checkbox" name="interests" value="Advocacy"><span class="box"></span><span class="lbl">Advocacy</span></label>
+      <label class="check"><input type="checkbox" name="interests" value="Administrative Tasks"><span class="box"></span><span class="lbl">Administrative Tasks</span></label>
+    </div>
+    <p class="help" id="interestsHelp"></p>
+  </div>
+
+  <!-- Availability -->
+  <div class="group">
+    <h3 class="group-title">Availability</h3>
+    <div class="radios" role="radiogroup" aria-label="Availability">
+      <label class="radio"><input type="radio" name="availability" value="Weekdays"><span class="rbox"></span><span class="lbl">Weekdays</span></label>
+      <label class="radio"><input type="radio" name="availability" value="Flexible"><span class="rbox"></span><span class="lbl">Flexible</span></label>
+    </div>
+    <p class="help" id="availabilityHelp"></p>
+  </div>
+
+  <!-- Why -->
+  <label class="why">
+    <textarea id="why" name="why" rows="4" placeholder="Why do you want to volunteer?" required></textarea>
+  </label>
+
+  <!-- Consent -->
+  <label class="consent">
+    <input id="consent" name="consent" type="checkbox" required>
+    <span class="cbox"></span>
+    <span>I agree to be contacted regarding volunteer opportunities.</span>
+  </label>
+  <p class="help" id="formHelp"></p>
+
+  <div class="submit-row">
+    <button id="submitBtn" class="cta-pill btn-green" type="submit" disabled>Send Application</button>
+  </div>
+</form>
+
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (unchanged, still loops) -->
+    <section class="testimonials-belt" aria-labelledby="testiTitle">
+      <div class="container">
+        <h2 id="testiTitle" class="section-title center">Volunteers Testimonials</h2>
+
+        <div class="testi-wrap">
+          <button class="testi-nav prev" aria-label="Previous testimonial"><span aria-hidden="true">‹</span></button>
+          <div class="testi-viewport" aria-live="polite">
+            <blockquote class="testi-quote">Loading…</blockquote>
+            <div class="testi-author">—</div>
+          </div>
+          <button class="testi-nav next" aria-label="Next testimonial"><span aria-hidden="true">›</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Volunteer Mentors ===== -->
+<section class="mentors" id="volunteer-mentors" aria-labelledby="mentorsTitle">
+  <div class="container">
+    <h2 class="mentors-heading" id="mentorsTitle">Volunteer Mentors</h2>
+
+    <div class="mentors-grid">
+      <!-- 1 -->
+      <article class="mcard">
+        <div class="mimg">
+          <img src="assets/images/mentor-1.jpg" alt="Full Name — Title" />
+        </div>
+        <h3 class="mname">Bamisope Adeyanju</h3>
+        <p class="mrole">VOLUNTEER MENTOR</p>
+        <p class="mdesc">
+          We are proud to introduce Bamisope Adeyanju as one of the 
+          dedicated volunteer mentors for The Oluwatoyin Omotayo Initiative (TOOI).<br>
+
+<br>Bami’s journey from being the best graduating law student at Adekunle 
+Ajasin University to becoming a Baker McKenzie Scholar at Columbia Law School, 
+and now serving as a Corporate Governance and Securities Associate at Day Pitney LLP, is nothing short of inspiring.<br>
+
+<br>Her career spans Nigeria and the U.S., where she has represented clients in 
+complex commercial transactions and public interest litigation, worked with UN 
+institutions and the Inter-American Commission to advance racial and economic justice, and 
+advised on international financial accountability and ESG strategies.<br>
+
+<br>Currently, she counsels public and private companies on corporate governance, compliance, 
+and securities law, while leveraging her diverse experience to create impact at the intersection 
+of business and human rights.<br>
+
+<br>Through TOOI, Bami brings her wealth of knowledge and global perspective to mentor secondary 
+school students, guiding them to discover their potential and confidently navigate their career paths.
+        </p>
+      </article>
+
+      <!-- 2 -->
+      <article class="mcard">
+        <div class="mimg">
+          <img src="assets/images/mentor-2.jpg" alt="Full Name — Title" />
+        </div>
+        <h3 class="mname">Oluwatobi Adetona</h3>
+        <p class="mrole">VOLUNTEER MENTOR</p>
+        <p class="mdesc">
+          <br>We are delighted to introduce Oluwatobi Adetona as one of our inspiring volunteer mentors 
+          at The Oluwatoyin Omotayo Initiative (TOOI). In this role, she is dedicated to guiding secondary 
+          school students as they explore their strengths, identify their passions, and navigate their career 
+          paths with clarity and confidence.<br>
+
+<br>Oluwatobi is a legal professional with extensive experience in corporate and energy law. She currently serves 
+as Legal and Compliance Manager in the energy sector, where she provides strategic counsel on complex regulatory 
+and contractual matters.<br>
+
+<br>Her passion for social justice and youth empowerment extends far beyond her corporate work. She is the founder 
+of The Bonafide Advocator Initiative (BOFAI), a youth-led nonprofit that mentors, educates, and provides reintegration 
+support to juveniles and young persons in correctional centers across Nigeria.<br>
+
+<br>In 2021, Oluwatobi authored Law for the Layman, a book designed to promote legal literacy, featuring a foreword by 
+renowned human rights lawyer Femi Falana, SAN.<br>
+
+<br>Through her work with TOOI, BOFAI, and her legal career, Oluwatobi continues to inspire and equip young people with the 
+tools, knowledge, and courage to pursue their dreams and create meaningful futures.<br>
+        </p>
+      </article>
+
+      <!-- 3 -->
+      <article class="mcard">
+        <div class="mimg">
+          <img src="assets/images/mentor-3.jpg" alt="Full Name — Title" />
+        </div>
+        <h3 class="mname">Dr Gideon Ogunniye</h3>
+        <p class="mrole">VOLUNTEER MENTOR</p>
+        <p class="mdesc">
+          <br>Dr Gideon Ogunniye is a Lecturer at the University of Aberdeen, United Kingdom, where he combines teaching, 
+          research, and mentorship with a deep passion for community service. He has fifteen years of cognate experience 
+          in academia and has mentored over 100 students.<br>
+          
+          <br>His academic work is complemented by a strong commitment to 
+          empowering young people through webinars, online tutorials, workshops, and talk shows beyond the university setting.<br>
+
+<br>Through his involvement with several charitable initiatives, Gideon has supported projects that promote education, well-being, 
+and social empowerment. He brings valuable expertise, integrity, and vision to the organisation, helping to guide its mission 
+of making a lasting difference in people’s lives.<br>
+        </p>
+      </article>
+
+      <!-- 4 -->
+      <article class="mcard">
+        <div class="mimg">
+          <img src="assets/images/mentor-4.jpg" alt="Full Name — Title" />
+        </div>
+        <h3 class="mname">Azeezat Alaka</h3>
+        <p class="mrole">VOLUNTEER MENTOR</p>
+        <p class="mdesc">
+          We are excited to introduce Azeezat Alaka as one of our passionate volunteer mentors at The Oluwatoyin Omotayo Initiative (TOOI). 
+          Azeezat is a dedicated legal practitioner, human rights advocate, and future social worker with a deep commitment to 
+          empowering vulnerable populations and combating social injustices.<br>
+
+<br>Her work spans advocacy, social work, counselling, mentoring, and policy reform, reflecting her holistic approach to creating 
+meaningful and lasting change.<br>
+
+<br>As a proud mother of four, Azeezat is driven by a vision to build a more just and compassionate world for future generations. 
+Through her role at TOOI, she mentors secondary school students, inspiring them to rise above challenges, embrace their potential, 
+and pursue purposeful career paths.<br>
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+  </main>
+
+<footer class="site-footer">
+    <div class="container foot-grid">
+      <!-- Left: logo, email, socials -->
+      <div class="foot-brand">
+        <img class="foot-logo" src="assets/images/logo.png" alt="The Olanike Omopariola Foundation">
+  
+        <p class="foot-email">
+          <a href="mailto:info@toofoundation.org">info@toofoundation.org</a>
+        </p>
+  
+        <ul class="socials">
+          <li><a class="soc" href="https://www.instagram.com/too.foundation?igsh=cXhxbWNqZmZkeWlp&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <img class="soc-ico" src="assets/icons/instagram.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.facebook.com/share/1FJnW1cmfu/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+            <img class="soc-ico" src="assets/icons/facebook.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.tiktok.com/@toofoundation?_t=ZN-8zcILXztZkk&_r=1" target="_blank" rel="noopener" aria-label="X">
+            <img class="soc-ico" src="assets/icons/x.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://wa.me/447769494810" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <img class="soc-ico" src="assets/icons/whatsapp.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.youtube.com/@TOOFoundationtv" target="_blank" rel="noopener" aria-label="YouTube">
+            <img class="soc-ico" src="assets/icons/youtube.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.linkedin.com/in/oluwatoyin-omotayo-ll-b-bl-ll-m-8708bab8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <img class="soc-ico" src="assets/icons/linkedin.png" alt="">
+          </a></li>
+        </ul>
+      </div>
+  
+      <!-- Right: two link columns -->
+      <nav class="foot-nav" aria-label="Footer">
+        <ul class="col">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+        <ul class="col">
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="impact.html#featured-stories">Impact Stories</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html#mission">Our Mission</a></li>
+        </ul>
+      </nav>
+    </div>
+  
+    <div class="foot-bottom">
+      © 2025 The Olanike Omopariola Foundation. All rights reserved.
+    </div>
+  </footer>
+
+   <!-- Thank-you overlay (direct child of <body>) -->
+  <div id="thanksOverlay" class="thanks-overlay" hidden>
+    <div class="thanks-card" role="dialog" aria-live="polite" aria-label="Application submitted">
+      <h3 class="thanks-title">Thank You!</h3>
+      <p class="thanks-body">Application Received.</p>
+    </div>
+  </div>
+
+  <!-- Load page JS -->
+  <script src="js/volunteer.js" defer></script>
+
+  <script>
+  // Smooth open/close with real height (supports long bios)
+  function openMeasure(el){
+    el.style.removeProperty('display');          // ensure visible to measure
+    const prev = el.style.maxHeight;
+    el.style.transition = 'none';
+    el.style.maxHeight = '0px';
+    el.getBoundingClientRect();                  // reflow
+    el.style.transition = 'max-height .28s ease';
+    el.style.maxHeight = el.scrollHeight + 'px';
+    const onEnd = (e) => {
+      if (e.propertyName !== 'max-height') return;
+      el.style.maxHeight = 'none';               // allow natural growth
+      el.style.removeProperty('transition');
+      el.removeEventListener('transitionend', onEnd);
+    };
+    el.addEventListener('transitionend', onEnd);
+  }
+  function closeMeasure(el){
+    // from current natural height back to 0
+    el.style.transition = 'none';
+    el.style.maxHeight = (el.scrollHeight || 0) + 'px';
+    el.getBoundingClientRect();
+    el.style.transition = 'max-height .28s ease';
+    el.style.maxHeight = '0px';
+    const onEnd = (e) => {
+      if (e.propertyName !== 'max-height') return;
+      el.style.removeProperty('transition');
+      el.removeEventListener('transitionend', onEnd);
+    };
+    el.addEventListener('transitionend', onEnd);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.mentors .mcard').forEach(card => {
+      const img   = card.querySelector('.mimg');
+      const name  = card.querySelector('.mname');
+      const desc  = card.querySelector('.mdesc');
+      if (!desc) return;
+
+      // start closed
+      desc.style.maxHeight = '0px';
+
+      const toggle = () => {
+        const open = card.classList.contains('is-open');
+        if (open){
+          card.classList.remove('is-open');
+          // ensure we're transitioning from actual height
+          if (getComputedStyle(desc).maxHeight === 'none') {
+            desc.style.maxHeight = desc.scrollHeight + 'px';
+          }
+          closeMeasure(desc);
+        } else {
+          card.classList.add('is-open');
+          openMeasure(desc);
+        }
+      };
+
+      [img, name].forEach(el => {
+        if (!el) return;
+        el.setAttribute('tabindex','0');
+        el.setAttribute('role','button');
+        el.addEventListener('click', toggle);
+        el.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
+      });
+    });
+  });
+</script>
+
+
+<!-- Hidden detection form for Netlify (do not remove) -->
+<form name="volunteer" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text"  name="fullName">
+  <input type="email" name="email">
+  <input type="tel"   name="phone">
+  <input type="checkbox" name="interests" value="Teaching / Mentoring">
+  <input type="checkbox" name="interests" value="Organizing Events">
+  <input type="checkbox" name="interests" value="Community Outreach">
+  <input type="checkbox" name="interests" value="Media / Communications">
+  <input type="checkbox" name="interests" value="Advocacy">
+  <input type="checkbox" name="interests" value="Administrative Tasks">
+  <input type="radio"    name="availability" value="Weekdays">
+  <input type="radio"    name="availability" value="Flexible">
+  <textarea name="why"></textarea>
+  <input type="checkbox" name="consent">
+</form>
+
+
+<script src="js/auto-date.js"></script>
+</body>
+</html>
+

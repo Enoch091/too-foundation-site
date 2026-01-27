@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Contact — The Olanike Omopariola Foundation</title>
+  <meta name="description" content="Let’s stay connected — your message matters." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Base site styles (already in your project) -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <!-- Page-specific -->
+  <link rel="stylesheet" href="css/contact.css" />
+  <link rel="stylesheet" href="css/responsive-hotfix.css">
+
+</head>
+<body>
+
+  <!-- HEADER (reuse) -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav-wrap">
+      <a class="logo" href="index.html" aria-label="Home">
+        <img src="assets/images/logo.png" alt="The Olanike Omopariola Foundation" />
+      </a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+        <img src="assets/icons/menu-mobile.png" alt="" width="40" height="40">
+      </button>
+
+      <nav class="main-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="impact.html">Impact</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a class="active" href="contact.html" aria-current="page">Contact</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-green donate-pill" href="donate.html" aria-label="Donate">
+          <svg class="heart" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 21s-6.7-4.4-9.2-6.9A5.5 5.5 0 0 1 10.5 6.5L12 8l1.5-1.5a5.5 5.5 0 0 1 7.7 7.7C18.7 16.6 12 21 12 21z"/>
+          </svg>
+          Donate
+        </a>
+      </div>
+    </div>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+      <button class="menu-close" aria-label="Close menu">✕</button>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="impact.html">IMPACT</a></li>
+        <li><a href="get-involved.html">GET INVOLVED</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a class="active" href="contact.html" aria-current="page">CONTACT</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO (dark card) -->
+    <section class="contact-hero" aria-labelledby="contactTitle">
+      <div class="hero-card">
+        <img class="hero-img" src="assets/images/contact-hero.jpg" alt="">
+        <h1 id="contactTitle" class="hero-title">Contact</h1>
+      </div>
+    </section>
+
+    <!-- INTRO BLURB -->
+    <section class="contact-intro">
+      <div class="container">
+        <p class="intro-text">Let’s stay connected — your message matters.</p>
+      </div>
+    </section>
+
+    <!-- FORM CARD (pixel-matched to your comp) -->
+    <section class="contact-form-belt" aria-labelledby="formTitle">
+      <div class="form-card">
+        <h2 id="formTitle" class="sr-only">Send us a message</h2>
+
+        <form
+  id="contactForm"
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  data-netlify-honeypot="bot-field"
+  novalidate
+>
+  <!-- Required by Netlify for JS submissions -->
+  <input type="hidden" name="form-name" value="contact">
+  <!-- Honeypot (hidden from humans) -->
+  <p class="sr-only" style="position:absolute; left:-9999px;">
+    <label>Don’t fill this out: <input name="bot-field"></label>
+  </p>
+
+  <!-- Your fields (unchanged ids/placeholders) -->
+  <div class="row row-two">
+    <div class="field">
+      <input id="firstName" name="firstName" type="text" placeholder="First Name" required>
+      <p class="err"></p>
+    </div>
+    <div class="field">
+      <input id="lastName" name="lastName" type="text" placeholder="Last Name*" required>
+      <p class="err"></p>
+    </div>
+  </div>
+
+  <div class="row"><div class="field wide">
+    <input id="email" name="email" type="email" placeholder="Email*" required>
+    <p class="err"></p>
+  </div></div>
+
+  <div class="row"><div class="field wide">
+    <input id="phone" name="phone" type="tel" placeholder="Phone Number*" required>
+    <p class="err"></p>
+  </div></div>
+
+  <div class="row"><div class="field wide">
+    <textarea id="message" name="message" rows="6" placeholder="Your message..." required></textarea>
+    <p class="err"></p>
+  </div></div>
+
+  <div class="row">
+    <button id="sendBtn" class="send-pill" type="submit" disabled>Send Message</button>
+  </div>
+
+  <p id="formNote" class="form-note" role="status" aria-live="polite"></p>
+</form>
+
+      </div>
+    </section>
+
+    <!-- Get in Touch (content-driven, same as comp) -->
+    <section class="contact-get">
+      <div class="container">
+        <h2 class="get-title">Get in Touch</h2>
+        <div class="get-list">
+          <p><a class="link" href="mailto:info@toofoundation.org">info@toofoundation.org</a></p>
+          <p>+234 812 345 6789</p>
+          <p>Instagram: <a class="link" href="https://www.instagram.com/too.foundation?igsh=cXhxbWNqZmZkeWlp&utm_source=qr" target="_blank" rel="noopener">@too.foundation</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (reuse; same links as other pages) -->
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <!-- Left: logo, email, socials -->
+      <div class="foot-brand">
+        <img class="foot-logo" src="assets/images/logo.png" alt="The Olanike Omopariola Foundation">
+  
+        <p class="foot-email">
+          <a href="mailto:info@toofoundation.org">info@toofoundation.org</a>
+        </p>
+  
+        <ul class="socials">
+          <li><a class="soc" href="https://www.instagram.com/too.foundation?igsh=cXhxbWNqZmZkeWlp&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <img class="soc-ico" src="assets/icons/instagram.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.facebook.com/share/1FJnW1cmfu/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+            <img class="soc-ico" src="assets/icons/facebook.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.tiktok.com/@toofoundation?_t=ZN-8zcILXztZkk&_r=1" target="_blank" rel="noopener" aria-label="X">
+            <img class="soc-ico" src="assets/icons/x.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://wa.me/447769494810" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <img class="soc-ico" src="assets/icons/whatsapp.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.youtube.com/@TOOFoundationtv" target="_blank" rel="noopener" aria-label="YouTube">
+            <img class="soc-ico" src="assets/icons/youtube.png" alt="">
+          </a></li>
+          <li><a class="soc" href="https://www.linkedin.com/in/oluwatoyin-omotayo-ll-b-bl-ll-m-8708bab8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <img class="soc-ico" src="assets/icons/linkedin.png" alt="">
+          </a></li>
+        </ul>
+      </div>
+  
+      <!-- Right: two link columns -->
+      <nav class="foot-nav" aria-label="Footer">
+        <ul class="col">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+        <ul class="col">
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="impact.html#featured-stories">Impact Stories</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html#mission">Our Mission</a></li>
+        </ul>
+      </nav>
+    </div>
+  
+    <div class="foot-bottom">
+      © 2025 The Olanike Omopariola Foundation. All rights reserved.
+    </div>
+  </footer>
+
+
+  <script src="js/contact.js" defer></script>
+  <script src="js/auto-date.js" defer></script>
+  
+<!-- Hidden detection form for Netlify (do not remove) -->
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text"  name="firstName">
+  <input type="text"  name="lastName">
+  <input type="email" name="email">
+  <input type="tel"   name="phone">
+  <textarea name="message"></textarea>
+</form>
+
+
+</body>
+</html>

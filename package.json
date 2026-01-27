@@ -1,0 +1,23 @@
+{
+  "name": "toof-foundation",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TOOF Foundation fullstack app with React frontend and Convex backend",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run dev --workspace=frontend",
+    "build": "cd frontend && npm run build",
+    "build:dev": "npm run build:dev --workspace=frontend",
+    "preview": "npm run preview --workspace=frontend",
+    "backend:dev": "cd backend && npx convex dev",
+    "backend:deploy": "cd backend && npx convex deploy",
+    "backend:codegen": "cd backend && npx convex codegen"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "dependencies": {
+    "convex": "^1.31.5"
+  }
+}

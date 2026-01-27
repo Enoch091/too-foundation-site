@@ -1,0 +1,235 @@
+/* ===== TOKENS ===== */
+:root{
+  --green:#65AC42;
+  --navy:#2D308F;
+  --ink:#011334;
+  --muted:#828282;
+  --canvas:1440px;
+  --container:1280px;
+  --nav-h:134px;
+
+  /* desktop field metrics (from your comp) */
+  --w-col:418.07px;         /* first/last */
+  --gap-col:39.55px;        /* gap between them */
+  --w-wide:875.68px;        /* email/phone/message/button */
+  --h-input:94.16px;
+  --h-textarea:263.65px;
+  --r-input:18.83px;
+  --pad-x:37.66px;          /* inner left/right padding */
+  --fs-ph:26px;             /* placeholder / text size desktop */
+
+  /* mobile metrics (≤430px comp) */
+  --m-w:314.39px;
+  --m-h-input:48px;
+  --m-h-textarea:94.65px;
+  --m-r-input:8px;
+  --m-pad-x:13.52px;
+  --m-fs-ph:12px;
+}
+
+/* Coolvetica (local to project) */
+@font-face{
+  font-family:"Coolvetica";
+  src:url("../assets/fonts/Coolvetica.woff2") format("woff2"),
+      url("../assets/fonts/Coolvetica.woff") format("woff");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+/* Containers */
+.container{ width:var(--container); max-width:100%; margin:0 auto; }
+
+/* ===== HERO ===== */
+.contact-hero{ padding:90px 0 0; }
+.hero-card{
+  width:1276px; height:431px; margin:0 auto; position:relative; border-radius:32px; overflow:hidden;
+  background:#242424;
+}
+.hero-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.23; }
+.hero-title{
+  position:absolute; inset:0; display:grid; place-items:center;
+  color:#fff; margin:0; font-family:"Coolvetica","Poppins",sans-serif; font-size:56px; line-height:96px; font-weight:400;
+}
+
+/* ===== INTRO ===== */
+.contact-intro{ padding:80px 0 60px; }
+.intro-text{
+  max-width:1165px; margin:0 auto; text-align:center;
+  font:300 32px/42px "Poppins",sans-serif; color:#000; letter-spacing:.64px;
+}
+
+/* ===== FORM CARD ===== */
+.contact-form-belt{ padding:0 0 48px; }
+.form-card{
+  width:max-content; max-width:100%;
+  margin:0 auto;
+  background:#F5F5F5;
+  border-radius:var(--r-input);
+  padding:94.16px;
+}
+.form-card *{ box-sizing:border-box; }
+
+/* Grid rows */
+.row{ display:block; }
+.row + .row{ margin-top:37.66px; }
+
+.row-two{
+  display:grid;
+  grid-template-columns: var(--w-col) var(--gap-col) var(--w-col);
+  align-items:start;
+}
+.row-two .field:nth-child(1){ grid-column:1; }
+.row-two .field:nth-child(2){ grid-column:3; }
+
+/* Field shell */
+.field{
+  position:relative;
+  width:var(--w-col);
+}
+.field.wide{
+  width:var(--w-wide);
+}
+
+/* Inputs / textarea – exact comp dimensions */
+.field input,
+.field textarea{
+  width:100%;
+  height:var(--h-input);
+  padding-inline:var(--pad-x);
+  border-radius:var(--r-input);
+  border:1.88px solid var(--muted);
+  background:#F9F9F9;               /* default gray like comp */
+  color:var(--ink);
+  font:400 var(--fs-ph)/1.88 "Poppins",system-ui,sans-serif;
+  outline:none;
+  transition:border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+
+.field textarea{
+  height:var(--h-textarea);
+  padding-block:37.66px 28px;
+  resize:vertical;
+  min-height:var(--h-textarea);
+}
+
+/* Placeholder */
+::placeholder{ color:var(--muted); opacity:1; }
+
+/* Focused field (only active one goes white with green border) */
+.field input:focus, .field textarea:focus{
+  background:#fff;
+  border-color:var(--green);
+  box-shadow:0 0 0 0 rgba(0,0,0,0);
+}
+
+/* Tiny inline green check (appears when valid) */
+.ok{
+  position:absolute; right:18px; top:50%; transform:translateY(-50%);
+  width:22px; height:22px; border-radius:50%; display:none;
+  background:var(--green);
+  mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23fff' d='M8.143 14.314 3.829 9.999l1.414-1.414 2.9 2.9 6.614-6.614 1.414 1.414z'/%3E%3C/svg%3E") center/14px 14px no-repeat;
+}
+
+/* Error + hint lines */
+.err,.hint{
+  margin:8px 0 0 8px;
+  font:400 13px/1.4 "Poppins",system-ui,sans-serif;
+}
+.err{ color:#C93C3C; min-height:0.8em; }
+.hint{ color:#6c6c6c; }
+
+/* When valid */
+.field.is-valid .ok{ display:block; }
+.field.is-error input,
+.field.is-error textarea{
+  border-color:#C93C3C;
+  background:#fff;
+}
+
+/* Submit button (same width as wide fields) */
+.send-pill{
+  display:block; width:var(--w-wide);
+  margin:0 auto;
+  border:0; border-radius:111px; cursor:pointer;
+  background:var(--green); color:#fff;
+  padding:38px 0;
+  font:600 32px/1 "Poppins",sans-serif;
+  transition:transform .16s ease, box-shadow .16s ease, background-color .16s ease;
+}
+@media (hover:hover){
+  .send-pill:hover:enabled{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.12); }
+}
+.send-pill:disabled{
+  opacity:.55; cursor:not-allowed; filter:grayscale(.12);
+}
+
+/* Form status note */
+.form-note{
+  margin-top:24px; text-align:center;
+  font:400 14px/1.6 "Poppins",sans-serif; color:#4E8C34;
+  min-height:1.2em;
+}
+
+/* ===== GET IN TOUCH ===== */
+.contact-get{ padding:96px 0 290px; }
+.get-title{
+  margin:0 0 54px; color:#2D3091;
+  font-family:"Coolvetica","Poppins",sans-serif; font-weight:400;
+  font-size:56px; line-height:6px;
+}
+.get-list{ font:300 22px/26px "Poppins",sans-serif; color:var(--ink); display:flex; flex-direction:column; gap:8px; }
+.link{ color:var(--ink); text-decoration:underline; }
+
+/* ===== MOBILE (≤ 430px) ===== */
+@media (max-width:430px){
+  .contact-hero{ padding:24px 0 0; }
+  .hero-card{ width:382px; height:129px; border-radius:9.6px; }
+  .hero-title{ font-size:32px; line-height:28.7px; }
+
+  .contact-intro{ padding-top:16px; }
+  .intro-text{ font:300 16px/35px "Poppins",sans-serif; max-width:379px; letter-spacing:.32px; }
+
+  .form-card{
+    padding:33.81px; border-radius:6.76px;
+  }
+
+  /* stack, 314px inner width */
+  .row-two{
+    display:block;
+  }
+  .field, .field.wide{ width:var(--m-w); }
+  .row + .row{ margin-top:27.04px; }
+
+  .field input,
+  .field textarea{
+    height:var(--m-h-input);
+    border-radius:var(--m-r-input);
+    border-width:.68px;
+    padding-inline:var(--m-pad-x);
+    font-size:var(--m-fs-ph);
+    line-height:17.58px;
+  }
+  .field textarea{
+    height:var(--m-h-textarea);
+    min-height:var(--m-h-textarea);
+    padding-block:13.52px;
+  }
+
+  .ok{ right:10px; width:18px; height:18px; }
+
+  .send-pill{
+    width:var(--m-w);
+    padding:13.64px 0;
+    border-radius:39.85px;
+    font-size:11.49px; font-weight:600;
+  }
+
+  .contact-get{ padding:64px 0 0; }
+  .get-title{ font-size:32px; line-height:46px; }
+  .get-list{ font:300 16px/26px "Poppins",sans-serif; gap:24px; }
+}
+
+/* Screen-reader only utility */
+.sr-only{
+  position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}

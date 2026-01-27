@@ -1,0 +1,221 @@
+/* ==========================================================
+   ABOUT PAGE — page-scoped styles (works with your globals)
+   Fonts: Coolvetica for display; Poppins for UI/body
+   Palette: #65AC42 green, #2D308F/#2F46A9 blue, greys as spec
+   ========================================================== */
+
+/* If Coolvetica isn’t already loaded globally, keep these @font-face lines.
+   Update URLs to your actual files (self-hosted). Remove if already in styles.css. */
+@font-face{
+  font-family:"Coolvetica";
+  src:url("../fonts/Coolvetica-Regular.woff2") format("woff2"),
+      url("../fonts/Coolvetica-Regular.woff") format("woff");
+  font-weight:300; font-style:normal; font-display:swap;
+}
+
+/* Base helpers */
+.about-page body{ font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.container{ width:1280px; max-width:calc(100% - 160px); margin:0 auto; } /* 80px side margin on 1440 */
+
+/* ---------- HERO ---------- */
+.about-hero{ padding:120px 0 0; } /* clears sticky header */
+.about-hero .hero-card{
+  position:relative; height:431px; border-radius:32px; overflow:hidden; background:#242424;
+}
+.about-hero .hero-bg{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.23;
+}
+.about-hero .hero-title{
+  position:absolute; inset:0; display:grid; place-items:center;
+  font-family:"Coolvetica", "Poppins", sans-serif; font-weight:400;
+  font-size:56px; line-height:96px; color:#fff; margin:0; text-align:center;
+}
+
+/* ---------- MISSION / FOUNDER / VISION (3-up) ---------- */
+.mfv{ padding:320px 0px 40px; }
+.mfv-grid{
+  display:grid;
+  grid-template-columns: 301px 450px 305px;        /* exact widths from design */
+  align-items:start; column-gap:94px;
+}
+.mfv-block .title-green,
+.title-green{
+  font-family:"Coolvetica","Poppins",sans-serif;
+  font-size:56px; font-weight:300; line-height:96px; color:#65AC42; margin:0 0 32px;
+}
+.mfv-block .title-blue,
+.title-blue{
+  font-family:"Coolvetica","Poppins",sans-serif;
+  font-size:56px; font-weight:300; line-height:96px; color:#2D308F; margin:0 0 32px;
+}
+.body-lg{ font-size:20px; line-height:42px; letter-spacing:.4px; color:#000; margin:0; }
+
+.founder-photo{
+  width:414px; height:594px; border-radius:32px; overflow:hidden; background:#6D6D6D; margin: -86px 0 0; /* sits slightly higher like the comp */
+}
+.founder-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ---------- FOUNDER STORY (grey panel) ---------- */
+.founder-story{
+  background:#EEEEEE;
+  margin-top:120px;
+  padding:120px 0 140px;
+  box-shadow:0 0 0 100vmax #EEEEEE; clip-path: inset(0 -100vmax); /* full-bleed grey */
+}
+.story-heading{
+  font-family:"Coolvetica","Poppins",sans-serif;
+  font-size:56px; font-weight:300; line-height:56px; color:#65AC42; text-align:center; margin:0 0 98px;
+}
+.story-grid{
+  display:grid; grid-template-columns: 413px 1fr; column-gap:128px; align-items:start;
+}
+
+/* Left card */
+.story-card{
+  position:relative; width:413px; height:729px; border-radius:32px; overflow:hidden; background:#D0D0D0;
+}
+.story-card img{ width:100%; height:100%; object-fit:cover; display:block; }
+.story-grad{ position:absolute; left:0; right:0; bottom:0; height:376px;
+  background:linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 100%);
+}
+.story-cap{
+  position:absolute; left:28px; bottom:68px; display:grid;
+  grid-template-columns:12px 1fr; gap:6px 12px; color:#fff;
+}
+.story-cap .dot{ width:12px; height:12px; border-radius:50%; background:#65AC42; grid-row:1 / span 2; align-self:start; margin-top:16px; }
+.story-cap .name{ font-size:28.49px; font-weight:600; line: height 32px; }
+.story-cap .role{ font-size:16.62px; font-weight:300; line-height:17.81px; }
+
+/* Right long text */
+.story-copy{ max-width:732px; }
+.story-copy p{
+  font-size:20px; line-height:40.33px; letter-spacing:.52px; color:#000; margin:0 0 20px;
+}
+
+/* ---------- TEAM ---------- */
+.team{ padding:140px 0 120px; }
+.team-heading{
+  font-family:"Coolvetica","Poppins",sans-serif;
+  font-size:56px; font-weight:300; line-height:56px; color:#2D308F; text-align:center; margin:0 0 40px;
+}
+.team-grid{
+  display:grid;
+  grid-template-columns: repeat(5, 239.69px);  /* 5-across as in comp */
+  justify-content:space-between; align-items:start; gap:22px;
+}
+.tcard{ display:flex; flex-direction:column; gap:31px; }
+ .tcard:hover{ transform:translateY(-5px)}
+.timg{ width:239.69px; height:277.28px; border-radius:24.65px; overflow:hidden; background:#D0D0D0; }
+.timg img{ width:100%; height:100%; object-fit:cover; display:block; }
+.tname{ font-size:20.28px; line-height:21.13px; font-weight:600; margin:0; color:#000; }
+.trole{ font-size:11.83px; line-height:12.68px; font-weight:300; margin:-20px 0 0; color:#000; }
+
+/* ---------------------------------------------------------
+   MOBILE ≤ 430px (exact mobile spec from your design)
+   --------------------------------------------------------- */
+@media (max-width: 430px){
+
+  .container{ width:100%; max-width:430px; padding:0 34px; }
+
+  /* HERO */
+  .about-hero{ padding:86px 0 0; }
+  .about-hero .hero-card{ height:129.03px; border-radius:9.58px; }
+  .about-hero .hero-bg{ opacity:.23; }
+  .about-hero .hero-title{
+    font-size:32px; line-height:28.74px;
+  }
+
+  /* MFV stack */
+  .mfv{ padding:62px 0 24px; }
+  .mfv-grid{
+    display:grid; grid-template-columns:1fr; row-gap:24px;
+  }
+  .mfv-block .title-green,
+.title-green{
+  font-family:"Coolvetica","Poppins",sans-serif;
+  font-size:36px; font-weight:300; line-height:26px; color:#65AC42; margin: 0 0 15px;
+}
+.mfv-block .title-blue,
+.title-blue{
+  font-family:"Coolvetica","Poppins",sans-serif;
+  font-size:36px; font-weight:300; line-height:26px; color:#2D308F; margin: 0 0 15px;
+}
+  .body-lg{
+    font-size:16px; line-height:30.3px; letter-spacing:.32px; margin-bottom:24px;
+  }
+  .founder-photo{
+    width:382px; height:548.09px; margin:0 auto; border-radius:29.53px;
+  
+  }
+  .founder-photo{ display:none !important; }
+  /* FOUNDER STORY mobile */
+  .founder-story{
+    margin-top:48px; padding:68px 0 56px;
+  }
+  .story-heading{ font-size:32px; font-weight:300; line-height:32px; margin-bottom:38px; }
+  .story-grid{ grid-template-columns:1fr; row-gap:24px; }
+  .story-card{ width:382px; height:412px; margin:0 auto; border-radius:20.02px; margin-bottom:28px; }
+  .story-card img{ width:100%; height:130%; object-fit:cover; display:block; margin:0px auto; }
+  .story-grad{ height:160.23px; }
+  .story-cap{
+  position:absolute; left:28px; bottom:28px; display:grid;
+  grid-template-columns:12px 1fr; gap:6px 12px; color:#fff;
+}
+ .story-cap .dot{ width:12px; height:12px; border-radius:50%; background:#65AC42; grid-row:1 / span 2; align-self:start; margin-top:16px; }
+.story-cap .name{ font-size:28.49px; font-weight:600; line: height 32px; }
+.story-cap .role{ font-size:16.62px; font-weight:300; line-height:17.81px; }
+  .story-copy{ max-width:382px; margin:0 auto; }
+  .story-copy p{ font-size:16px; line-height:30.3px; letter-spacing:.32px; }
+
+  /* TEAM mobile (stacked) */
+  .team{ padding:64px 0 80px; }
+  .team-heading{ font-size:32px; font-weight:300; line-height:32px; margin:0 0 37px; }
+  .team-grid{
+    grid-template-columns:1fr; gap:38px; justify-items:center;
+  }
+  .timg{ width:349.03px; height:330.43px; border-radius:24.65px; }
+  .tname{ font-size:26px; line-height:21.13px; }
+  .trole{ font-size:13px; line-height:12.68px; }
+}
+
+/* Small helper to highlight the active nav on About */
+.main-nav a.active{ color:var(--green, #65AC42); }
+
+/* If your global header hides nav links on mobile already, nothing else needed. */
+
+/* === Team bios: collapsible (About page) ================== */
+.team .tcard .timg,
+.team .tcard .tname{
+  cursor: pointer;
+}
+
+/* collapsed state */
+.team .tcard .tdesc{
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.75;           /* 5 lines ≈ 8.75em total */
+  color: #555;
+  margin: 0;                   /* margin added only when open */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: max-height .35s ease, opacity .25s ease, transform .35s ease, margin .2s ease;
+  display: -webkit-box;        /* support line clamp on open */
+  -webkit-box-orient: vertical;
+}
+
+/* open state */
+.team .tcard.is-open .tdesc{
+  margin-top: 8px;
+  max-height: 56em;             /* ≈ 5 lines based on line-height */
+  opacity: 120;
+  transform: translateY(0);
+  -webkit-line-clamp: 39;       /* cap visible lines to 5 */
+}
+
+/* a11y focus for keyboard users */
+.team .tcard .tname:focus{
+  outline: 2px solid var(--green, #65AC42);
+  outline-offset: 2px;
+}

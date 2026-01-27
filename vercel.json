@@ -1,0 +1,20 @@
+{
+  "buildCommand": "cd frontend && npm install && npm run build && mv dist/index.html dist/index-react.html && cp -r dist/* ../",
+  "outputDirectory": ".",
+  "installCommand": "echo 'Skipping auto install'",
+  "framework": null,
+  "rewrites": [
+    { "source": "/auth", "destination": "/index-react.html" },
+    { "source": "/auth/:path*", "destination": "/index-react.html" },
+    { "source": "/admin", "destination": "/index-react.html" },
+    { "source": "/admin/:path*", "destination": "/index-react.html" }
+  ],
+  "headers": [
+    {
+      "source": "/assets/:path*",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}

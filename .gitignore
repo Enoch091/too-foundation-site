@@ -1,0 +1,38 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.next/
+out/
+build/
+
+# Environment files
+.env
+.env.local
+.env*.local
+
+# Local Netlify folder
+.netlify
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Convex generated files
+backend/convex/_generated/
+
+# Sensitive data
+users_backup.json
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

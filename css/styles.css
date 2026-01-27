@@ -1,0 +1,1549 @@
+/* =========================
+   GLOBAL TOKENS & CANVAS
+   ========================= */
+   :root{
+    /* Brand */
+    --green:#65AC42;
+    --navy:#2F46A9;              /* headings, blue event cards, CTA bg family */
+    --ctaStart:#1A3A8E;          /* CTA gradient start */
+    --ctaEnd:#14248A;            /* CTA gradient end   */
+    --focus-bg:#777777;          /* Mission section bg */
+    --text:#000;
+    --text-2:#555;
+    --white:#fff;
+  
+    /* Canvas & container */
+    --canvas:1440px;
+    --container:1280px;          /* 80px side margins on 1440 */
+    --side-padding:0;            /* container already centered */
+  
+    /* Sizes & radii */
+    --nav-h:134px;
+    --donate-w:230px; --donate-h:76px; --donate-r:111px;
+    --hero-h:828px;
+  
+    /* Hero buttons — set to 291×48; change to 81×42 if you truly want fixed 81px width */
+    --hero-btn-w:294px; --hero-btn-h:109px; --hero-btn-r:240px;
+  
+    --card-r32:32px;
+    --card-r24:24px;
+  
+    /* Events & tiles */
+    --tile-w:413px; --tile-h:391px; --tile-gap-x:20px; --tile-gap-y:20px;
+    --event-w:413px; --event-h:329px; --event-gap:25px;
+  
+    /* Shadows */
+    --shadow:0 4px 6px rgba(0,0,0,.10);
+  }
+  
+  /* Coolvetica (place font files in /assets/fonts) */
+  @font-face{
+    font-family:"Coolvetica";
+    src:url("../assets/fonts/Coolvetica.woff2") format("woff2"),
+        url("../assets/fonts/Coolvetica.woff") format("woff");
+    font-weight:200; font-style:normal; font-display:swap;
+  }
+  
+
+  @font-face{
+    font-family:"Coolvetica";
+    src:url("../assets/fonts/Coolvetica-Regular.woff2") format("woff2");
+    font-weight:200; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:"Coolvetica";
+    src:url("../assets/fonts/Coolvetica-Medium.woff2") format("woff2");
+    font-weight:500; font-style:normal; font-display:swap;
+  }
+  /* You already have 700 declared — keep it */
+
+  
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; color:var(--text);
+    font:400 16px/1.5 "Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:var(--white);
+  }
+  img{display:block; max-width:100%}
+  a{color:inherit; text-decoration:none}
+  
+  .container{width:var(--container); max-width:100%; margin:0 auto; padding:var(--side-padding)}
+  
+  /* =========================
+     NAVIGATION (WHITE BAR)
+     ========================= */
+  .site-header{background:#fff; border-bottom:1px solid #E6E7EC; position:sticky; top:0; z-index:1000}
+  .nav-wrap{
+    width:var(--canvas); max-width:100%; margin:0 auto;
+    height:var(--nav-h); display:flex; align-items:center; justify-content:space-between; padding:0 0px;
+    - justify-content: space-between;
++ justify-content: flex-start;
++ gap: 840px;            /* increase this to taste (e.g., 80px/96px) */
+  }
+  .logo img{height:70px; width:auto } 
+  
+  .main-nav ul{display:flex; gap:50px; list-style:none; margin:0; padding:0}
+  .main-nav a{
+    text-transform:uppercase; font-weight:600; font-size:18px; color:#333;
+  }
+  .main-nav a.active{color:var(--green)}
+  
+  .nav-cta{display:flex; align-items:center; gap:16px
+    + margin-left: auto;
+}
+  .nav-toggle{display:none; width:28px; height:22px; border:none; background:none; padding:0}
+  .nav-toggle span{display:block; width:100%; height:2px; background:#333; margin:4px 0}
+  
+  .btn{border-radius:999px; border:2px solid transparent; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:.4s ease}
+  .btn-green{background:var(--green); color:#fff; border-color:var(--green)}
+  .btn-white{background:#fff; color:var(--text)}
+  .btn-outline-green{border-color:#fff; color:var(--green)}
+  
+  .donate-pill{
+    width:var(--donate-w); height:var(--donate-h); border-radius:var(--donate-r);
+    font-weight:400; font-size:25px; gap:10px; padding:0 12px 0 10px;
+  }
+  .heart{width:30px; height:30px; color:#fff}
+  
+  /* Mobile overlay menu — per spec */
+  .mobile-menu{position:fixed; inset:0; background:#fff; display:none; z-index:1200; align-items:center; justify-content:center}
+  .mobile-menu.open{display:flex}
+  .menu-close{position:absolute; top:32px; right:32px; background:none; border:none; color:#B0B0B0; font-size:24px; cursor:pointer}
+  .mobile-menu ul{list-style:none; margin:0; padding:0; text-align:center}
+  .mobile-menu li+li{margin-top:62px}
+  .mobile-menu a{text-transform:uppercase; font-weight:400; font-size:22px; color:#000}
+  
+  /* =========================
+     HERO (828px)
+     ========================= */
+  .hero{position:relative; height:var(--hero-h); overflow:hidden}
+  .slides{position:absolute; inset:0}
+  .slide{position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1s ease}
+  .slide.active{opacity:1}
+  .hero-dim{position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.75))}
+  
+  .hero-grid{position:relative; height:100%; display:grid; grid-template-columns:45% 15%; align-items:center}
+  .hero-copy{color:#fff; padding-left:28px}   /* try 48px (or 40/32) */
+  .display{font-family:"Coolvetica","Poppins",sans-serif; font-size:96px; line-height:1; margin:0 0 32px font-weight:200}
+  .display .accent{color:var(--green)}
+  .lead{font-size:32px; line-height:1.45; opacity:.92; margin:0}
+  .hero-ctas{margin-top:48px; display:flex; gap:42px}
+  .hero-btn{width:var(--hero-btn-w); height:var(--hero-btn-h); border-radius:var(--hero-btn-r); font-size:25px; font-weight:400}
+  
+  /* =========================
+     ABOUT
+     ========================= */
+  .about{padding:100px 0 0; left:320;}
+  .about-grid{display:grid; grid-template-columns:413px 13fr; gap:120px; align-items:center}
+  .founder-card{width:453px; height:812px; border-radius:var(--card-r32); overflow:hidden; background:#eee; position:relative; margin:0}
+  .founder-card img{width:100%; height:100%; object-fit:cover}
+  .founder-card:hover{ transform:translateY(-5px)}
+  .founder-cap{
+    position:absolute; left:0; right:0; bottom:0; height:315px;
+    background:linear-gradient(180deg,rgba(0, 0, 0, 0) 0%,rgba(0,0,0,3) 100%);
+    color:#fff; display:flex; align-items:center; gap:12px; padding:0 30px; font-weight:700;
+  }
+  .founder-cap .dot{width:14px; height:14px; border-radius:50%;  background:var(--green)}
+  .founder-cap .name{font-size:40px}
+  .founder-cap .role{font-size:24px; font-weight:300; margin-left:12px; opacity:.95}
+  
+  .about-title{font-family:"Coolvetica","Poppins",sans-serif; font-size:56px; line-height:1.06; color:var(--navy); margin:90px 0px 16px}
+  .about-text{font-size:26px; line-height:39px; color:#333; max-width:500px; margin:0 0 16px}
+  .about-read{font-size:27px; font-weight:520; color:#333;}
+  -.about{padding:160px 0 0}
++.about{padding:160px 0 80px} /* adds 80px white space below About */
+
+  
+  /* =========================
+     FOCUS AREAS  (bg #EEEEEE)
+     ========================= */
+  .focus{background:#eee; padding:120px 0}
+  .section-title{font-family:"Coolvetica","Poppins",sans-serif; font-size:56px; color:var(--navy); text-align:center; margin:0 0 16px}
+  .section-subtitle{font-size:22px; font-weight:500; color:#555; text-align:center; max-width:900px; margin:0 auto 32px}
+  
+  .focus-grid{
+    display:grid;
+    grid-template-columns:repeat(3, var(--tile-w));
+    grid-auto-rows:var(--tile-h);
+    gap:var(--tile-gap-y) var(--tile-gap-x);
+    justify-content:space-between;
+  }
+  .focus-tile{position:relative; width:var(--tile-w); height:var(--tile-h); border-radius:var(--card-r32); overflow:hidden; box-shadow:var(--shadow); display:block; transform:translateZ(0)}
+  .focus-tile img{width:100%; height:100%; object-fit:cover}
+  .tile-overlay{position:absolute; left:0; right:0; bottom:0; height:130px; background:linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(0,0,0,.85) 100%)}
+  .tile-text{position:absolute; left:42px; right:34px; bottom:34px; color:#fff}
+  .tile-text h3{margin:0 0 1px; font-size:22px; font-weight:700}
+  .tile-text p{margin:0; font-size:16px; opacity:.8}
+  
+  /* hover elevation only here (per spec) */
+  .focus-tile:hover{box-shadow:0 8px 18px rgba(0,0,0,.18); transform:translateY(-8px)}
+  
+  /* =========================
+     STATS
+     ========================= */
+  .stats{background:#fff; padding:80px 0}
+  .stats-row{display:flex; align-items:center; justify-content:space-between}
+  .stat{display:flex; flex-direction:column; align-items:center}
+  .stat .num{font-family:"Coolvetica","Poppins",sans-serif; font-size:49px; color:var(--green); line-height:1.1}
+  .stat .num .plus{font-size:inherit; color:inherit; margin-left:6px; vertical-align:top}
+  .stat .lbl{font-size:17px; color:#000; line-height:24px; margin-top:8px}
+  
+  /* =========================
+     FEATURED STORIES
+     ========================= */
+     .featured{padding:100px 0 180px}  /* adds 80px between stories → events */
+     .featured{ padding-bottom:120px !important; }
+  .center{text-align:center}
+  .stories{margin-top:64px; display:grid; grid-template-columns:600px 600px; gap:42px; justify-content:space-between}
+  .story-card{position:relative; width:600px; height:622px; border-radius:var(--card-r32); overflow:hidden; display:block}
+  .story-card img{width:100%; height:100%; object-fit:cover}
+  .story-card:hover{ transform:translateY(-8px)}
+  .story-grad{position:absolute; left:0; right:0; bottom:0; height:180px; background:linear-gradient(180deg,rgba(0,0,0,0) 20%, rgba(0,0,0,.9) 100%)}
+  .story-title{position:absolute; left:54px; bottom:78px; color:#fff; margin:0; font-size:24px; font-weight:600; line-height:1.2}
+  /* Force space below Featured Stories */
+
+
+  
+ 
+  
+  /* =========================
+     GALLERY
+     ========================= */
+  .gallery{padding:160px 0}
+ /* GALLERY — clean 3-column grid so bottom-right tile shows */
+.gallery-grid{
+  margin-top:64px;
+  display:grid;
+  grid-template-columns: repeat(3, 413px); /* 413 | 413 | 413 */
+  grid-auto-rows:398px;
+  gap:20px;
+  justify-content:space-between;
+}
+
+/* Items */
+.sm{ width:100%; height:100%; object-fit:cover; border-radius:0px;}
+.big{ grid-column:2 / span 2; grid-row:1 / span 2; width:100%; height:100%; object-fit:cover; border-radius:0px;}
+
+/* Positions */
+.top-left { grid-column:1; grid-row:1; }
+.mid-left { grid-column:1; grid-row:2; }
+
+.bottom-a  { grid-column:1; grid-row:3; }
+.bottom-b  { grid-column:2; grid-row:3; }
+.bottom-c  { grid-column:3; grid-row:3; }
+
+  .gallery-btn{width:387px; height:109px; line-height:105px; font-size:28px; font-weight:500; margin:48px auto 0}
+  
+  /* =========================
+     CTA (gradient, image + 3 buttons)
+     ========================= */
+  .cta{background:linear-gradient(135deg,var(--ctaEnd),var(--ctaStart)); color:#fff; padding:80px 0}
+  .cta-grid{display:grid; grid-template-columns:627px 1fr; gap:62px; align-items:center}
+  .cta-media img{width:627px; height:539px; border-radius:var(--card-r32); object-fit:cover}
+  .cta-panel h3{font-family:"Coolvetica","Poppins",sans-serif; font-size:48px; line-height:1.08; margin:0 0 19px}
+  .cta-panel p{font-size:20px; opacity:.9; margin:0 0 32px}
+  .cta-btn{
+    width:527px; height:100px; border-radius:50px; display:flex; align-items:center; justify-content:space-between;
+    padding:0 88px; color:#fff; font-size:24px; font-weight:700; margin-bottom:84px; 
+  }
+  .cta-btn span{font-size:24px}
+  .btn-grad-blue{background:linear-gradient(135deg,#3D5AFE,#5C6BC0)}
+  .btn-grad-purple{background:linear-gradient(135deg,#673AB7,#9575CD)}
+  .btn-grad-violet{background:linear-gradient(135deg,#7E57C2,#B39DDB)}
+  .accent{color:var(--green)}
+  
+  /* =========================
+     FOOTER (568px)
+     ========================= */
+  .site-footer{background:#fff; border-top:1px solid #E0E0E0}
+  .footer-grid{
+    min-height:468px;  /* leaves ~100px for bottom copyright = total 568px */
+    display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:32px; align-items:start; padding:48px 0 24px;
+  }
+  .footer-logo{height:40px; width:auto; margin-bottom:16px}
+  .email{font-size:18px; color:#666; margin:8px 0 24px}
+  .socials{display:flex; gap:20px; list-style:none; padding:0; margin:0}
+  .socials a{display:inline-block; width:36px; height:36px; border:1px solid #C8C8C8; border-radius:50%; line-height:36px; text-align:center; color:#2B2B2B; font-weight:700}
+  
+  .fcol ul{list-style:none; margin:0; padding:0}
+  .fcol li{margin:12px 0}
+  .fcol a{color:#000; font-weight:500}
+  
+  .footer-bottom{text-align:center; padding:32px 0; color:#A0A0A0; border-top:1px solid #E0E0E0;}
+  
+  /* Helpers */
+  .hidden{display:none !important}
+  /* Spacer between About and Mission */
+.about{padding-bottom:100px !important;}
+/* Founder caption: stack role under name, left-aligned */
+.founder-cap{
+    display: grid;                          /* override previous flex */
+    grid-template-columns: 12px 1fr;        /* dot | text */
+    gap: 6px 12px;
+    align-content: center;
+  }
+  
+  .founder-cap .dot{
+    grid-column: 1;
+    grid-row: 1 / span 2;                   /* dot spans both lines */
+    align-self: start;
+    margin-top: 4px;                        /* small vertical tweak */
+  }
+  
+  .founder-cap .name{
+    grid-column: 2;
+    grid-row: 1;
+    line-height: 1.1;
+  }
+  
+  .founder-cap .role{
+    grid-column: 2;
+    grid-row: 2;
+    margin-left: 0;                         /* remove the side-by-side offset */
+    font-weight: 300;                       /* keep your existing weight */
+  }
+
+
+  /* --- Hover states: navbar links --- */
+.main-nav a{
+    transition: color .15s ease;
+  }
+  .main-nav a:hover,
+  .main-nav a:focus-visible{
+    color: var(--green);
+  }
+  
+  /* --- Hover states: hero buttons --- */
+  .btn{ 
+    transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+  }
+  
+  /* Filled green (Volunteer, Donate pill) */
+  .btn-green:hover,
+  .btn-green:focus-visible{
+    background-color: #42792b;   /* slightly darker green on hover */
+    border-color: #42792b;
+    color:#fff;
+  }
+  
+  /* White with green outline (Donate in hero) */
+  .btn-outline-green:hover,
+  .btn-outline-green:focus-visible{
+    background-color: #efffefbb;
+    color: #42792b;
+    border-color: #efffefbb;
+  }
+  
+
+  /* Nudge hero content 24px further left than the container */
+.hero-copy{ margin-left:-44px; }   /* adjust to -16px / -32px as needed */
+
+/* Hero headline tracking */
+.hero .display{
+    letter-spacing: 0.01em;   /* tighten. use +0.02em to loosen */
+    font-kerning: normal;      /* ensure kerning pairs apply */
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Hero spacing (desktop) */
+.hero .display{ margin-bottom:32px; }  /* was 32px: tighter heading→subheading */
+.hero .hero-ctas{ margin-top:64px; }   /* was 48px: bigger gap subheading→buttons */
+/* Hero heading weight */
+.hero .display{ font-weight:260; }  /* try 600, 500, 400 if you have those weights */
+
+/* About: shift whole section content right */
+.about .container{ padding-left:74px; }  /* try 16–32px */
+
+/* Lighter weights for all Coolvetica headings */
+.hero .display,
+.section-title,
+.about-title,
+.stat .num{
+  font-weight:300;   /* try 400 (regular) or 600 if you have it */
+}
+
+/* Featured Stories — image card stays; text sits outside, plain */
+.story{ width:560px; }
+.stories{ grid-template-columns:600px 600px; } /* keep two columns */
+
+.story-card{                       /* clickable image only */
+  display:block;
+  width:600px; height:622px;
+  border-radius:32px; overflow:hidden;
+}
+
+.story-media{ position:relative; width:100%; height:100%; }
+.story-media img{ width:100%; height:100%; object-fit:cover; }
+.story-grad{ position:absolute; left:0; right:0; bottom:0; height:500px;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 10%, rgba(0,0,0,.9) 100%);
+}
+.story-title{
+  position:absolute; left:44px; bottom:68px; margin:0;
+  color:#fff; font-size:24px; font-weight:600; line-height:1.2;
+}
+
+/* Plain text outside the card (no border or shadow) */
+.story-excerpt{
+  margin:46px 0 6px;
+  font-size:17px; line-height:46px; color:#555;
+}
+.story-read{
+  font-size:18px; line-height:66px; font-weight:600; color:var(--green);
+}
+* Featured Stories link hover: deeper green instead of underline */
+.story-read{
+  color: var(--green);
+  transition: color .15s ease;
+}
+.story-read:hover,
+.story-read:focus-visible{
+  color: #4E8C34;   /* deeper shade */
+  text-decoration: none;
+}
+
+
+/* Remove any old inside-card styling if present */
+.story-body{ display:none !important; }
+
+/* Space between Featured Stories → Events */
+.featured{
+  padding-bottom: 80 !important;   /* ignore any earlier padding-bottom */
+  margin-bottom: 320px !important; /* visible gap after the section */
+}
+
+/* Optional: keep Events internal spacing as-is */
+.events{ padding-top: 100px !important; }
+
+
+
+
+/* CTA layout: buttons first (3 rows), then heading + body under them */
+.cta-grid{
+  align-items: start;               /* align to top of the image */
+}
+
+.cta-panel{
+  display: grid;
+  grid-template-rows: 100px 100px 100px auto auto;  /* 3 buttons, then h3, then p */
+  row-gap: 64px;                                   /* 24px between buttons */
+  justify-items: start;
+  align-content: start;
+}
+
+/* Place items on the intended rows without changing HTML order */
+.cta-panel .cta-btn:nth-of-type(1){ grid-row: 1; }
+.cta-panel .cta-btn:nth-of-type(2){ grid-row: 2; }
+.cta-panel .cta-btn:nth-of-type(3){ grid-row: 3; }
+.cta-panel h3{ grid-row: 4; margin: 0; }
+.cta-panel p { grid-row: 5; margin: 12px 0 0; opacity: .9; }
+
+/* Remove old button margins so the grid gap controls spacing */
+.cta-btn{ margin: 0; }
+
+/* =========================
+   CTA — full-bleed bg + exact button spec
+   ========================= */
+
+/* 1) Make the blue background fill the whole screen width */
+.cta{
+  position: relative;
+  padding: 120px 0;                     /* keep your inner spacing */
+  background: transparent !important;   /* background will come from ::before */
+  z-index: 0;
+}
+.cta::before{
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%; right: 50%;
+  margin-left: -50vw;                   /* extend to viewport edges */
+  margin-right: -50vw;
+  background: linear-gradient(135deg, var(--ctaEnd), var(--ctaStart));
+  z-index: -1;
+}
+
+/* 2) Place buttons first (3 rows), then heading + body (no HTML changes) */
+.cta-grid{ align-items: start; }
+.cta-panel{
+  display: grid;
+  grid-template-rows: 100px 100px 100px auto auto;
+  row-gap: 14px;
+  justify-items: start;
+  align-content: start;
+}
+.cta-panel .cta-btn:nth-of-type(1){ grid-row: 1; }
+.cta-panel .cta-btn:nth-of-type(2){ grid-row: 2; }
+.cta-panel .cta-btn:nth-of-type(3){ grid-row: 3; }
+.cta-panel h3{ grid-row: 4; margin: 0; }
+/* Only increase space between last button and the heading */
+.cta-panel h3{ margin-top: 22px; }   /* try 24–56px */
+
+.cta-panel p { grid-row: 5; margin: 8px 0 0; opacity: .9; }
+
+/* 3) Buttons: 527×100, radius 8, translucent white, text+arrow centered & close */
+.cta-btn{
+  width: 527px;
+  height: 100px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.062) !important;  /* white @ 70% */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;    /* center text + arrow together */
+  gap: 20px;                  /* keep them close */
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;                  /* grid gap controls spacing */
+  box-shadow: none;           /* remove pill shadow if any */
+}
+.cta-btn span{ font-size: 24px; }
+
+/* neutralize old gradient button classes */
+.btn-grad-blue,
+.btn-grad-purple,
+.btn-grad-violet{ background: rgba(255, 255, 255, 0.103) !important; }
+
+/* 4) Heading weight + force 2 lines (break after the green “support”) */
+.cta-panel h3{
+  font-weight: 400;                 /* adjust to 500/700 to taste */
+  line-height: 1.08;
+  max-width: 540px;                 /* helps keep it to two lines */
+}
+.cta-panel h3 .accent::after{
+  content: "\A";                    /* line break after “support” */
+  white-space: pre;
+}
+
+/* =========================
+   FOOTER — exact spacing + icon buttons
+   ========================= */
+   .site-footer{
+    background:#fff;
+    border-top:1px solid #E6E6E6;
+    color:#383D38;
+  }
+  
+  /* Top block height/spacing aiming at the design rhythm */
+  .foot-grid{
+    display:grid;
+    grid-template-columns: 1fr 440px; /* left brand / right links */
+    column-gap:160px;
+    align-items:start;
+    padding:80px 0 10px;             /* top/bottom whitespace inside footer */
+  }
+  
+  /* Brand column */
+  .foot-logo{ height:72px; width:auto; display:block; }
+  .foot-email{ margin:28px 0 0; font-size:18px; }
+  .foot-email a{ color:#383D38; text-decoration:none; }
+  .foot-email a:hover{ color:#65AC42; }
+  
+  /* Social icon row */
+  .socials{ list-style:none; margin:36px 0 0; padding:0; display:flex; gap:20px; }
+  .soc{
+    width:44px; height:44px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:1.5px solid #CFCFCF;
+    color:#383D38; text-decoration:none;
+    transition: border-color .15s ease, color .15s ease, background-color .15s ease;
+  }
+  .soc:hover, .soc:focus-visible{
+    border-color:#65AC42; color:#65AC42; outline:none;
+  }
+  .soc svg{
+    width:22px; height:22px;
+    stroke: currentColor; fill: none; stroke-width: 1.6;
+  }
+  
+  /* Some icons have filled parts—ensure they inherit the color */
+  .soc svg [fill="currentColor"]{ fill: currentColor; }
+  .soc svg [stroke="none"]{ stroke: none; }
+  
+  /* Right link columns */
+  .foot-nav{
+    display:grid; grid-template-columns: repeat(2, 1fr);
+    gap:24px 80px;
+  }
+  .foot-nav .col{ list-style:none; margin:0; padding:0; }
+  .foot-nav a{
+    display:inline-block;
+    font-size:18px; color:#505050; text-decoration:none;
+    line-height:1.9;
+  }
+  .foot-nav a:hover{ color:#65AC42; }
+  
+  /* Bottom bar */
+  .foot-bottom{
+    border-top:1px solid #EDEDED;
+    text-align:center;
+    color:#A0A0A0;
+    font-size:14px;
+    padding:24px 0 32px;
+  }
+  
+  /* CTA → Footer spacing */
+.cta{ padding-bottom:20px !important; }            /* was larger; shrink bottom space */
+.cta + .site-footer{ margin-top:0 !important; }    /* prevent extra gap from footer */
+
+
+/* =========================
+   CTA → Footer gap (tighten)
+   ========================= */
+   .cta{ padding-bottom: 64px !important; }     /* reduce space under CTA */
+   .cta + .site-footer{ margin-top: 0 !important; }
+   
+   /* =========================
+      FOOTER layout & sizing
+      ========================= */
+   :root{
+     --footer-h: 568px;          /* design height */
+     --footer-link-gap: 43px;    /* exact gap between link items */
+   }
+   
+   .site-footer{
+     background:#fff;
+     border-top:1px solid #E6E6E6;
+     color:#383D38;
+     min-height: var(--footer-h);          /* target height */
+     display:flex; flex-direction:column;
+   }
+   
+   .foot-grid{
+     flex:1;
+     display:grid;
+     grid-template-columns: 1fr 440px;     /* left brand / right links */
+     column-gap:160px;
+     align-items:start;
+     padding:64px 0 40px;                  /* tune these paddings within the 568px */
+   }
+   
+   /* Brand column */
+   .foot-logo{ height:72px; width:auto; display:block; }
+   .foot-email{ margin:28px 0 0; font-size:18px; }
+   .foot-email a{ color:#383D38; text-decoration:none; }
+   .foot-email a:hover{ color:#65AC42; }
+   
+   /* Socials (PNG icons inside round buttons) */
+   .socials{ list-style:none; margin:36px 0 0; padding:0; display:flex; gap:20px; }
+   .soc{
+     width:44px; height:44px; border-radius:50%;
+     display:flex; align-items:center; justify-content:center;
+     border:1.5px solid #CFCFCF;
+     text-decoration:none;
+     transition: border-color .15s ease, background-color .15s ease;
+   }
+   .soc:hover, .soc:focus-visible{
+     border-color:#65AC42;
+     outline:none;
+   }
+   .soc-ico{
+     width:22px; height:22px; display:block; object-fit:contain;
+   }
+   
+   /* Right link columns */
+   .foot-nav{
+     display:grid; grid-template-columns: repeat(2, 1fr);
+     column-gap:120px;
+   }
+   .foot-nav .col{ list-style:none; margin:0; padding:0; }
+   .foot-nav .col li + li{ margin-top: var(--footer-link-gap); } /* EXACT 43px */
+   .foot-nav a{
+     display:inline-block;
+     font-size:18px; color:#505050; text-decoration:none;
+     line-height:2.5;                          /* neutral line-height; spacing via margin above */
+   }
+   .foot-nav a:hover{ color:#65AC42; }
+   
+   /* Bottom bar */
+   .foot-bottom{
+     border-top:1px solid #EDEDED;
+     text-align:center;
+     color:#A0A0A0;
+     font-size:14px;
+     padding:20px 0 28px;
+   }
+   
+   /* --- Exact-height mode (optional) ---
+      If you want the footer ALWAYS 568px exactly (never taller),
+      uncomment the next block. Ensure content fits! */
+   /*
+   .site-footer{ height: var(--footer-h); min-height:auto; }
+   */
+   
+   /* Footer socials — PNG icons already have the ring */
+/* 1) Kill the CSS ring and avoid clipping when scaling */
+.soc{
+  width:44px; height:44px;
+  display:inline-flex; align-items:center; justify-content:center;
+  border:0 !important;                /* remove the old grey ring */
+  background:transparent;
+  border-radius:0;
+  overflow:visible;                    /* let the scaled PNG breathe */
+}
+
+/* 2) PNG size + scale hover */
+.soc-ico{
+  width:44px;                          /* match your PNG canvas (ring included) */
+  height:44px;
+  display:block;
+  transform-origin:center;
+  transition:transform .18s ease;      /* smooth hover */
+}
+
+/* 3) Hover/focus scale (PNG only) */
+.soc:hover .soc-ico,
+.soc:focus-visible .soc-ico{
+  transform:scale(1.08);               /* tweak to 1.05–1.12 to taste */
+}
+
+/* Optional: visible keyboard focus ring outside the icon */
+.soc:focus-visible{
+  outline:2px solid #65AC42;
+  outline-offset:4px;
+}
+
+/* Respect reduced-motion and touch devices */
+@media (hover:none){
+  .soc:hover .soc-ico{ transform:none; }
+}
+@media (prefers-reduced-motion:reduce){
+  .soc-ico{ transition:none; }
+}
+
+/* Footer socials — PNG icons already have the ring */
+/* 1) Kill the CSS ring and avoid clipping when scaling */
+.soc{
+  width:44px; height:44px;
+  display:inline-flex; align-items:center; justify-content:center;
+  border:0 !important;                /* remove the old grey ring */
+  background:transparent;
+  border-radius:0;
+  overflow:visible;                    /* let the scaled PNG breathe */
+}
+
+/* 2) PNG size + scale hover */
+.soc-ico{
+  width:44px;                          /* match your PNG canvas (ring included) */
+  height:44px;
+  display:block;
+  transform-origin:center;
+  transition:transform .18s ease;      /* smooth hover */
+}
+
+/* 3) Hover/focus scale (PNG only) */
+.soc:hover .soc-ico,
+.soc:focus-visible .soc-ico{
+  transform:scale(1.08);               /* tweak to 1.05–1.12 to taste */
+}
+
+/* Optional: visible keyboard focus ring outside the icon */
+.soc:focus-visible{
+  outline:2px solid #65AC42;
+  outline-offset:4px;
+}
+
+/* Respect reduced-motion and touch devices */
+@media (hover:none){
+  .soc:hover .soc-ico{ transform:none; }
+}
+@media (prefers-reduced-motion:reduce){
+  .soc-ico{ transition:none; }
+}
+
+/* CTA button hover: subtle scale */
+.cta-btn{
+  transition: transform .18s ease, box-shadow .18s ease;
+  will-change: transform;
+  transform-origin: center;
+}
+.cta-btn:hover,
+.cta-btn:focus-visible{
+  transform: scale(1.02);                 /* try 1.01–1.03 to taste */
+  /* optional lift */
+  outline: none;
+}
+
+/* Respect touch and reduced-motion */
+@media (hover:none){
+  .cta-btn:hover{ transform:none; box-shadow:none; }
+}
+@media (prefers-reduced-motion:reduce){
+  .cta-btn{ transition:none; }
+}
+
+/* Tighter CTA → Footer gap */
+.cta{
+  padding-bottom: 140px !important;  /* was larger */
+  margin-bottom: 0 !important;
+}
+.site-footer{ margin-top: 0 !important; }
+
+/* Keep footer total height ≈ 568px: move space from top → bottom */
+.foot-grid{
+  padding-top: 84px !important;   /* was higher */
+  padding-bottom: 80px !important;/* add what you removed from the top */
+}
+/* Read More: only lighten via opacity on hover */
+.about-read{
+  font-size:27px;
+  font-weight:520;        /* if this causes size jump, use 500 */
+  color:#000;             /* keep original black */
+  text-decoration:none;
+  opacity:1;
+  transition:opacity .18s ease;
+}
+.about-read:hover,
+.about-read:focus-visible{
+  opacity:.65;            /* lighter shade ONLY */
+}
+
+/* Safety: beat any generic link hovers */
+.about .about-read:hover{ color:#000; text-decoration:none; }
+
+
+/* =========================================================
+   MOBILE — PIXEL-LOCKED TO YOUR FIGMA (<= 430px)
+   Put this at the VERY END of your CSS.
+   ========================================================= */
+@media (max-width: 430px){
+
+  /* Core canvas */
+  .container{ width:100% !important; max-width:430px !important; padding:0 24px !important; margin:0 auto !important; }
+
+  /* =========================
+     NAVBAR (430×86) — logo + CUSTOM ICON, no donate
+     ========================= */
+  .site-header{ height:86px !important; }
+  .nav-wrap{
+    height:86px !important;
+    width:100% !important;
+    max-width:430px !important;
+    padding:0 24px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:0 !important;
+  }
+  .logo img{ width:140px !important; height:38px !important; object-fit:contain !important; }
+  /* Hide desktop items on mobile */
+  .main-nav, .nav-cta{ display:none !important; }
+  /* Show your custom icon (upload your file here) */
+  .nav-toggle{
+    display:block !important;
+    width:40px !important; height:40px !important;
+    background: url("../assets/icons/menu-mobile.png") center/contain no-repeat !important;
+    border:none !important; padding:0 !important;
+  }
+
+  /* =========================
+     HERO (430×798) — left aligned, stacked buttons
+     ========================= */
+  .hero{ height:798px !important; position:relative !important; }
+  .slides, .slide{ background-position:center !important; }
+  .hero-grid{ display:block !important; }
+  .hero-copy{ padding:44px 24px 0 !important; margin-left:0 !important; }
+
+  .hero .display{
+    font-family:"Coolvetica","Poppins",sans-serif !important;
+    font-size:51.76px !important; line-height:51.76px !important;
+    font-weight:400 !important; letter-spacing:0 !important;
+    margin:0 0 16px !important;
+  }
+  .hero .display .accent{ color:#65AC42 !important; }
+
+  .lead{
+    font-size:15.25px !important; line-height:20.02px !important;
+    letter-spacing:.31px !important; color:#fff !important; opacity:.9 !important;
+    max-width:307px !important; margin:0 !important;
+  }
+
+  /* Buttons: stacked, left; first = green Donate */
+  .hero-ctas{
+    margin-top:32px !important;
+    display:flex !important; flex-direction:column !important; align-items:flex-start !important; gap:20.24px !important;
+  }
+  .hero-btn{
+    width:161px !important; height:61.74px !important; border-radius:30.87px !important;
+    font-size:15.54px !important; font-weight:500 !important; line-height:13.14px !important;
+    display:inline-flex !important; align-items:center !important; justify-content:center !important; gap:6.25px !important;
+    padding:22.98px 44.32px !important; /* matches Figma's inner padding metrics */
+  }
+  /* Order & styles to match your paste */
+  .hero-ctas .btn-green{
+    background:#65AC42 !important; color:#fff !important; border:0 !important;
+  }
+  .hero-ctas .btn-outline-green{
+    background:#fff !important; color:#65AC42 !important; border:2px solid #ffffff !important;
+  }
+
+  /* =========================
+     ABOUT — sizes from Figma
+     ========================= */
+  .about{ padding:48px 0 4 !important; }
+  .about-title{ font-size:32px !important; line-height:40.34px !important; color:#2D308F !important; margin:0 0 16px !important; }
+  .founder-card{ width:382px !important; height:412px !important; border-radius:32px !important; margin:0 auto 2px !important; }
+  .about-text{ font-size:16px !important; line-height:26px !important; letter-spacing:.32px !important; color:#000 !important; }
+  .about-read{ font-size:16px !important; line-height:30.25px !important; padding:48px 0 0 !important; }
+  .founder-cap{
+    position:absolute; left:0; right:0; padding-top:140px; height:315px;
+  }
+.founder-cap .dot{width:10px; height:10px; border-radius:50%;  background:var(--green)}
+  .founder-cap .name{font-size:32px}
+  .founder-cap .role{font-size:14px; font-weight:300; margin-left:12px; opacity:.95}
+  
+  /* =========================
+     MISSION & FOCUS — 1 col, smaller tiles
+     ========================= */
+     .focus{ padding:8px 0 0 !important; }
+  .focus{ background:#EEEEEE !important; padding:48px 0 !important; }
+  .section-title{ font-size:32px !important; line-height:36px !important; color:#2D308F !important; text-align:center !important; }
+  .section-subtitle{
+    font-size:16px !important; line-height:23px !important; color:#555 !important;
+    text-align:center !important; max-width:342px !important; margin:12px auto 54px !important;
+  }
+  .focus-grid{
+    display:grid !important; grid-template-columns:1fr !important;
+    justify-items:center !important; gap:0px !important; margin-top:1px !important;
+  }
+  .focus-tile{
+    width:349.03px !important; height:330.43px !important; border-radius:12 !important;
+    margin:0 auto !important; box-shadow:none !important;
+  }
+  .tile-overlay{ height:148.74px !important; }
+  .tile-text{ left:26px !important; right:16px !important; bottom:38px !important; }
+  .tile-text h3{ font-size:20.28px !important; line-height:20px !important; font-weight:600 !important; margin:0 0 4px !important; }
+  .tile-text p{ font-size:11.83px !important; line-height:18px !important; opacity:.8 !important; margin:0 !important; }
+
+  /* =========================
+     STATS — vertical stack
+     ========================= */
+  .stats{ padding:88px 0 !important; }
+  .stats-row{ display:flex !important; flex-direction:column !important; gap:32px !important; align-items:center !important; }
+  .stat .num{ font-size:49.57px !important; line-height:49.57px !important; color:#65AC42 !important; }
+  .stat .lbl{ font-size:17.70px !important; line-height:37.18px !important; letter-spacing:.35px !important; color:#000 !important; }
+
+/* =========================================
+   MOBILE (≤480px) — Featured Stories (exact, centered)
+   ========================================= */
+@media (max-width:480px){
+
+  /* Section spacing + centered heading */
+  .featured{ padding:48px 0 120px !important; }
+  .featured .section-title{
+    font-size:32px !important;
+    line-height:32px !important;
+    margin:0 0 44px !important;
+    text-align:center !important;
+  }
+
+  /* Ensure comfortable mobile side padding for this section */
+  .featured .container{
+    padding-left:24px !important;
+    padding-right:24px !important;
+  }
+
+  /* Stack stories and center the column (children), but keep text left */
+  .featured .stories{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:54px !important;
+    align-items:center !important;     /* centers each story block */
+    padding:0 !important;
+    margin:0 !important;
+    overflow:visible !important;
+    scroll-snap-type:none !important;
+    -webkit-overflow-scrolling:auto !important;
+  }
+
+  /* IMAGE CARD — EXACT size, centered */
+  .featured .story-card{
+    position:relative !important;
+    width:349.03px !important;
+    height:340.36px !important;
+    border-radius:32px !important;
+    overflow:hidden !important;
+    margin-left:auto !important;
+    margin-right:auto !important;       /* centers within container */
+    box-sizing:border-box !important;
+  }
+  .featured .story-card__img,
+  .featured .story-media{
+    width:100% !important;
+    height:100% !important;
+    border-radius:inherit !important;
+    overflow:hidden !important;
+  }
+  .featured .story-card__img img,
+  .featured .story-media img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    display:block !important;
+  }
+
+  /* Gradient + TITLE inside the card */
+  .featured .story-grad{
+    display:block !important;
+    position:absolute; left:0; right:0; bottom:0;
+    height:96.31px !important;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.9) 90%) !important;
+  }
+  .featured .story-title{
+    position:absolute !important;
+    left:24.62px !important; right:24px !important; bottom:40px !important;
+    margin:0 !important;
+    color:#fff !important;
+    font-size:21.89px !important;
+    line-height:21.89px !important;
+    font-weight:600 !important;
+    text-align:left !important;
+    width:auto !important;
+  }
+
+  /* TEXT UNDER CARD — 340px wide, centered block, left-aligned text */
+  .featured .story-excerpt,
+  .featured .story-read{
+    width:340px !important;             /* exact text column width */
+    margin-left:auto !important;
+    margin-right:auto !important;       /* centers the text block */
+    text-align:left !important;
+    box-sizing:border-box !important;
+  }
+  .featured .story-excerpt{
+    font-size:10.94px !important;
+    line-height:22.98px !important;
+    letter-spacing:.22px !important;
+    margin-top:25px !important;
+    margin-bottom:0px !important;
+  }
+
+  /* Read More link: centered block, not clipped, left text */
+  .featured .story-read{
+    position:static !important; left:auto !important; right:auto !important; bottom:auto !important;
+    display:block !important;
+    margin-top:-8px !important;
+    white-space:normal !important;
+    overflow:visible !important;
+  }
+
+  /* Safety: no horizontal scroll from fixed widths */
+  body{ overflow-x:hidden; }
+}
+
+
+
+  /* =========================
+     EVENTS — 1 col, smaller cards, #EEE bg
+     ========================= */
+     .events{ padding:48px 0 120px !important; }
+  .events{
+    background:#EEEEEE !important; padding:48px 0 !important; margin:62px !important;
+    box-shadow:0 0 0 100vmax #EEEEEE !important; clip-path: inset(0 -100vmax) !important;
+  }
+  .events .section-title{ font-size:26px !important; line-height:32px !important; text-align:center !important; }
+  .events-grid{
+    display:grid !important; grid-template-columns:1fr !important; gap:0px !important;
+    justify-items:center !important; margin-top:0px !important;
+  }
+  .event{
+    width:345.62px !important; height:275.33px !important; border-radius:0px !important;
+    padding:30.13px 34.31px !important; color:#fff !important; gap:0px !important;
+  }
+  .event .md{ display:flex !important; flex-direction:column !important; gap:1px !important; align-items:flex-start !important; }
+  .mth{ font-size:11.72px !important; line-height:9px !important; }
+  .day{ font-size:23.76px !important; line-height:30.13px !important; font-weight:600 !important; }
+  .event h3{ font-size:23.76px !important; line-height:30.13px !important;  margin-top:17.57px !important; }
+  .meta{ font-size:13.39px !important; line-height:14px !important; opacity:.95 !important; }
+  .arr{ right:16px !important; bottom:16px !important; }
+
+  .more-events{
+    width:249px !important; height:84px !important; line-height:84px !important;
+    border-radius:1111px !important; font-size:16px !important; margin:32px auto 0 !important;
+  }
+
+  /* =========================
+     GALLERY — stacked, 32px radius
+     ========================= */
+  .gallery{ padding:48px 0 !important; }
+  .gallery .section-title{ font-size:32px !important; line-height:36px !important; text-align:center !important; }
+  .gallery-grid{
+    display:grid !important; grid-template-columns:1fr !important; gap:34px !important;
+    justify-items:center !important; margin-top:24px !important;
+  }
+  .sm, .big{
+    width:381.13px !important; height:367.29px !important; border-radius:32px !important; object-fit:cover !important;
+    grid-column:auto !important; grid-row:auto !important;
+  }
+  .gallery-btn{
+    width:249px !important; height:84px !important; line-height:84px !important; border-radius:42px !important;
+    font-size:16px !important; margin:32px auto 0 !important;
+  }
+
+
+@media (max-width: 430px){
+  /* =========================
+     CTA (mobile) — center aligned, exact sizes
+     ========================= */
+  .cta{ 
+    padding:48px 0 !important; 
+  }
+  .cta-grid{ 
+    display:grid !important; 
+    grid-template-columns:1fr !important; 
+    gap:48px !important; 
+  }
+  .cta-media img{ 
+    width:342.58px !important; 
+    height:294.50px !important; 
+    border-radius:17.48px !important; 
+    margin:0 auto !important; 
+  }
+  .cta-panel{ 
+    display:grid !important; 
+    justify-items:center !important; 
+    text-align:center !important; 
+    row-gap:0px !important; /* SUPER tight gap between buttons */
+  }
+  .cta-panel h3{ 
+    font-size:26.23px !important; 
+    line-height:26.23px !important; 
+    font-weight:400 !important; 
+    max-width:338px !important; 
+    margin:16px 0 0 !important; 
+  }
+  .cta-panel p{ 
+    font-size:10.93px !important; 
+    line-height:22.95px !important; 
+    margin:6px 0 0 !important; 
+  }
+  .cta-btn{
+    width:342.58px !important; 
+    height:55.41px !important; 
+    border-radius:8px !important;
+    background:rgba(255,255,255,.07) !important; 
+    color:#fff !important;
+    font-size:13.11px !important; 
+    font-weight:600 !important;
+    display:flex !important; 
+    align-items:center !important; 
+    justify-content:center !important; 
+    gap:5.46px !important;
+    margin:0 !important; /* NO margin */
+  }
+}
+/* ...existing code... */
+
+  /* =========================
+     FOOTER — left aligned on mobile
+     ========================= */
+  .foot-grid{
+    grid-template-columns:1fr !important;
+    row-gap:26px !important;
+    padding:32px 24px 28px !important;
+    text-align:left !important;
+  }
+  .foot-brand, .foot-nav{ text-align:left !important; }
+  .socials{ justify-content:flex-start !important; gap:16px !important; }
+  .foot-bottom{ text-align:left !important; padding:20px 24px 28px !important; }
+}
+
+/* Mobile: add white gap before the grey Focus section */
+@media (max-width: 480px){
+  /* About (.section) is followed by Focus (.section--gray) */
+  .section + .section--gray{
+    margin-top: 82px;   /* tweak to 40px or 48px if you want more */
+  }
+}
+/* --- MOBILE: extra white gap between About and the grey Focus section --- */
+@media (max-width: 480px){
+  /* Push the grey section down */
+  .container.section + .section.section--gray{
+    margin-top: 48px !important;   /* try 56px or 64px if you want more */
+  }
+
+  /* Belt-and-braces: ensure the About block itself ends with some white space */
+  .container.section{
+    padding-bottom: 32px !important; /* increase if needed */
+  }
+}
+
+
+.meta{ margin-top:8px !important; }
+
+/* MOBILE (≤480px) — hide the "More Events" button only */
+@media (max-width:480px){
+  /* If you gave the button an id */
+  #moreEventsBtn{ display:none !important; }
+
+  /* If the button has a class (desktop used .more-events) */
+  .more-events{ display:none !important; }
+
+  /* Your mobile markup: button sits inside .center right after .events */
+  .events + .center{ display:none !important; }   /* hides the wrapper cleanly */
+
+  /* tighten the bottom padding of the events panel so no empty gap remains */
+  .events{ padding-bottom:32px !important; }
+}
+
+/* MOBILE (≤480px) — Gallery: perfectly even spacing & equal card sizes */
+@media (max-width:480px){
+  .gallery-grid{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;   /* center the column in the 430px viewport */
+    gap:16px !important;             /* ← uniform space between every card */
+    margin-top:24px !important;
+  }
+
+  /* remove any leftover per-item margins from earlier rules */
+  .gallery-grid > *{ margin:0 !important; }
+
+  /* equal card sizes */
+  .gallery-item, .sm, .big{
+    width:381.13px !important;
+    height:367.29px !important;
+    border-radius:32px !important;
+    overflow:hidden !important;
+  }
+  .gallery-item img, .sm img, .big img{
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+  }
+}
+
+@media (max-width: 430px){
+  .cta-panel{ 
+    display:grid !important; 
+    justify-items:center !important; 
+    text-align:center !important; 
+    row-gap:12px !important; /* SUPER tight gap between buttons */
+    grid-template-rows: none !important; /* REMOVE forced row heights */
+  }
+  .cta-btn{
+    margin:0 !important; /* NO margin */
+    height:55.41px !important; /* your mobile button height */
+  }
+}
+
+@media (max-width: 430px){
+  /* =========================
+     FOOTER — smaller text, icons, stacked links, left aligned
+     ========================= */
+  .site-footer{
+    font-size:13px !important;
+    color:#383D38 !important;
+    padding:0 !important;
+    min-height:auto !important;
+  }
+  .foot-grid{
+    grid-template-columns:1fr !important;
+    row-gap:28px !important;
+    padding:54px 56px 18px !important;
+    text-align:left !important;
+  }
+  .foot-logo{
+    height:52px !important;
+    margin-bottom:16px !important;
+  }
+  .foot-email{
+    font-size:13px !important;
+    margin:12px 0 0 !important;
+  }
+  .socials{
+    gap:9px !important;
+    margin:18px 0 0 !important;
+  }
+  .soc,
+  .soc-ico{
+    width:23px !important;
+    height:23px !important;
+  }
+    .foot-nav{
+    display:block !important;
+    margin-top:45px !important;
+    margin-bottom:32px !important; /* <-- add this line for extra space */
+    padding:0 !important;
+  }
+  /* ...existing code... */
+}
+  .foot-nav .col{
+    display:block !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  .foot-nav .col li{
+    margin:0 0 48px 0 !important;
+    padding:0 !important;
+  }
+  .foot-nav a{
+    display:block !important;
+    font-size:13px !important;
+    color:#505050 !important;
+    text-align:left !important;
+    line-height:1.7 !important;
+    padding:0 !important;
+  }
+  .foot-bottom{
+    font-size:10px !important;
+    text-align:center !important;
+    padding:12px 16px 14px !important;
+  }
+}
+
+
+}
+
+
+@media (max-width: 430px){
+  .mobile-menu {
+    inset: unset !important;         /* Remove full-screen positioning */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: 430px !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+}
+
+/* MOBILE (≤430px) — make the mobile menu fit the viewport exactly */
+@media (max-width:430px){
+  .mobile-menu{
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;        /* dynamic viewport unit (iOS friendly) */
+    max-height: 100dvh !important;
+    overflow: auto !important;         /* scroll INSIDE the overlay if needed */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    box-sizing: border-box;
+    padding: calc(24px + env(safe-area-inset-top,0px)) 24px
+             calc(24px + env(safe-area-inset-bottom,0px));
+    display: none;                     /* keep your existing open/close toggle */
+  }
+  .mobile-menu.open{
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;       /* start at top, not centered vertically */
+  }
+
+  /* Constrain inner content to the 430px canvas and prevent side overflow */
+  .mobile-menu > *{
+    max-width: 430px;
+    width: 100%;
+  }
+
+  /* Menu list spacing, with no extra margins that cause overflow */
+  .mobile-menu ul{ list-style: none; padding: 0; margin: 102px 0 0; width: 100%; }
+  .mobile-menu li + li{ margin-top: 62px; }
+  .mobile-menu a{
+    display: block; text-align: center; text-decoration: none; color: #000;
+    font: 500 24px/1.1 "Poppins", sans-serif;
+  }
+
+  /* Close button positioned safely under the notch */
+  .menu-close{
+    position: absolute !important;
+    top: calc(24px + env(safe-area-inset-top,0px)) !important;
+    right: 38px !important;
+    width: 24px; height: 24px;
+  }
+
+  /* Optional: stop body from scrolling when menu is open */
+  body.menu-open{ overflow: hidden !important; touch-action: none; }
+}
+
+
+/* Grid layout */
+.events-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin: 32px auto 28px;
+  max-width: 1120px;
+}
+
+/* Card as a single clickable <a> */
+.event-card{
+  display:block;
+  position:relative;
+  border-radius:16px;
+  padding:24px;
+  color:#fff;
+  text-decoration:none;
+  min-height:220px;
+  overflow:hidden;
+}
+.event-card.green{ background:#65AC42; }  /* alternate colors */
+.event-card.navy { background:#2D308F; }
+
+.event-date{
+  font:600 12px/1 Poppins, sans-serif;
+  letter-spacing:.06em;
+  opacity:.9;
+  margin:0 0 2px;
+  text-transform:uppercase;
+}
+.event-day{
+  font:700 24px/1 Poppins, sans-serif;
+  margin:0 0 16px;
+}
+.event-title{
+  font:600 18px/1.3 Poppins, sans-serif;
+  margin:0 0 8px;
+}
+.event-meta{
+  font:400 12px/1.4 Poppins, sans-serif;
+  opacity:.95;
+}
+
+/* tiny arrow “→” area, still part of the link */
+.event-arrow{
+  position:absolute;
+  right:16px;
+  bottom:12px;
+  font:700 16px/1 Poppins, sans-serif;
+  opacity:.9;
+}
+
+/* CTA holder */
+.events-cta{
+  display:flex;
+  justify-content:center;
+  margin: 18px 0 8px;
+}
+
+
+/* ================================
+   EVENTS (force original design)
+   Paste this at the very end of your CSS
+   ================================ */
+
+/* Section background band */
+.events{
+  background:#EEEEEE !important;
+  padding:48px 0 !important;
+  margin:0 !important;          /* ← no side margins on mobile */
+  box-shadow:0 0 0 100vmax #EEEEEE !important;
+  clip-path: inset(0 -100vmax) !important;
+}
+
+/* Title */
+.events .section-title{
+  font-size:56px !important;
+  line-height:56px !important;
+  text-align:center !important;
+  margin:0 0 56px !important;
+  color:#2D308F !important; /* your navy */
+}
+
+/* Grid (3 up desktop, with the wide gutters from the comp) */
+.events .events-grid{
+  width:1276px !important;          /* same page container width from comps */
+  max-width:calc(100% - 48px) !important;
+  margin:0 auto !important;
+  display:grid !important;
+  grid-template-columns:repeat(3, 1fr) !important;
+  gap:28px !important;              /* vertical & horizontal spacing */
+  align-items:stretch !important;
+}
+
+/* Card */
+.events .event{
+  border-radius:0 !important;       /* square corners */
+  padding:38px 42px !important;     /* internal spacing like comp */
+  min-height:330px !important;      /* visual height match */
+  box-shadow:none !important;
+  position:relative !important;
+  color:#fff !important;
+}
+
+/* Month + Day stack (top-left) */
+.events .event .md{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:6px !important;
+  align-items:flex-start !important;
+}
+.events .event .mth{
+  font:600 14px/14px "Poppins",sans-serif !important;  /* small uppercase */
+  letter-spacing:.8px !important;
+  text-transform:uppercase !important;
+  opacity:.95 !important;
+}
+.events .event .day{
+  font:600 28px/30px "Poppins",sans-serif !important;
+}
+
+/* Title */
+.events .event h3{
+  margin:22px 0 16px !important;
+  color:#fff !important;
+  font:600 32px/40px "Poppins",sans-serif !important;  /* big & multi-line */
+}
+
+/* Meta line(s) */
+.events .event .meta{
+  font:400 16px/22px "Poppins",sans-serif !important;
+  opacity:.95 !important;
+  color:#fff !important;
+}
+
+/* Arrow (bottom-right) */
+.events .event .arr{
+  position:absolute !important;
+  right:18px !important;
+  bottom:18px !important;
+  color:#fff !important;
+  font-size:20px !important;
+  line-height:1 !important;
+  opacity:.9 !important;
+}
+
+/* COLORS
+   (cards already alternate via your JS; these ensure text stays readable) */
+.events .event.bg-green{ background:#65AC42 !important; color:#fff !important; }
+.events .event.bg-navy { background:#2D308F !important; color:#fff !important; }
+
+/* --- Responsive --- */
+
+/* Two-up on tablets */
+@media (max-width: 1050px){
+  .events .events-grid{
+    grid-template-columns:repeat(2, 1fr) !important;
+    gap:24px !important;
+  }
+  .events .event{
+    min-height:300px !important;
+    padding:34px 36px !important;
+  }
+  .events .event h3{ font-size:28px !important; line-height:36px !important; }
+}
+
+/* One-up on phones */
+@media (max-width: 640px){
+  .events{ padding:48px 0 72px !important; }
+  .events .section-title{ font-size:32px !important; line-height:30px !important; margin-bottom:28px !important; }
+  .events .events-grid{
+    grid-template-columns:1fr !important;
+    gap:20px !important;
+  }
+  .events .event{
+    min-height:auto !important;
+    padding:26px 24px !important;
+  }
+  .events .event h3{ font-size:22px !important; line-height:28px !important; }
+  .events .event .meta{ font-size:14px !important; line-height:20px !important; }
+}
+
+

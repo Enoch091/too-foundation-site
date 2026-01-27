@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================
+   DESIGN TOKENS
+   ========================= */
+:root {
+  /* Brand Colors (HSL) */
+  --green: 101 45% 47%;
+  --green-dark: 101 52% 32%;
+  --navy: 229 57% 42%;
+  --navy-dark: 229 70% 31%;
+  
+  /* CTA Gradient */
+  --cta-start: 224 70% 33%;
+  --cta-end: 229 76% 31%;
+  
+  /* Neutrals */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 0%;
+  --muted: 0 0% 93%;
+  --muted-foreground: 0 0% 33%;
+  --border: 220 9% 91%;
+  
+  /* Semantic Colors */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  /* Text */
+  --text-primary: 0 0% 0%;
+  --text-secondary: 0 0% 33%;
+  --text-muted: 0 0% 63%;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.1);
+  
+  /* Sizes */
+  --nav-height: 134px;
+  --container-max: 1280px;
+  --canvas-max: 1440px;
+  
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+}
+
+/* =========================
+   BASE STYLES
+   ========================= */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: hsl(var(--foreground));
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background: hsl(var(--background));
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =========================
+   UTILITY CLASSES
+   ========================= */
+
+.container {
+  /* Make site content narrower and centered. Default: mobile-friendly 90% */
+  width: 90%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* On tablet and up, keep content at 90% of viewport width for consistency */
+@media (min-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    width: 90%;
+    padding: 0 32px;
+  }
+}
+
+/* =========================
+   BUTTON STYLES
+   ========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-green {
+  background: hsl(var(--green));
+  color: white;
+  border-color: hsl(var(--green));
+}
+
+.btn-green:hover {
+  background: hsl(var(--green-dark));
+  border-color: hsl(var(--green-dark));
+}
+
+.btn-white {
+  background: white;
+  color: hsl(var(--foreground));
+}
+
+.btn-outline-green {
+  border-color: white;
+  color: hsl(var(--green));
+}
+
+.btn-outline-green:hover {
+  background: hsl(var(--green));
+  color: white;
+  border-color: hsl(var(--green));
+}
+
+/* =========================
+   TYPOGRAPHY
+   ========================= */
+.font-coolvetica {
+  font-family: "Coolvetica", "Poppins", sans-serif;
+}
+
+.section-title {
+  font-family: "Coolvetica", "Poppins", sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  color: hsl(var(--navy));
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+/* =========================
+   ANIMATIONS
+   ========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease forwards;
+}
+
+/* =========================
+   SCROLLBAR
+   ========================= */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--navy));
+}

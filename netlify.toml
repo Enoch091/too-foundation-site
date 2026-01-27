@@ -1,0 +1,36 @@
+[build]
+  command = "cd frontend && npm install && npm run build && mv dist/index.html dist/index-react.html && cp -r dist/* ../"
+  publish = "."
+
+# Redirect /auth and /admin to the React SPA
+[[redirects]]
+  from = "/auth"
+  to = "/index-react.html"
+  status = 200
+
+[[redirects]]
+  from = "/auth/*"
+  to = "/index-react.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/index-react.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/index-react.html"
+  status = 200
+
+# Email me when the CONTACT form succeeds
+[[notifications]]
+  type      = "email"
+  to        = "enochakinbola@gmail.com"
+  condition = { form = "contact", success = true }
+
+# Email me when the VOLUNTEER form succeeds
+[[notifications]]
+  type      = "email"
+  to        = "enochakinbola@gmail.com"
+  condition = { form = "volunteer", success = true }

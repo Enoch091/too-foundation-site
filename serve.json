@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/auth", "destination": "/frontend/dist/index.html" },
+    { "source": "/auth/(.*)", "destination": "/frontend/dist/index.html" },
+    { "source": "/admin", "destination": "/frontend/dist/index.html" },
+    { "source": "/admin/(.*)", "destination": "/frontend/dist/index.html" }
+  ]
+}
