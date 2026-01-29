@@ -1,0 +1,11 @@
+# Robots.txt for The Olanike Omopariola Foundation
+User-agent: *
+Allow: /
+
+# Disallow admin and backend areas
+Disallow: /backend/
+Disallow: /frontend/src/components/admin/
+Disallow: /convex/
+
+# Sitemap location
+Sitemap: https://toofoundation.org/sitemap.xml
